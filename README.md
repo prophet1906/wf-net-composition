@@ -17,7 +17,7 @@ The package consists of two tightly coupled pillars:
 2. **End-to-End Discovery, Repair & Verification Pipeline (`src/`, `pipeline.py`)**:  
    An automated 6-stage toolchain implementing:
    - **Stage 1**: Distributed trace ingestion and deterministic per-service projection from Jaeger telemetry.
-   - **Stage 2**: Noise-unfiltered inductive process mining ($\text{noise\_threshold}=0.0$) guaranteeing 100% variant retention.
+   - **Stage 2**: Noise-unfiltered inductive process mining ($\texttt{noise\\_threshold}=0.0$) guaranteeing 100% variant retention.
    - **Stage 3**: Deductive $\tau$-skip model checking using dynamically instrumented observer places ($obs_x$) evaluated via CTL reachability queries ($\Phi_{\text{obs}} = \mathbf{EF}(\text{sink} > 0 \land obs_x = 0)$).
    - **Stage 4**: Interface-guided formal repair combining lossless caller-callee Proof-of-Call relabeling ($\rho_{\text{ret}}=1.0$) and contract-guided DROP-repair ($\Delta_{\text{synth}}=0$).
    - **Stage 5**: Phased Microservice Composition fusing Generalized Workflow nets ($N_C = \bigoplus_{\text{phased}} R_i^*$) across asynchronous channels with synchronization join barriers ($t_{\mathcal{B}}$).
