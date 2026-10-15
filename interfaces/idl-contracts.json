@@ -1,0 +1,187 @@
+{
+  "_meta": {
+    "idl_file": "social_network.thrift",
+    "zero_optional_verified": true
+  },
+  "services": {
+    "unique-id-service": {
+      "channels": [
+        {
+          "name": "ComposeUniqueId",
+          "pattern": "IP-4",
+          "return_type": "i64"
+        }
+      ]
+    },
+    "text-service": {
+      "channels": [
+        {
+          "name": "ComposeText",
+          "pattern": "IP-4",
+          "return_type": "TextServiceReturn"
+        }
+      ]
+    },
+    "user-service": {
+      "channels": [
+        {
+          "name": "RegisterUser",
+          "pattern": "IP-1",
+          "return_type": "void"
+        },
+        {
+          "name": "RegisterUserWithId",
+          "pattern": "IP-1",
+          "return_type": "void"
+        },
+        {
+          "name": "Login",
+          "pattern": "IP-4",
+          "return_type": "string"
+        },
+        {
+          "name": "ComposeCreatorWithUserId",
+          "pattern": "IP-4",
+          "return_type": "Creator"
+        },
+        {
+          "name": "ComposeCreatorWithUsername",
+          "pattern": "IP-4",
+          "return_type": "Creator"
+        },
+        {
+          "name": "GetUserId",
+          "pattern": "IP-4",
+          "return_type": "i64"
+        }
+      ]
+    },
+    "compose-post-service": {
+      "channels": [
+        {
+          "name": "ComposePost",
+          "pattern": "IP-1",
+          "return_type": "void"
+        }
+      ]
+    },
+    "post-storage-service": {
+      "channels": [
+        {
+          "name": "StorePost",
+          "pattern": "IP-1",
+          "return_type": "void"
+        },
+        {
+          "name": "ReadPost",
+          "pattern": "IP-4",
+          "return_type": "Post"
+        },
+        {
+          "name": "ReadPosts",
+          "pattern": "IP-4",
+          "return_type": "list<Post>"
+        }
+      ]
+    },
+    "home-timeline-service": {
+      "channels": [
+        {
+          "name": "ReadHomeTimeline",
+          "pattern": "IP-4",
+          "return_type": "list<Post>"
+        },
+        {
+          "name": "WriteHomeTimeline",
+          "pattern": "IP-1",
+          "return_type": "void"
+        }
+      ]
+    },
+    "user-timeline-service": {
+      "channels": [
+        {
+          "name": "WriteUserTimeline",
+          "pattern": "IP-1",
+          "return_type": "void"
+        },
+        {
+          "name": "ReadUserTimeline",
+          "pattern": "IP-4",
+          "return_type": "list<Post>"
+        }
+      ]
+    },
+    "social-graph-service": {
+      "channels": [
+        {
+          "name": "GetFollowers",
+          "pattern": "IP-4",
+          "return_type": "list<i64>"
+        },
+        {
+          "name": "GetFollowees",
+          "pattern": "IP-4",
+          "return_type": "list<i64>"
+        },
+        {
+          "name": "Follow",
+          "pattern": "IP-1",
+          "return_type": "void"
+        },
+        {
+          "name": "Unfollow",
+          "pattern": "IP-1",
+          "return_type": "void"
+        },
+        {
+          "name": "FollowWithUsername",
+          "pattern": "IP-1",
+          "return_type": "void"
+        },
+        {
+          "name": "UnfollowWithUsername",
+          "pattern": "IP-1",
+          "return_type": "void"
+        },
+        {
+          "name": "InsertUser",
+          "pattern": "IP-1",
+          "return_type": "void"
+        }
+      ]
+    },
+    "user-mention-service": {
+      "channels": [
+        {
+          "name": "ComposeUserMentions",
+          "pattern": "IP-4",
+          "return_type": "list<UserMention>"
+        }
+      ]
+    },
+    "url-shorten-service": {
+      "channels": [
+        {
+          "name": "ComposeUrls",
+          "pattern": "IP-4",
+          "return_type": "list<Url>"
+        },
+        {
+          "name": "GetExtendedUrls",
+          "pattern": "IP-4",
+          "return_type": "list<string>"
+        }
+      ]
+    },
+    "media-service": {
+      "channels": [
+        {
+          "name": "ComposeMedia",
+          "pattern": "IP-4",
+          "return_type": "list<Media>"
+        }
+      ]
+    }
+  }
+}

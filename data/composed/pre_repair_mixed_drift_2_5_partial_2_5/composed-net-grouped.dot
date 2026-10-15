@@ -1,0 +1,410 @@
+digraph "compose_post_workflow" {
+  // Portrait Layout & Global Settings
+  rankdir="TB";
+  charset="UTF-8";
+  compound=true;
+  bgcolor="#FAFAFA";
+  node [fontname="Helvetica,Arial,sans-serif", fontsize=9];
+  edge [fontname="Helvetica,Arial,sans-serif", fontsize=8, color="#333333", arrowsize=0.7];
+
+  // Inter-Service Channel Places
+  "ch::ComposeCreatorWithUserId" [shape=circle, style="filled", fillcolor="#FEF3C7", color="#D97706", penwidth=1.8, label="", xlabel=<<FONT POINT-SIZE="8" COLOR="#92400E"><B>ch::ComposeCreatorWithUserId</B></FONT>>, width=0.28, height=0.28, fixedsize=true];
+  "ch::ComposeMedia" [shape=circle, style="filled", fillcolor="#FEF3C7", color="#D97706", penwidth=1.8, label="", xlabel=<<FONT POINT-SIZE="8" COLOR="#92400E"><B>ch::ComposeMedia</B></FONT>>, width=0.28, height=0.28, fixedsize=true];
+  "ch::ComposeText" [shape=circle, style="filled", fillcolor="#FEF3C7", color="#D97706", penwidth=1.8, label="", xlabel=<<FONT POINT-SIZE="8" COLOR="#92400E"><B>ch::ComposeText</B></FONT>>, width=0.28, height=0.28, fixedsize=true];
+  "ch::ComposeUniqueId" [shape=circle, style="filled", fillcolor="#FEF3C7", color="#D97706", penwidth=1.8, label="", xlabel=<<FONT POINT-SIZE="8" COLOR="#92400E"><B>ch::ComposeUniqueId</B></FONT>>, width=0.28, height=0.28, fixedsize=true];
+  "ch::ComposeUrls" [shape=circle, style="filled", fillcolor="#FEF3C7", color="#D97706", penwidth=1.8, label="", xlabel=<<FONT POINT-SIZE="8" COLOR="#92400E"><B>ch::ComposeUrls</B></FONT>>, width=0.28, height=0.28, fixedsize=true];
+  "ch::ComposeUserMentions" [shape=circle, style="filled", fillcolor="#FEF3C7", color="#D97706", penwidth=1.8, label="", xlabel=<<FONT POINT-SIZE="8" COLOR="#92400E"><B>ch::ComposeUserMentions</B></FONT>>, width=0.28, height=0.28, fixedsize=true];
+  "ch::StorePost" [shape=circle, style="filled", fillcolor="#FEF3C7", color="#D97706", penwidth=1.8, label="", xlabel=<<FONT POINT-SIZE="8" COLOR="#92400E"><B>ch::StorePost</B></FONT>>, width=0.28, height=0.28, fixedsize=true];
+  "ch::WriteHomeTimeline" [shape=circle, style="filled", fillcolor="#FEF3C7", color="#D97706", penwidth=1.8, label="", xlabel=<<FONT POINT-SIZE="8" COLOR="#92400E"><B>ch::WriteHomeTimeline</B></FONT>>, width=0.28, height=0.28, fixedsize=true];
+  "ch::WriteUserTimeline" [shape=circle, style="filled", fillcolor="#FEF3C7", color="#D97706", penwidth=1.8, label="", xlabel=<<FONT POINT-SIZE="8" COLOR="#92400E"><B>ch::WriteUserTimeline</B></FONT>>, width=0.28, height=0.28, fixedsize=true];
+
+  subgraph "cluster_compose_post_service" {
+    label = "compose-post-service";
+    style = "rounded,dashed";
+    color = "#94A3B8";
+    bgcolor = "#F8FAFC";
+    fontname = "Helvetica,Arial,sans-serif";
+    fontsize = 10;
+    penwidth = 1.2;
+
+    "compose-post-service::p_10" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">compose-post-service::p_10</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "compose-post-service::p_11" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">compose-post-service::p_11</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "compose-post-service::p_12" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">compose-post-service::p_12</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "compose-post-service::p_13" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">compose-post-service::p_13</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "compose-post-service::p_14" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">compose-post-service::p_14</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "compose-post-service::p_17" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">compose-post-service::p_17</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "compose-post-service::p_18" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">compose-post-service::p_18</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "compose-post-service::p_19" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">compose-post-service::p_19</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "compose-post-service::p_20" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">compose-post-service::p_20</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "compose-post-service::p_21" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">compose-post-service::p_21</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "compose-post-service::p_22" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">compose-post-service::p_22</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "compose-post-service::p_23" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">compose-post-service::p_23</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "compose-post-service::p_24" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">compose-post-service::p_24</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "compose-post-service::p_3" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">compose-post-service::p_3</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "compose-post-service::p_5" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">compose-post-service::p_5</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "compose-post-service::p_6" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">compose-post-service::p_6</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "compose-post-service::p_7" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">compose-post-service::p_7</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "compose-post-service::p_8" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">compose-post-service::p_8</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "compose-post-service::p_9" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">compose-post-service::p_9</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "compose-post-service::sink" [shape=doublecircle, style="filled", fillcolor="#FDE8E8", color="#9B1C1C", penwidth=1.8, label="", xlabel=<<FONT POINT-SIZE="8" COLOR="#9B1C1C">compose-post-service::sink</FONT>>, width=0.28, height=0.28, fixedsize=true, fontsize=9];
+    "compose-post-service::source" [shape=circle, style="filled", fillcolor="#D0E1F9", color="#1E395B", penwidth=1.8, label="●", xlabel=<<FONT POINT-SIZE="8" COLOR="#1E395B">compose-post-service::source</FONT>>, width=0.28, height=0.28, fixedsize=true, fontsize=10];
+    "compose-post-service::04ff2bc7-9823-41cc-8053-1d3a099cdac0" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">write_user_timeline_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">compose-post-service::04ff2bc7-9823-41cc-8053-1d3a099cdac0</FONT></TD></TR></TABLE>>];
+    "compose-post-service::5274ff24-5b54-4f6e-b4d2-abe104dd1ac1" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">write_home_timeline_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">compose-post-service::5274ff24-5b54-4f6e-b4d2-abe104dd1ac1</FONT></TD></TR></TABLE>>];
+    "compose-post-service::58a4b6b4-4492-40c1-962a-576c7a0dcff6" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">store_post_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">compose-post-service::58a4b6b4-4492-40c1-962a-576c7a0dcff6</FONT></TD></TR></TABLE>>];
+    "compose-post-service::68b30a33-33ff-426f-b865-b98c95b07e86" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">compose_media_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">compose-post-service::68b30a33-33ff-426f-b865-b98c95b07e86</FONT></TD></TR></TABLE>>];
+    "compose-post-service::6b637e75-6eb9-4bd0-b221-eb2e09345d59" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">compose_text_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">compose-post-service::6b637e75-6eb9-4bd0-b221-eb2e09345d59</FONT></TD></TR></TABLE>>];
+    "compose-post-service::75dac25b-db17-4c3c-a1f3-f9c821249346" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">user_creator_rpc_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">compose-post-service::75dac25b-db17-4c3c-a1f3-f9c821249346</FONT></TD></TR></TABLE>>];
+    "compose-post-service::787aa20d-f6e4-4c4d-9deb-b9ee4eb6fe97" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">compose_creator_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">compose-post-service::787aa20d-f6e4-4c4d-9deb-b9ee4eb6fe97</FONT></TD></TR></TABLE>>];
+    "compose-post-service::8df7e877-008c-49d2-9e3e-883b216a78f2" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">store_post_client_v2</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">compose-post-service::8df7e877-008c-49d2-9e3e-883b216a78f2</FONT></TD></TR></TABLE>>];
+    "compose-post-service::8f66cf7c-6464-4c7a-8bde-6a803e4fdf46" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">post_home_timeline_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">compose-post-service::8f66cf7c-6464-4c7a-8bde-6a803e4fdf46</FONT></TD></TR></TABLE>>];
+    "compose-post-service::9468ef15-5619-4caf-a4c6-a192d2a4f50a" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">compose_unique_id_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">compose-post-service::9468ef15-5619-4caf-a4c6-a192d2a4f50a</FONT></TD></TR></TABLE>>];
+    "compose-post-service::b4852ef2-c795-46d4-a0f0-586d609be887" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">compose_text_grpc_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">compose-post-service::b4852ef2-c795-46d4-a0f0-586d609be887</FONT></TD></TR></TABLE>>];
+    "compose-post-service::c85c2e7a-2445-4663-afcf-412d9fe10d47" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">media_upload_dispatch_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">compose-post-service::c85c2e7a-2445-4663-afcf-412d9fe10d47</FONT></TD></TR></TABLE>>];
+    "compose-post-service::d76fe08e-5cae-4919-acc9-9abf2c7a0b38" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">user_timeline_dispatch_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">compose-post-service::d76fe08e-5cae-4919-acc9-9abf2c7a0b38</FONT></TD></TR></TABLE>>];
+    "compose-post-service::da13f50a-6aa1-4945-9e94-a66114927c31" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">unique_id_rpc_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">compose-post-service::da13f50a-6aa1-4945-9e94-a66114927c31</FONT></TD></TR></TABLE>>];
+    "compose-post-service::f8eea143-3ce2-4d60-82b4-fac34e4e16a9" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">compose_post_server</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">compose-post-service::f8eea143-3ce2-4d60-82b4-fac34e4e16a9</FONT></TD></TR></TABLE>>];
+    "compose-post-service::tauSplit_1" [shape=box, style="filled", fillcolor="#94A3B8", color="#475569", penwidth=1.0, width=0.3, height=0.1, fixedsize=true, label=""];
+  }
+
+  subgraph "cluster_home_timeline_service" {
+    label = "home-timeline-service";
+    style = "rounded,dashed";
+    color = "#94A3B8";
+    bgcolor = "#F8FAFC";
+    fontname = "Helvetica,Arial,sans-serif";
+    fontsize = 10;
+    penwidth = 1.2;
+
+    "home-timeline-service::p_10" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">home-timeline-service::p_10</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "home-timeline-service::p_11" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">home-timeline-service::p_11</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "home-timeline-service::p_3" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">home-timeline-service::p_3</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "home-timeline-service::p_4" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">home-timeline-service::p_4</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "home-timeline-service::p_5" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">home-timeline-service::p_5</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "home-timeline-service::p_6" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">home-timeline-service::p_6</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "home-timeline-service::p_7" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">home-timeline-service::p_7</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "home-timeline-service::p_8" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">home-timeline-service::p_8</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "home-timeline-service::p_9" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">home-timeline-service::p_9</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "home-timeline-service::sink" [shape=doublecircle, style="filled", fillcolor="#FDE8E8", color="#9B1C1C", penwidth=1.8, label="", xlabel=<<FONT POINT-SIZE="8" COLOR="#9B1C1C">home-timeline-service::sink</FONT>>, width=0.28, height=0.28, fixedsize=true, fontsize=9];
+    "home-timeline-service::1b23be35-8c65-4c33-87ee-2b30515686cb" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">write_home_timeline_redis_update_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">home-timeline-service::1b23be35-8c65-4c33-87ee-2b30515686cb</FONT></TD></TR></TABLE>>];
+    "home-timeline-service::25620e57-508c-41d8-a373-720af0706f72" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">get_followers_rpc_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">home-timeline-service::25620e57-508c-41d8-a373-720af0706f72</FONT></TD></TR></TABLE>>];
+    "home-timeline-service::42c9a2cb-2fa5-4374-a3e3-94d8a0ccf1d7" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">read_home_timeline_server</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">home-timeline-service::42c9a2cb-2fa5-4374-a3e3-94d8a0ccf1d7</FONT></TD></TR></TABLE>>];
+    "home-timeline-service::979da915-d7ca-4d4c-acf8-8cdf41c078ce" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">read_home_timeline_redis_find_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">home-timeline-service::979da915-d7ca-4d4c-acf8-8cdf41c078ce</FONT></TD></TR></TABLE>>];
+    "home-timeline-service::f07981db-1577-4866-aa4d-340a9182fade" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">write_home_timeline_server</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">home-timeline-service::f07981db-1577-4866-aa4d-340a9182fade</FONT></TD></TR></TABLE>>];
+    "home-timeline-service::fc4e22ae-a9a1-4b09-a58e-c13e7250574c" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">get_followers_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">home-timeline-service::fc4e22ae-a9a1-4b09-a58e-c13e7250574c</FONT></TD></TR></TABLE>>];
+    "home-timeline-service::skip_5" [shape=box, style="filled", fillcolor="#94A3B8", color="#475569", penwidth=1.0, width=0.3, height=0.1, fixedsize=true, label=""];
+    "home-timeline-service::skip_6" [shape=box, style="filled", fillcolor="#94A3B8", color="#475569", penwidth=1.0, width=0.3, height=0.1, fixedsize=true, label=""];
+    "home-timeline-service::tauJoin_4" [shape=box, style="filled", fillcolor="#94A3B8", color="#475569", penwidth=1.0, width=0.3, height=0.1, fixedsize=true, label=""];
+    "home-timeline-service::tauSplit_3" [shape=box, style="filled", fillcolor="#94A3B8", color="#475569", penwidth=1.0, width=0.3, height=0.1, fixedsize=true, label=""];
+    "home-timeline-service::tau_1" [shape=box, style="filled", fillcolor="#94A3B8", color="#475569", penwidth=1.0, width=0.3, height=0.1, fixedsize=true, label=""];
+    "home-timeline-service::tau_2" [shape=box, style="filled", fillcolor="#94A3B8", color="#475569", penwidth=1.0, width=0.3, height=0.1, fixedsize=true, label=""];
+  }
+
+  subgraph "cluster_media_service" {
+    label = "media-service";
+    style = "rounded,dashed";
+    color = "#94A3B8";
+    bgcolor = "#F8FAFC";
+    fontname = "Helvetica,Arial,sans-serif";
+    fontsize = 10;
+    penwidth = 1.2;
+
+    "media-service::sink" [shape=doublecircle, style="filled", fillcolor="#FDE8E8", color="#9B1C1C", penwidth=1.8, label="", xlabel=<<FONT POINT-SIZE="8" COLOR="#9B1C1C">media-service::sink</FONT>>, width=0.28, height=0.28, fixedsize=true, fontsize=9];
+    "media-service::bad52a81-b842-4c27-9c48-5003340cc828" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">compose_media_server</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">media-service::bad52a81-b842-4c27-9c48-5003340cc828</FONT></TD></TR></TABLE>>];
+  }
+
+  subgraph "cluster_post_storage_service" {
+    label = "post-storage-service";
+    style = "rounded,dashed";
+    color = "#94A3B8";
+    bgcolor = "#F8FAFC";
+    fontname = "Helvetica,Arial,sans-serif";
+    fontsize = 10;
+    penwidth = 1.2;
+
+    "post-storage-service::p_3" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">post-storage-service::p_3</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "post-storage-service::p_4" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">post-storage-service::p_4</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "post-storage-service::p_5" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">post-storage-service::p_5</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "post-storage-service::p_6" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">post-storage-service::p_6</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "post-storage-service::p_7" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">post-storage-service::p_7</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "post-storage-service::p_8" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">post-storage-service::p_8</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "post-storage-service::sink" [shape=doublecircle, style="filled", fillcolor="#FDE8E8", color="#9B1C1C", penwidth=1.8, label="", xlabel=<<FONT POINT-SIZE="8" COLOR="#9B1C1C">post-storage-service::sink</FONT>>, width=0.28, height=0.28, fixedsize=true, fontsize=9];
+    "post-storage-service::01ec7428-44a1-4824-92c1-67e0386ff759" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">mongo_find_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">post-storage-service::01ec7428-44a1-4824-92c1-67e0386ff759</FONT></TD></TR></TABLE>>];
+    "post-storage-service::3ca5d882-7acc-4c9a-a291-f7de0983a628" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">store_post_server</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">post-storage-service::3ca5d882-7acc-4c9a-a291-f7de0983a628</FONT></TD></TR></TABLE>>];
+    "post-storage-service::638e49e7-5e46-4c8d-923a-f01fd3440bd3" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">mmc_set_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">post-storage-service::638e49e7-5e46-4c8d-923a-f01fd3440bd3</FONT></TD></TR></TABLE>>];
+    "post-storage-service::97841be1-e58f-44bc-87ce-3156769339a3" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">post_storage_read_posts_server</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">post-storage-service::97841be1-e58f-44bc-87ce-3156769339a3</FONT></TD></TR></TABLE>>];
+    "post-storage-service::cd267b67-393e-4a7d-80cf-589c98a01915" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">post_storage_mmc_mget_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">post-storage-service::cd267b67-393e-4a7d-80cf-589c98a01915</FONT></TD></TR></TABLE>>];
+    "post-storage-service::ff45fef4-22e0-4e4e-a00c-629eded05ad9" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">post_storage_mongo_insert_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">post-storage-service::ff45fef4-22e0-4e4e-a00c-629eded05ad9</FONT></TD></TR></TABLE>>];
+    "post-storage-service::skip_3" [shape=box, style="filled", fillcolor="#94A3B8", color="#475569", penwidth=1.0, width=0.3, height=0.1, fixedsize=true, label=""];
+    "post-storage-service::skip_4" [shape=box, style="filled", fillcolor="#94A3B8", color="#475569", penwidth=1.0, width=0.3, height=0.1, fixedsize=true, label=""];
+    "post-storage-service::tau_1" [shape=box, style="filled", fillcolor="#94A3B8", color="#475569", penwidth=1.0, width=0.3, height=0.1, fixedsize=true, label=""];
+    "post-storage-service::tau_2" [shape=box, style="filled", fillcolor="#94A3B8", color="#475569", penwidth=1.0, width=0.3, height=0.1, fixedsize=true, label=""];
+  }
+
+  subgraph "cluster_text_service" {
+    label = "text-service";
+    style = "rounded,dashed";
+    color = "#94A3B8";
+    bgcolor = "#F8FAFC";
+    fontname = "Helvetica,Arial,sans-serif";
+    fontsize = 10;
+    penwidth = 1.2;
+
+    "text-service::p_3" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">text-service::p_3</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "text-service::p_4" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">text-service::p_4</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "text-service::p_5" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">text-service::p_5</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "text-service::p_6" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">text-service::p_6</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "text-service::p_7" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">text-service::p_7</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "text-service::p_8" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">text-service::p_8</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "text-service::sink" [shape=doublecircle, style="filled", fillcolor="#FDE8E8", color="#9B1C1C", penwidth=1.8, label="", xlabel=<<FONT POINT-SIZE="8" COLOR="#9B1C1C">text-service::sink</FONT>>, width=0.28, height=0.28, fixedsize=true, fontsize=9];
+    "text-service::04ccaeba-1666-433e-a443-df6d1d789930" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">compose_urls_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">text-service::04ccaeba-1666-433e-a443-df6d1d789930</FONT></TD></TR></TABLE>>];
+    "text-service::17365c47-bfee-4f91-8215-cd3d660063dd" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">user_mentions_rpc_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">text-service::17365c47-bfee-4f91-8215-cd3d660063dd</FONT></TD></TR></TABLE>>];
+    "text-service::1b58d4ed-5e56-45d8-8cde-0c480535a81f" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">compose_user_mentions_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">text-service::1b58d4ed-5e56-45d8-8cde-0c480535a81f</FONT></TD></TR></TABLE>>];
+    "text-service::d39c1ad8-01ee-467b-9194-4ed986161e98" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">compose_urls_grpc_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">text-service::d39c1ad8-01ee-467b-9194-4ed986161e98</FONT></TD></TR></TABLE>>];
+    "text-service::f81c56c4-0cb4-4815-8dc3-35fd1e6b025e" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">compose_text_server</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">text-service::f81c56c4-0cb4-4815-8dc3-35fd1e6b025e</FONT></TD></TR></TABLE>>];
+    "text-service::tauJoin_2" [shape=box, style="filled", fillcolor="#94A3B8", color="#475569", penwidth=1.0, width=0.3, height=0.1, fixedsize=true, label=""];
+    "text-service::tauSplit_1" [shape=box, style="filled", fillcolor="#94A3B8", color="#475569", penwidth=1.0, width=0.3, height=0.1, fixedsize=true, label=""];
+  }
+
+  subgraph "cluster_unique_id_service" {
+    label = "unique-id-service";
+    style = "rounded,dashed";
+    color = "#94A3B8";
+    bgcolor = "#F8FAFC";
+    fontname = "Helvetica,Arial,sans-serif";
+    fontsize = 10;
+    penwidth = 1.2;
+
+    "unique-id-service::sink" [shape=doublecircle, style="filled", fillcolor="#FDE8E8", color="#9B1C1C", penwidth=1.8, label="", xlabel=<<FONT POINT-SIZE="8" COLOR="#9B1C1C">unique-id-service::sink</FONT>>, width=0.28, height=0.28, fixedsize=true, fontsize=9];
+    "unique-id-service::ee35a23a-3cca-4e24-99a2-af1a3d81f4e2" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">compose_unique_id_server</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">unique-id-service::ee35a23a-3cca-4e24-99a2-af1a3d81f4e2</FONT></TD></TR></TABLE>>];
+  }
+
+  subgraph "cluster_url_shorten_service" {
+    label = "url-shorten-service";
+    style = "rounded,dashed";
+    color = "#94A3B8";
+    bgcolor = "#F8FAFC";
+    fontname = "Helvetica,Arial,sans-serif";
+    fontsize = 10;
+    penwidth = 1.2;
+
+    "url-shorten-service::p_3" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">url-shorten-service::p_3</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "url-shorten-service::sink" [shape=doublecircle, style="filled", fillcolor="#FDE8E8", color="#9B1C1C", penwidth=1.8, label="", xlabel=<<FONT POINT-SIZE="8" COLOR="#9B1C1C">url-shorten-service::sink</FONT>>, width=0.28, height=0.28, fixedsize=true, fontsize=9];
+    "url-shorten-service::aaf1b6c2-76a5-44ad-9264-0f3f0f97c70c" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">compose_urls_server</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">url-shorten-service::aaf1b6c2-76a5-44ad-9264-0f3f0f97c70c</FONT></TD></TR></TABLE>>];
+    "url-shorten-service::cc1ce13d-7e71-4849-a7cb-d78970f4a34e" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">url_mongo_insert_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">url-shorten-service::cc1ce13d-7e71-4849-a7cb-d78970f4a34e</FONT></TD></TR></TABLE>>];
+    "url-shorten-service::skip_1" [shape=box, style="filled", fillcolor="#94A3B8", color="#475569", penwidth=1.0, width=0.3, height=0.1, fixedsize=true, label=""];
+  }
+
+  subgraph "cluster_user_mention_service" {
+    label = "user-mention-service";
+    style = "rounded,dashed";
+    color = "#94A3B8";
+    bgcolor = "#F8FAFC";
+    fontname = "Helvetica,Arial,sans-serif";
+    fontsize = 10;
+    penwidth = 1.2;
+
+    "user-mention-service::p_3" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">user-mention-service::p_3</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "user-mention-service::sink" [shape=doublecircle, style="filled", fillcolor="#FDE8E8", color="#9B1C1C", penwidth=1.8, label="", xlabel=<<FONT POINT-SIZE="8" COLOR="#9B1C1C">user-mention-service::sink</FONT>>, width=0.28, height=0.28, fixedsize=true, fontsize=9];
+    "user-mention-service::28af6992-3805-4b64-8de6-ef1d10e07b5d" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">compose_user_mentions_server</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">user-mention-service::28af6992-3805-4b64-8de6-ef1d10e07b5d</FONT></TD></TR></TABLE>>];
+    "user-mention-service::d3f76dfe-a27b-45ea-b2af-385bd066f18f" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">compose_user_mentions_memcached_get_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">user-mention-service::d3f76dfe-a27b-45ea-b2af-385bd066f18f</FONT></TD></TR></TABLE>>];
+    "user-mention-service::skip_1" [shape=box, style="filled", fillcolor="#94A3B8", color="#475569", penwidth=1.0, width=0.3, height=0.1, fixedsize=true, label=""];
+  }
+
+  subgraph "cluster_user_service" {
+    label = "user-service";
+    style = "rounded,dashed";
+    color = "#94A3B8";
+    bgcolor = "#F8FAFC";
+    fontname = "Helvetica,Arial,sans-serif";
+    fontsize = 10;
+    penwidth = 1.2;
+
+    "user-service::sink" [shape=doublecircle, style="filled", fillcolor="#FDE8E8", color="#9B1C1C", penwidth=1.8, label="", xlabel=<<FONT POINT-SIZE="8" COLOR="#9B1C1C">user-service::sink</FONT>>, width=0.28, height=0.28, fixedsize=true, fontsize=9];
+    "user-service::6fc12bde-bc85-4ad2-8be1-807cc462dc4a" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">compose_creator_server</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">user-service::6fc12bde-bc85-4ad2-8be1-807cc462dc4a</FONT></TD></TR></TABLE>>];
+  }
+
+  subgraph "cluster_user_timeline_service" {
+    label = "user-timeline-service";
+    style = "rounded,dashed";
+    color = "#94A3B8";
+    bgcolor = "#F8FAFC";
+    fontname = "Helvetica,Arial,sans-serif";
+    fontsize = 10;
+    penwidth = 1.2;
+
+    "user-timeline-service::p_3" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">user-timeline-service::p_3</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "user-timeline-service::p_4" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">user-timeline-service::p_4</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "user-timeline-service::p_5" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">user-timeline-service::p_5</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "user-timeline-service::p_6" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">user-timeline-service::p_6</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "user-timeline-service::p_7" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">user-timeline-service::p_7</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "user-timeline-service::p_8" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">user-timeline-service::p_8</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "user-timeline-service::p_9" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">user-timeline-service::p_9</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+    "user-timeline-service::sink" [shape=doublecircle, style="filled", fillcolor="#FDE8E8", color="#9B1C1C", penwidth=1.8, label="", xlabel=<<FONT POINT-SIZE="8" COLOR="#9B1C1C">user-timeline-service::sink</FONT>>, width=0.28, height=0.28, fixedsize=true, fontsize=9];
+    "user-timeline-service::0930d18a-79a4-43ae-808d-946b902c2442" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">write_user_timeline_mongo_insert_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">user-timeline-service::0930d18a-79a4-43ae-808d-946b902c2442</FONT></TD></TR></TABLE>>];
+    "user-timeline-service::280e591b-1275-4653-a250-c10cb2dcf1d7" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">write_user_timeline_redis_update_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">user-timeline-service::280e591b-1275-4653-a250-c10cb2dcf1d7</FONT></TD></TR></TABLE>>];
+    "user-timeline-service::bc1d5c0c-7c43-4f0e-a2fe-1c40ab06e8ed" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">read_user_timeline_server</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">user-timeline-service::bc1d5c0c-7c43-4f0e-a2fe-1c40ab06e8ed</FONT></TD></TR></TABLE>>];
+    "user-timeline-service::c5b08046-7e86-40e5-9eee-85cc7a84ab98" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">write_user_timeline_server</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">user-timeline-service::c5b08046-7e86-40e5-9eee-85cc7a84ab98</FONT></TD></TR></TABLE>>];
+    "user-timeline-service::dcf451e5-a131-4cc8-a9a7-0bfc6b4c5301" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">user_timeline_redis_update_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">user-timeline-service::dcf451e5-a131-4cc8-a9a7-0bfc6b4c5301</FONT></TD></TR></TABLE>>];
+    "user-timeline-service::e309081f-b064-4577-8355-422947b5a72f" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">read_user_timeline_redis_find_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">user-timeline-service::e309081f-b064-4577-8355-422947b5a72f</FONT></TD></TR></TABLE>>];
+    "user-timeline-service::e512a9aa-1cdc-48be-b941-d9b35d6dad93" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.4, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">user_timeline_mongo_find_client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">user-timeline-service::e512a9aa-1cdc-48be-b941-d9b35d6dad93</FONT></TD></TR></TABLE>>];
+    "user-timeline-service::skip_3" [shape=box, style="filled", fillcolor="#94A3B8", color="#475569", penwidth=1.0, width=0.3, height=0.1, fixedsize=true, label=""];
+    "user-timeline-service::skip_4" [shape=box, style="filled", fillcolor="#94A3B8", color="#475569", penwidth=1.0, width=0.3, height=0.1, fixedsize=true, label=""];
+    "user-timeline-service::tau_1" [shape=box, style="filled", fillcolor="#94A3B8", color="#475569", penwidth=1.0, width=0.3, height=0.1, fixedsize=true, label=""];
+    "user-timeline-service::tau_2" [shape=box, style="filled", fillcolor="#94A3B8", color="#475569", penwidth=1.0, width=0.3, height=0.1, fixedsize=true, label=""];
+  }
+
+  // Arcs
+  "ch::ComposeCreatorWithUserId" -> "user-service::6fc12bde-bc85-4ad2-8be1-807cc462dc4a";
+  "ch::ComposeMedia" -> "media-service::bad52a81-b842-4c27-9c48-5003340cc828";
+  "ch::ComposeText" -> "text-service::f81c56c4-0cb4-4815-8dc3-35fd1e6b025e";
+  "ch::ComposeUniqueId" -> "unique-id-service::ee35a23a-3cca-4e24-99a2-af1a3d81f4e2";
+  "ch::ComposeUrls" -> "url-shorten-service::aaf1b6c2-76a5-44ad-9264-0f3f0f97c70c";
+  "ch::ComposeUserMentions" -> "user-mention-service::28af6992-3805-4b64-8de6-ef1d10e07b5d";
+  "ch::StorePost" -> "post-storage-service::tau_1";
+  "ch::WriteHomeTimeline" -> "home-timeline-service::tau_1";
+  "ch::WriteUserTimeline" -> "user-timeline-service::tau_1";
+  "compose-post-service::04ff2bc7-9823-41cc-8053-1d3a099cdac0" -> "ch::WriteUserTimeline";
+  "compose-post-service::04ff2bc7-9823-41cc-8053-1d3a099cdac0" -> "compose-post-service::p_14";
+  "compose-post-service::5274ff24-5b54-4f6e-b4d2-abe104dd1ac1" -> "ch::WriteHomeTimeline";
+  "compose-post-service::5274ff24-5b54-4f6e-b4d2-abe104dd1ac1" -> "compose-post-service::sink";
+  "compose-post-service::58a4b6b4-4492-40c1-962a-576c7a0dcff6" -> "ch::StorePost";
+  "compose-post-service::58a4b6b4-4492-40c1-962a-576c7a0dcff6" -> "compose-post-service::p_13";
+  "compose-post-service::68b30a33-33ff-426f-b865-b98c95b07e86" -> "ch::ComposeMedia";
+  "compose-post-service::68b30a33-33ff-426f-b865-b98c95b07e86" -> "compose-post-service::p_6";
+  "compose-post-service::6b637e75-6eb9-4bd0-b221-eb2e09345d59" -> "ch::ComposeText";
+  "compose-post-service::6b637e75-6eb9-4bd0-b221-eb2e09345d59" -> "compose-post-service::p_8";
+  "compose-post-service::75dac25b-db17-4c3c-a1f3-f9c821249346" -> "compose-post-service::p_18";
+  "compose-post-service::787aa20d-f6e4-4c4d-9deb-b9ee4eb6fe97" -> "ch::ComposeCreatorWithUserId";
+  "compose-post-service::787aa20d-f6e4-4c4d-9deb-b9ee4eb6fe97" -> "compose-post-service::p_10";
+  "compose-post-service::8df7e877-008c-49d2-9e3e-883b216a78f2" -> "compose-post-service::p_23";
+  "compose-post-service::8f66cf7c-6464-4c7a-8bde-6a803e4fdf46" -> "compose-post-service::sink";
+  "compose-post-service::9468ef15-5619-4caf-a4c6-a192d2a4f50a" -> "ch::ComposeUniqueId";
+  "compose-post-service::9468ef15-5619-4caf-a4c6-a192d2a4f50a" -> "compose-post-service::p_12";
+  "compose-post-service::b4852ef2-c795-46d4-a0f0-586d609be887" -> "compose-post-service::p_17";
+  "compose-post-service::b4852ef2-c795-46d4-a0f0-586d609be887" -> "compose-post-service::p_19";
+  "compose-post-service::b4852ef2-c795-46d4-a0f0-586d609be887" -> "compose-post-service::p_21";
+  "compose-post-service::c85c2e7a-2445-4663-afcf-412d9fe10d47" -> "compose-post-service::p_20";
+  "compose-post-service::d76fe08e-5cae-4919-acc9-9abf2c7a0b38" -> "compose-post-service::p_24";
+  "compose-post-service::da13f50a-6aa1-4945-9e94-a66114927c31" -> "compose-post-service::p_22";
+  "compose-post-service::f8eea143-3ce2-4d60-82b4-fac34e4e16a9" -> "compose-post-service::p_3";
+  "compose-post-service::p_10" -> "compose-post-service::58a4b6b4-4492-40c1-962a-576c7a0dcff6";
+  "compose-post-service::p_11" -> "compose-post-service::9468ef15-5619-4caf-a4c6-a192d2a4f50a";
+  "compose-post-service::p_12" -> "compose-post-service::58a4b6b4-4492-40c1-962a-576c7a0dcff6";
+  "compose-post-service::p_13" -> "compose-post-service::04ff2bc7-9823-41cc-8053-1d3a099cdac0";
+  "compose-post-service::p_14" -> "compose-post-service::5274ff24-5b54-4f6e-b4d2-abe104dd1ac1";
+  "compose-post-service::p_17" -> "compose-post-service::75dac25b-db17-4c3c-a1f3-f9c821249346";
+  "compose-post-service::p_18" -> "compose-post-service::8df7e877-008c-49d2-9e3e-883b216a78f2";
+  "compose-post-service::p_19" -> "compose-post-service::c85c2e7a-2445-4663-afcf-412d9fe10d47";
+  "compose-post-service::p_20" -> "compose-post-service::8df7e877-008c-49d2-9e3e-883b216a78f2";
+  "compose-post-service::p_21" -> "compose-post-service::da13f50a-6aa1-4945-9e94-a66114927c31";
+  "compose-post-service::p_22" -> "compose-post-service::8df7e877-008c-49d2-9e3e-883b216a78f2";
+  "compose-post-service::p_23" -> "compose-post-service::d76fe08e-5cae-4919-acc9-9abf2c7a0b38";
+  "compose-post-service::p_24" -> "compose-post-service::8f66cf7c-6464-4c7a-8bde-6a803e4fdf46";
+  "compose-post-service::p_3" -> "compose-post-service::b4852ef2-c795-46d4-a0f0-586d609be887";
+  "compose-post-service::p_3" -> "compose-post-service::tauSplit_1";
+  "compose-post-service::p_5" -> "compose-post-service::68b30a33-33ff-426f-b865-b98c95b07e86";
+  "compose-post-service::p_6" -> "compose-post-service::58a4b6b4-4492-40c1-962a-576c7a0dcff6";
+  "compose-post-service::p_7" -> "compose-post-service::6b637e75-6eb9-4bd0-b221-eb2e09345d59";
+  "compose-post-service::p_8" -> "compose-post-service::58a4b6b4-4492-40c1-962a-576c7a0dcff6";
+  "compose-post-service::p_9" -> "compose-post-service::787aa20d-f6e4-4c4d-9deb-b9ee4eb6fe97";
+  "compose-post-service::source" -> "compose-post-service::f8eea143-3ce2-4d60-82b4-fac34e4e16a9";
+  "compose-post-service::tauSplit_1" -> "compose-post-service::p_11";
+  "compose-post-service::tauSplit_1" -> "compose-post-service::p_5";
+  "compose-post-service::tauSplit_1" -> "compose-post-service::p_7";
+  "compose-post-service::tauSplit_1" -> "compose-post-service::p_9";
+  "home-timeline-service::1b23be35-8c65-4c33-87ee-2b30515686cb" -> "home-timeline-service::p_4";
+  "home-timeline-service::25620e57-508c-41d8-a373-720af0706f72" -> "home-timeline-service::p_11";
+  "home-timeline-service::42c9a2cb-2fa5-4374-a3e3-94d8a0ccf1d7" -> "home-timeline-service::p_5";
+  "home-timeline-service::979da915-d7ca-4d4c-acf8-8cdf41c078ce" -> "home-timeline-service::p_4";
+  "home-timeline-service::f07981db-1577-4866-aa4d-340a9182fade" -> "home-timeline-service::p_10";
+  "home-timeline-service::fc4e22ae-a9a1-4b09-a58e-c13e7250574c" -> "home-timeline-service::p_8";
+  "home-timeline-service::p_10" -> "home-timeline-service::tauJoin_4";
+  "home-timeline-service::p_11" -> "home-timeline-service::1b23be35-8c65-4c33-87ee-2b30515686cb";
+  "home-timeline-service::p_3" -> "home-timeline-service::42c9a2cb-2fa5-4374-a3e3-94d8a0ccf1d7";
+  "home-timeline-service::p_3" -> "home-timeline-service::tauSplit_3";
+  "home-timeline-service::p_4" -> "home-timeline-service::tau_2";
+  "home-timeline-service::p_5" -> "home-timeline-service::979da915-d7ca-4d4c-acf8-8cdf41c078ce";
+  "home-timeline-service::p_6" -> "home-timeline-service::25620e57-508c-41d8-a373-720af0706f72";
+  "home-timeline-service::p_6" -> "home-timeline-service::skip_6";
+  "home-timeline-service::p_7" -> "home-timeline-service::fc4e22ae-a9a1-4b09-a58e-c13e7250574c";
+  "home-timeline-service::p_7" -> "home-timeline-service::skip_5";
+  "home-timeline-service::p_8" -> "home-timeline-service::tauJoin_4";
+  "home-timeline-service::p_9" -> "home-timeline-service::f07981db-1577-4866-aa4d-340a9182fade";
+  "home-timeline-service::skip_5" -> "home-timeline-service::p_8";
+  "home-timeline-service::skip_6" -> "home-timeline-service::p_11";
+  "home-timeline-service::tauJoin_4" -> "home-timeline-service::p_6";
+  "home-timeline-service::tauSplit_3" -> "home-timeline-service::p_7";
+  "home-timeline-service::tauSplit_3" -> "home-timeline-service::p_9";
+  "home-timeline-service::tau_1" -> "home-timeline-service::p_3";
+  "home-timeline-service::tau_2" -> "home-timeline-service::sink";
+  "media-service::bad52a81-b842-4c27-9c48-5003340cc828" -> "media-service::sink";
+  "post-storage-service::01ec7428-44a1-4824-92c1-67e0386ff759" -> "post-storage-service::p_8";
+  "post-storage-service::3ca5d882-7acc-4c9a-a291-f7de0983a628" -> "post-storage-service::p_5";
+  "post-storage-service::638e49e7-5e46-4c8d-923a-f01fd3440bd3" -> "post-storage-service::p_4";
+  "post-storage-service::97841be1-e58f-44bc-87ce-3156769339a3" -> "post-storage-service::p_6";
+  "post-storage-service::cd267b67-393e-4a7d-80cf-589c98a01915" -> "post-storage-service::p_7";
+  "post-storage-service::ff45fef4-22e0-4e4e-a00c-629eded05ad9" -> "post-storage-service::p_4";
+  "post-storage-service::p_3" -> "post-storage-service::3ca5d882-7acc-4c9a-a291-f7de0983a628";
+  "post-storage-service::p_3" -> "post-storage-service::97841be1-e58f-44bc-87ce-3156769339a3";
+  "post-storage-service::p_4" -> "post-storage-service::tau_2";
+  "post-storage-service::p_5" -> "post-storage-service::ff45fef4-22e0-4e4e-a00c-629eded05ad9";
+  "post-storage-service::p_6" -> "post-storage-service::cd267b67-393e-4a7d-80cf-589c98a01915";
+  "post-storage-service::p_6" -> "post-storage-service::skip_3";
+  "post-storage-service::p_7" -> "post-storage-service::01ec7428-44a1-4824-92c1-67e0386ff759";
+  "post-storage-service::p_7" -> "post-storage-service::skip_4";
+  "post-storage-service::p_8" -> "post-storage-service::638e49e7-5e46-4c8d-923a-f01fd3440bd3";
+  "post-storage-service::skip_3" -> "post-storage-service::p_4";
+  "post-storage-service::skip_4" -> "post-storage-service::p_4";
+  "post-storage-service::tau_1" -> "post-storage-service::p_3";
+  "post-storage-service::tau_2" -> "post-storage-service::sink";
+  "text-service::04ccaeba-1666-433e-a443-df6d1d789930" -> "ch::ComposeUrls";
+  "text-service::04ccaeba-1666-433e-a443-df6d1d789930" -> "text-service::p_5";
+  "text-service::17365c47-bfee-4f91-8215-cd3d660063dd" -> "text-service::sink";
+  "text-service::1b58d4ed-5e56-45d8-8cde-0c480535a81f" -> "ch::ComposeUserMentions";
+  "text-service::1b58d4ed-5e56-45d8-8cde-0c480535a81f" -> "text-service::p_7";
+  "text-service::d39c1ad8-01ee-467b-9194-4ed986161e98" -> "text-service::p_8";
+  "text-service::f81c56c4-0cb4-4815-8dc3-35fd1e6b025e" -> "text-service::p_3";
+  "text-service::p_3" -> "text-service::d39c1ad8-01ee-467b-9194-4ed986161e98";
+  "text-service::p_3" -> "text-service::tauSplit_1";
+  "text-service::p_4" -> "text-service::04ccaeba-1666-433e-a443-df6d1d789930";
+  "text-service::p_5" -> "text-service::tauJoin_2";
+  "text-service::p_6" -> "text-service::1b58d4ed-5e56-45d8-8cde-0c480535a81f";
+  "text-service::p_7" -> "text-service::tauJoin_2";
+  "text-service::p_8" -> "text-service::17365c47-bfee-4f91-8215-cd3d660063dd";
+  "text-service::tauJoin_2" -> "text-service::sink";
+  "text-service::tauSplit_1" -> "text-service::p_4";
+  "text-service::tauSplit_1" -> "text-service::p_6";
+  "unique-id-service::ee35a23a-3cca-4e24-99a2-af1a3d81f4e2" -> "unique-id-service::sink";
+  "url-shorten-service::aaf1b6c2-76a5-44ad-9264-0f3f0f97c70c" -> "url-shorten-service::p_3";
+  "url-shorten-service::cc1ce13d-7e71-4849-a7cb-d78970f4a34e" -> "url-shorten-service::sink";
+  "url-shorten-service::p_3" -> "url-shorten-service::cc1ce13d-7e71-4849-a7cb-d78970f4a34e";
+  "url-shorten-service::p_3" -> "url-shorten-service::skip_1";
+  "url-shorten-service::skip_1" -> "url-shorten-service::sink";
+  "user-mention-service::28af6992-3805-4b64-8de6-ef1d10e07b5d" -> "user-mention-service::p_3";
+  "user-mention-service::d3f76dfe-a27b-45ea-b2af-385bd066f18f" -> "user-mention-service::sink";
+  "user-mention-service::p_3" -> "user-mention-service::d3f76dfe-a27b-45ea-b2af-385bd066f18f";
+  "user-mention-service::p_3" -> "user-mention-service::skip_1";
+  "user-mention-service::skip_1" -> "user-mention-service::sink";
+  "user-service::6fc12bde-bc85-4ad2-8be1-807cc462dc4a" -> "user-service::sink";
+  "user-timeline-service::0930d18a-79a4-43ae-808d-946b902c2442" -> "user-timeline-service::p_6";
+  "user-timeline-service::280e591b-1275-4653-a250-c10cb2dcf1d7" -> "user-timeline-service::p_4";
+  "user-timeline-service::bc1d5c0c-7c43-4f0e-a2fe-1c40ab06e8ed" -> "user-timeline-service::p_7";
+  "user-timeline-service::c5b08046-7e86-40e5-9eee-85cc7a84ab98" -> "user-timeline-service::p_5";
+  "user-timeline-service::dcf451e5-a131-4cc8-a9a7-0bfc6b4c5301" -> "user-timeline-service::p_4";
+  "user-timeline-service::e309081f-b064-4577-8355-422947b5a72f" -> "user-timeline-service::p_8";
+  "user-timeline-service::e512a9aa-1cdc-48be-b941-d9b35d6dad93" -> "user-timeline-service::p_9";
+  "user-timeline-service::p_3" -> "user-timeline-service::bc1d5c0c-7c43-4f0e-a2fe-1c40ab06e8ed";
+  "user-timeline-service::p_3" -> "user-timeline-service::c5b08046-7e86-40e5-9eee-85cc7a84ab98";
+  "user-timeline-service::p_4" -> "user-timeline-service::tau_2";
+  "user-timeline-service::p_5" -> "user-timeline-service::0930d18a-79a4-43ae-808d-946b902c2442";
+  "user-timeline-service::p_6" -> "user-timeline-service::280e591b-1275-4653-a250-c10cb2dcf1d7";
+  "user-timeline-service::p_6" -> "user-timeline-service::skip_3";
+  "user-timeline-service::p_7" -> "user-timeline-service::e309081f-b064-4577-8355-422947b5a72f";
+  "user-timeline-service::p_8" -> "user-timeline-service::e512a9aa-1cdc-48be-b941-d9b35d6dad93";
+  "user-timeline-service::p_9" -> "user-timeline-service::dcf451e5-a131-4cc8-a9a7-0bfc6b4c5301";
+  "user-timeline-service::p_9" -> "user-timeline-service::skip_4";
+  "user-timeline-service::skip_3" -> "user-timeline-service::p_4";
+  "user-timeline-service::skip_4" -> "user-timeline-service::p_4";
+  "user-timeline-service::tau_1" -> "user-timeline-service::p_3";
+  "user-timeline-service::tau_2" -> "user-timeline-service::sink";
+}

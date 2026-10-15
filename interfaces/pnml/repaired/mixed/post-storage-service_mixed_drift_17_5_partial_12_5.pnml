@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<pnml>
+  <net id="imdf_net_1792075975.210193" type="http://www.pnml.org/version-2009/grammar/pnmlcoremodel">
+    <name>
+      <text>imdf_net_1792075975.210193</text>
+    </name>
+    <page id="n0">
+      <place id="source">
+        <name>
+          <text>source</text>
+        </name>
+        <initialMarking>
+          <text>1</text>
+        </initialMarking>
+      </place>
+      <place id="p_3">
+        <name>
+          <text>p_3</text>
+        </name>
+      </place>
+      <place id="sink">
+        <name>
+          <text>sink</text>
+        </name>
+      </place>
+      <place id="p_5">
+        <name>
+          <text>p_5</text>
+        </name>
+      </place>
+      <place id="p_4">
+        <name>
+          <text>p_4</text>
+        </name>
+      </place>
+      <place id="p_6">
+        <name>
+          <text>p_6</text>
+        </name>
+      </place>
+      <place id="p_7">
+        <name>
+          <text>p_7</text>
+        </name>
+      </place>
+      <place id="p_8">
+        <name>
+          <text>p_8</text>
+        </name>
+      </place>
+      <transition id="tau_1">
+        <name>
+          <text>tau_1</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="a8f96987-750d-4a66-a8da-40f75cce64a5"/>
+      </transition>
+      <transition id="c653585e-5e83-4e2a-a8be-0ff80e05cd1e">
+        <name>
+          <text>post_storage_mongo_insert_client</text>
+        </name>
+      </transition>
+      <transition id="934654c2-dab7-4875-928d-06f2c56927e8">
+        <name>
+          <text>store_post_server</text>
+        </name>
+      </transition>
+      <transition id="040893f1-8930-4730-9c11-bb505d9b6375">
+        <name>
+          <text>post_storage_read_posts_server</text>
+        </name>
+      </transition>
+      <transition id="tau_2">
+        <name>
+          <text>tau_2</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="61ed6829-2c2f-40d2-84eb-e0665b59e57c"/>
+      </transition>
+      <transition id="skip_3">
+        <name>
+          <text>skip_3</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="dcf75f39-2acf-45a8-8dfa-b468910e5f15"/>
+      </transition>
+      <transition id="e3f798ac-8b5e-4fc1-925a-f13846c7f83c">
+        <name>
+          <text>post_storage_mmc_mget_client</text>
+        </name>
+      </transition>
+      <transition id="skip_4">
+        <name>
+          <text>skip_4</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="575671dc-0eaf-44a8-9c78-b2bc9c9dddf2"/>
+      </transition>
+      <transition id="974ccdb4-c6e8-4024-b99c-b640d9d66ceb">
+        <name>
+          <text>mongo_find_client</text>
+        </name>
+      </transition>
+      <transition id="b91478de-fba8-40a2-b264-aa03cb86e85f">
+        <name>
+          <text>mmc_set_client</text>
+        </name>
+      </transition>
+      <arc id="4667341456" source="e3f798ac-8b5e-4fc1-925a-f13846c7f83c" target="p_7"/>
+      <arc id="4667330960" source="p_7" target="skip_4"/>
+      <arc id="4667333264" source="p_7" target="974ccdb4-c6e8-4024-b99c-b640d9d66ceb"/>
+      <arc id="4667342608" source="source" target="tau_1"/>
+      <arc id="4667339536" source="tau_1" target="p_3"/>
+      <arc id="4667330320" source="tau_2" target="sink"/>
+      <arc id="4667337232" source="p_3" target="934654c2-dab7-4875-928d-06f2c56927e8"/>
+      <arc id="4667335312" source="p_4" target="tau_2"/>
+      <arc id="4667340048" source="934654c2-dab7-4875-928d-06f2c56927e8" target="p_5"/>
+      <arc id="4667336720" source="c653585e-5e83-4e2a-a8be-0ff80e05cd1e" target="p_4"/>
+      <arc id="4667329680" source="p_6" target="e3f798ac-8b5e-4fc1-925a-f13846c7f83c"/>
+      <arc id="4667338000" source="p_3" target="040893f1-8930-4730-9c11-bb505d9b6375"/>
+      <arc id="4667334032" source="p_6" target="skip_3"/>
+      <arc id="4667339984" source="skip_4" target="p_4"/>
+      <arc id="4667339088" source="974ccdb4-c6e8-4024-b99c-b640d9d66ceb" target="p_8"/>
+      <arc id="4667339728" source="p_5" target="c653585e-5e83-4e2a-a8be-0ff80e05cd1e"/>
+      <arc id="4667340496" source="040893f1-8930-4730-9c11-bb505d9b6375" target="p_6"/>
+      <arc id="4667335760" source="skip_3" target="p_4"/>
+      <arc id="4780449104" source="p_8" target="b91478de-fba8-40a2-b264-aa03cb86e85f"/>
+      <arc id="4780453968" source="b91478de-fba8-40a2-b264-aa03cb86e85f" target="p_4"/>
+    </page>
+    <finalmarkings>
+      <marking>
+        <place idref="sink">
+          <text>1</text>
+        </place>
+      </marking>
+    </finalmarkings>
+  </net>
+</pnml>

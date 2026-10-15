@@ -1,0 +1,427 @@
+{
+  "compose-post-service": {
+    "cases": 119,
+    "events": 952,
+    "distinct_activities": 8,
+    "activities": [
+      "compose_creator_client",
+      "compose_media_client",
+      "compose_post_server",
+      "compose_text_client",
+      "compose_unique_id_client",
+      "store_post_client",
+      "write_home_timeline_client",
+      "write_user_timeline_client"
+    ],
+    "distinct_variants": 19,
+    "top_variants": [
+      {
+        "count": 49,
+        "len": 8,
+        "seq": [
+          "compose_post_server",
+          "compose_text_client",
+          "compose_creator_client",
+          "compose_media_client",
+          "compose_unique_id_client",
+          "store_post_client",
+          "write_user_timeline_client",
+          "write_home_timeline_client"
+        ]
+      },
+      {
+        "count": 15,
+        "len": 8,
+        "seq": [
+          "compose_post_server",
+          "compose_text_client",
+          "compose_creator_client",
+          "compose_unique_id_client",
+          "compose_media_client",
+          "store_post_client",
+          "write_user_timeline_client",
+          "write_home_timeline_client"
+        ]
+      },
+      {
+        "count": 11,
+        "len": 8,
+        "seq": [
+          "compose_post_server",
+          "compose_text_client",
+          "compose_media_client",
+          "compose_creator_client",
+          "compose_unique_id_client",
+          "store_post_client",
+          "write_user_timeline_client",
+          "write_home_timeline_client"
+        ]
+      },
+      {
+        "count": 10,
+        "len": 8,
+        "seq": [
+          "compose_post_server",
+          "compose_creator_client",
+          "compose_text_client",
+          "compose_media_client",
+          "compose_unique_id_client",
+          "store_post_client",
+          "write_user_timeline_client",
+          "write_home_timeline_client"
+        ]
+      },
+      {
+        "count": 5,
+        "len": 8,
+        "seq": [
+          "compose_post_server",
+          "compose_creator_client",
+          "compose_media_client",
+          "compose_text_client",
+          "compose_unique_id_client",
+          "store_post_client",
+          "write_user_timeline_client",
+          "write_home_timeline_client"
+        ]
+      }
+    ]
+  },
+  "home-timeline-service": {
+    "cases": 761,
+    "events": 1641,
+    "distinct_activities": 5,
+    "activities": [
+      "get_followers_client",
+      "read_home_timeline_redis_find_client",
+      "read_home_timeline_server",
+      "write_home_timeline_redis_update_client",
+      "write_home_timeline_server"
+    ],
+    "distinct_variants": 3,
+    "top_variants": [
+      {
+        "count": 642,
+        "len": 2,
+        "seq": [
+          "read_home_timeline_server",
+          "read_home_timeline_redis_find_client"
+        ]
+      },
+      {
+        "count": 116,
+        "len": 3,
+        "seq": [
+          "write_home_timeline_server",
+          "get_followers_client",
+          "write_home_timeline_redis_update_client"
+        ]
+      },
+      {
+        "count": 3,
+        "len": 3,
+        "seq": [
+          "get_followers_client",
+          "write_home_timeline_server",
+          "write_home_timeline_redis_update_client"
+        ]
+      }
+    ]
+  },
+  "media-service": {
+    "cases": 119,
+    "events": 119,
+    "distinct_activities": 1,
+    "activities": [
+      "compose_media_server"
+    ],
+    "distinct_variants": 1,
+    "top_variants": [
+      {
+        "count": 119,
+        "len": 1,
+        "seq": [
+          "compose_media_server"
+        ]
+      }
+    ]
+  },
+  "nginx-web-server": {
+    "cases": 1081,
+    "events": 3243,
+    "distinct_activities": 6,
+    "activities": [
+      "/wrk2-api/home-timeline/read",
+      "/wrk2-api/post/compose",
+      "/wrk2-api/user-timeline/read",
+      "ReadUserTimeline",
+      "compose_post_client",
+      "read_home_timeline_client"
+    ],
+    "distinct_variants": 3,
+    "top_variants": [
+      {
+        "count": 642,
+        "len": 3,
+        "seq": [
+          "/wrk2-api/home-timeline/read",
+          "/wrk2-api/home-timeline/read",
+          "read_home_timeline_client"
+        ]
+      },
+      {
+        "count": 320,
+        "len": 3,
+        "seq": [
+          "/wrk2-api/user-timeline/read",
+          "/wrk2-api/user-timeline/read",
+          "ReadUserTimeline"
+        ]
+      },
+      {
+        "count": 119,
+        "len": 3,
+        "seq": [
+          "/wrk2-api/post/compose",
+          "/wrk2-api/post/compose",
+          "compose_post_client"
+        ]
+      }
+    ]
+  },
+  "post-storage-service": {
+    "cases": 1081,
+    "events": 1524,
+    "distinct_activities": 6,
+    "activities": [
+      "mmc_set_client",
+      "mongo_find_client",
+      "post_storage_mmc_mget_client",
+      "post_storage_mongo_insert_client",
+      "post_storage_read_posts_server",
+      "store_post_server"
+    ],
+    "distinct_variants": 4,
+    "top_variants": [
+      {
+        "count": 730,
+        "len": 1,
+        "seq": [
+          "post_storage_read_posts_server"
+        ]
+      },
+      {
+        "count": 186,
+        "len": 2,
+        "seq": [
+          "post_storage_read_posts_server",
+          "post_storage_mmc_mget_client"
+        ]
+      },
+      {
+        "count": 119,
+        "len": 2,
+        "seq": [
+          "store_post_server",
+          "post_storage_mongo_insert_client"
+        ]
+      },
+      {
+        "count": 46,
+        "len": 4,
+        "seq": [
+          "post_storage_read_posts_server",
+          "post_storage_mmc_mget_client",
+          "mongo_find_client",
+          "mmc_set_client"
+        ]
+      }
+    ]
+  },
+  "social-graph-service": {
+    "cases": 119,
+    "events": 238,
+    "distinct_activities": 2,
+    "activities": [
+      "get_followers_server",
+      "social_graph_redis_get_client"
+    ],
+    "distinct_variants": 1,
+    "top_variants": [
+      {
+        "count": 119,
+        "len": 2,
+        "seq": [
+          "get_followers_server",
+          "social_graph_redis_get_client"
+        ]
+      }
+    ]
+  },
+  "text-service": {
+    "cases": 119,
+    "events": 357,
+    "distinct_activities": 3,
+    "activities": [
+      "compose_text_server",
+      "compose_urls_client",
+      "compose_user_mentions_client"
+    ],
+    "distinct_variants": 2,
+    "top_variants": [
+      {
+        "count": 102,
+        "len": 3,
+        "seq": [
+          "compose_text_server",
+          "compose_urls_client",
+          "compose_user_mentions_client"
+        ]
+      },
+      {
+        "count": 17,
+        "len": 3,
+        "seq": [
+          "compose_text_server",
+          "compose_user_mentions_client",
+          "compose_urls_client"
+        ]
+      }
+    ]
+  },
+  "unique-id-service": {
+    "cases": 119,
+    "events": 119,
+    "distinct_activities": 1,
+    "activities": [
+      "compose_unique_id_server"
+    ],
+    "distinct_variants": 1,
+    "top_variants": [
+      {
+        "count": 119,
+        "len": 1,
+        "seq": [
+          "compose_unique_id_server"
+        ]
+      }
+    ]
+  },
+  "url-shorten-service": {
+    "cases": 119,
+    "events": 219,
+    "distinct_activities": 2,
+    "activities": [
+      "compose_urls_server",
+      "url_mongo_insert_client"
+    ],
+    "distinct_variants": 2,
+    "top_variants": [
+      {
+        "count": 100,
+        "len": 2,
+        "seq": [
+          "compose_urls_server",
+          "url_mongo_insert_client"
+        ]
+      },
+      {
+        "count": 19,
+        "len": 1,
+        "seq": [
+          "compose_urls_server"
+        ]
+      }
+    ]
+  },
+  "user-mention-service": {
+    "cases": 119,
+    "events": 214,
+    "distinct_activities": 2,
+    "activities": [
+      "compose_user_mentions_memcached_get_client",
+      "compose_user_mentions_server"
+    ],
+    "distinct_variants": 2,
+    "top_variants": [
+      {
+        "count": 95,
+        "len": 2,
+        "seq": [
+          "compose_user_mentions_server",
+          "compose_user_mentions_memcached_get_client"
+        ]
+      },
+      {
+        "count": 24,
+        "len": 1,
+        "seq": [
+          "compose_user_mentions_server"
+        ]
+      }
+    ]
+  },
+  "user-service": {
+    "cases": 119,
+    "events": 119,
+    "distinct_activities": 1,
+    "activities": [
+      "compose_creator_server"
+    ],
+    "distinct_variants": 1,
+    "top_variants": [
+      {
+        "count": 119,
+        "len": 1,
+        "seq": [
+          "compose_creator_server"
+        ]
+      }
+    ]
+  },
+  "user-timeline-service": {
+    "cases": 439,
+    "events": 1488,
+    "distinct_activities": 7,
+    "activities": [
+      "read_user_timeline_redis_find_client",
+      "read_user_timeline_server",
+      "user_timeline_mongo_find_client",
+      "user_timeline_redis_update_client",
+      "write_user_timeline_mongo_insert_client",
+      "write_user_timeline_redis_update_client",
+      "write_user_timeline_server"
+    ],
+    "distinct_variants": 3,
+    "top_variants": [
+      {
+        "count": 171,
+        "len": 4,
+        "seq": [
+          "read_user_timeline_server",
+          "read_user_timeline_redis_find_client",
+          "user_timeline_mongo_find_client",
+          "user_timeline_redis_update_client"
+        ]
+      },
+      {
+        "count": 149,
+        "len": 3,
+        "seq": [
+          "read_user_timeline_server",
+          "read_user_timeline_redis_find_client",
+          "user_timeline_mongo_find_client"
+        ]
+      },
+      {
+        "count": 119,
+        "len": 3,
+        "seq": [
+          "write_user_timeline_server",
+          "write_user_timeline_mongo_insert_client",
+          "write_user_timeline_redis_update_client"
+        ]
+      }
+    ]
+  }
+}

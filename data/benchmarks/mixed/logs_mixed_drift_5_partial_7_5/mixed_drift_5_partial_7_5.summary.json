@@ -1,0 +1,193 @@
+{
+  "source_dir": "logs",
+  "output_dir": "/Users/i339622/SAPDevelop/github.com/gwf-net-composition/logs_mixed_drift_5_partial_7_5",
+  "drift_percentage": 5.0,
+  "loss_percentage": 7.5,
+  "selection_strategy": "sha256_modulo_10000",
+  "total_original_events": 10233,
+  "total_mutated_events": 113,
+  "total_retained_events": 9460,
+  "total_dropped_events": 773,
+  "retained_event_ratio": 0.9245,
+  "total_cases": 1081,
+  "total_mutated_cases": 43,
+  "total_retained_cases": 1005,
+  "drift_rules": {
+    "store_post_client": "store_post_client_v2",
+    "compose_text_client": "compose_text_grpc_client",
+    "compose_unique_id_client": "unique_id_rpc_client",
+    "write_home_timeline_client": "post_home_timeline_client",
+    "compose_media_client": "media_upload_dispatch_client",
+    "write_user_timeline_client": "user_timeline_dispatch_client",
+    "compose_creator_client": "user_creator_rpc_client",
+    "compose_urls_client": "compose_urls_grpc_client",
+    "compose_user_mentions_client": "user_mentions_rpc_client",
+    "get_followers_client": "get_followers_rpc_client",
+    "compose_post_client": "compose_post_dispatch_client",
+    "read_home_timeline_client": "read_home_timeline_dispatch_client"
+  },
+  "proof_of_call_targets": {
+    "store_post_client": "store_post_server",
+    "compose_text_client": "compose_text_server",
+    "compose_unique_id_client": "compose_unique_id_server",
+    "write_home_timeline_client": "write_home_timeline_server",
+    "compose_media_client": "compose_media_server",
+    "write_user_timeline_client": "write_user_timeline_server",
+    "compose_creator_client": "compose_creator_server",
+    "compose_urls_client": "compose_urls_server",
+    "compose_user_mentions_client": "compose_user_mentions_server",
+    "get_followers_client": "get_followers_server",
+    "compose_post_client": "compose_post_server",
+    "read_home_timeline_client": "read_home_timeline_server"
+  },
+  "services": {
+    "compose-post-service": {
+      "original_events": 952,
+      "total_events": 952,
+      "mutated_events": 49,
+      "retained_events": 880,
+      "dropped_events": 72,
+      "total_cases": 119,
+      "mutated_cases": 7,
+      "retained_cases": 110,
+      "applied_mutations": {
+        "compose_text_client -> compose_text_grpc_client": 7,
+        "compose_creator_client -> user_creator_rpc_client": 7,
+        "compose_unique_id_client -> unique_id_rpc_client": 7,
+        "compose_media_client -> media_upload_dispatch_client": 7,
+        "store_post_client -> store_post_client_v2": 7,
+        "write_user_timeline_client -> user_timeline_dispatch_client": 7,
+        "write_home_timeline_client -> post_home_timeline_client": 7
+      }
+    },
+    "home-timeline-service": {
+      "original_events": 1641,
+      "total_events": 1641,
+      "mutated_events": 7,
+      "retained_events": 1517,
+      "dropped_events": 124,
+      "total_cases": 761,
+      "mutated_cases": 7,
+      "retained_cases": 703,
+      "applied_mutations": {
+        "get_followers_client -> get_followers_rpc_client": 7
+      }
+    },
+    "media-service": {
+      "original_events": 119,
+      "total_events": 119,
+      "mutated_events": 0,
+      "retained_events": 110,
+      "dropped_events": 9,
+      "total_cases": 119,
+      "mutated_cases": 0,
+      "retained_cases": 110,
+      "applied_mutations": {}
+    },
+    "nginx-web-server": {
+      "original_events": 3243,
+      "total_events": 3243,
+      "mutated_events": 43,
+      "retained_events": 2999,
+      "dropped_events": 244,
+      "total_cases": 1081,
+      "mutated_cases": 43,
+      "retained_cases": 1000,
+      "applied_mutations": {
+        "compose_post_client -> compose_post_dispatch_client": 7,
+        "read_home_timeline_client -> read_home_timeline_dispatch_client": 36
+      }
+    },
+    "post-storage-service": {
+      "original_events": 1524,
+      "total_events": 1524,
+      "mutated_events": 0,
+      "retained_events": 1409,
+      "dropped_events": 115,
+      "total_cases": 1081,
+      "mutated_cases": 0,
+      "retained_cases": 997,
+      "applied_mutations": {}
+    },
+    "social-graph-service": {
+      "original_events": 238,
+      "total_events": 238,
+      "mutated_events": 0,
+      "retained_events": 220,
+      "dropped_events": 18,
+      "total_cases": 119,
+      "mutated_cases": 0,
+      "retained_cases": 110,
+      "applied_mutations": {}
+    },
+    "text-service": {
+      "original_events": 357,
+      "total_events": 357,
+      "mutated_events": 14,
+      "retained_events": 330,
+      "dropped_events": 27,
+      "total_cases": 119,
+      "mutated_cases": 7,
+      "retained_cases": 110,
+      "applied_mutations": {
+        "compose_urls_client -> compose_urls_grpc_client": 7,
+        "compose_user_mentions_client -> user_mentions_rpc_client": 7
+      }
+    },
+    "unique-id-service": {
+      "original_events": 119,
+      "total_events": 119,
+      "mutated_events": 0,
+      "retained_events": 110,
+      "dropped_events": 9,
+      "total_cases": 119,
+      "mutated_cases": 0,
+      "retained_cases": 110,
+      "applied_mutations": {}
+    },
+    "url-shorten-service": {
+      "original_events": 219,
+      "total_events": 219,
+      "mutated_events": 0,
+      "retained_events": 202,
+      "dropped_events": 17,
+      "total_cases": 119,
+      "mutated_cases": 0,
+      "retained_cases": 110,
+      "applied_mutations": {}
+    },
+    "user-mention-service": {
+      "original_events": 214,
+      "total_events": 214,
+      "mutated_events": 0,
+      "retained_events": 197,
+      "dropped_events": 17,
+      "total_cases": 119,
+      "mutated_cases": 0,
+      "retained_cases": 110,
+      "applied_mutations": {}
+    },
+    "user-service": {
+      "original_events": 119,
+      "total_events": 119,
+      "mutated_events": 0,
+      "retained_events": 110,
+      "dropped_events": 9,
+      "total_cases": 119,
+      "mutated_cases": 0,
+      "retained_cases": 110,
+      "applied_mutations": {}
+    },
+    "user-timeline-service": {
+      "original_events": 1488,
+      "total_events": 1488,
+      "mutated_events": 0,
+      "retained_events": 1376,
+      "dropped_events": 112,
+      "total_cases": 439,
+      "mutated_cases": 0,
+      "retained_cases": 407,
+      "applied_mutations": {}
+    }
+  }
+}

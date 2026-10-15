@@ -1,0 +1,1050 @@
+{
+  "_meta": {
+    "generated_at": "2026-10-15T14:46:56.480216+00:00",
+    "name": "Social Network Composed Workflow Net",
+    "participating_services": [
+      "compose-post-service",
+      "home-timeline-service",
+      "media-service",
+      "post-storage-service",
+      "text-service",
+      "unique-id-service",
+      "url-shorten-service",
+      "user-mention-service",
+      "user-service",
+      "user-timeline-service"
+    ],
+    "total_arcs": 125,
+    "total_channels": 9,
+    "total_places": 57,
+    "total_services": 10,
+    "total_transitions": 53,
+    "version": "1.0.0",
+    "workflow": "compose_post_workflow"
+  },
+  "arcs": [
+    [
+      "ch::ComposeCreatorWithUserId",
+      "user-service::5faf408b-db6f-4dee-8506-63fb76995eed"
+    ],
+    [
+      "ch::ComposeMedia",
+      "media-service::87cee0fa-87ea-4b59-a5d9-a5d8735c9a2d"
+    ],
+    [
+      "ch::ComposeText",
+      "text-service::182cfbc4-e4de-4003-89b5-998122bc4855"
+    ],
+    [
+      "ch::ComposeUniqueId",
+      "unique-id-service::a49ddc80-1914-44bc-8b02-818ff61b0acb"
+    ],
+    [
+      "ch::ComposeUrls",
+      "url-shorten-service::faf66f42-f72a-4d66-904f-48b27ee065d8"
+    ],
+    [
+      "ch::ComposeUserMentions",
+      "user-mention-service::d4dcecf4-6ee9-4fd3-a177-cd90b1d76136"
+    ],
+    [
+      "ch::StorePost",
+      "post-storage-service::tau_1"
+    ],
+    [
+      "ch::WriteHomeTimeline",
+      "home-timeline-service::tau_1"
+    ],
+    [
+      "ch::WriteUserTimeline",
+      "user-timeline-service::tau_1"
+    ],
+    [
+      "compose-post-service::2cafbebc-503d-430f-a0dd-d5328ebdc8d1",
+      "ch::StorePost"
+    ],
+    [
+      "compose-post-service::2cafbebc-503d-430f-a0dd-d5328ebdc8d1",
+      "compose-post-service::p_13"
+    ],
+    [
+      "compose-post-service::401c5b38-e720-4e10-a1cc-1f887acca0e0",
+      "ch::WriteUserTimeline"
+    ],
+    [
+      "compose-post-service::401c5b38-e720-4e10-a1cc-1f887acca0e0",
+      "compose-post-service::p_14"
+    ],
+    [
+      "compose-post-service::7e7ec426-bd90-4e92-bbfc-8ab0f729af8d",
+      "ch::ComposeMedia"
+    ],
+    [
+      "compose-post-service::7e7ec426-bd90-4e92-bbfc-8ab0f729af8d",
+      "compose-post-service::p_6"
+    ],
+    [
+      "compose-post-service::b8a46e73-4809-4213-b939-11eec4b4fc0c",
+      "ch::ComposeUniqueId"
+    ],
+    [
+      "compose-post-service::b8a46e73-4809-4213-b939-11eec4b4fc0c",
+      "compose-post-service::p_12"
+    ],
+    [
+      "compose-post-service::bdcb5e10-d82f-4b59-b6c6-0816929e518d",
+      "ch::ComposeCreatorWithUserId"
+    ],
+    [
+      "compose-post-service::bdcb5e10-d82f-4b59-b6c6-0816929e518d",
+      "compose-post-service::p_10"
+    ],
+    [
+      "compose-post-service::cbd5e7d2-7987-4007-ad75-a0339e5d75a9",
+      "compose-post-service::p_3"
+    ],
+    [
+      "compose-post-service::cc716a08-1dec-4660-ad6c-faeaea5b8ded",
+      "ch::ComposeText"
+    ],
+    [
+      "compose-post-service::cc716a08-1dec-4660-ad6c-faeaea5b8ded",
+      "compose-post-service::p_8"
+    ],
+    [
+      "compose-post-service::e63af696-d746-42b7-86d0-792cf372cc0b",
+      "ch::WriteHomeTimeline"
+    ],
+    [
+      "compose-post-service::e63af696-d746-42b7-86d0-792cf372cc0b",
+      "compose-post-service::sink"
+    ],
+    [
+      "compose-post-service::p_10",
+      "compose-post-service::2cafbebc-503d-430f-a0dd-d5328ebdc8d1"
+    ],
+    [
+      "compose-post-service::p_11",
+      "compose-post-service::b8a46e73-4809-4213-b939-11eec4b4fc0c"
+    ],
+    [
+      "compose-post-service::p_12",
+      "compose-post-service::2cafbebc-503d-430f-a0dd-d5328ebdc8d1"
+    ],
+    [
+      "compose-post-service::p_13",
+      "compose-post-service::401c5b38-e720-4e10-a1cc-1f887acca0e0"
+    ],
+    [
+      "compose-post-service::p_14",
+      "compose-post-service::e63af696-d746-42b7-86d0-792cf372cc0b"
+    ],
+    [
+      "compose-post-service::p_3",
+      "compose-post-service::skip_1"
+    ],
+    [
+      "compose-post-service::p_3",
+      "compose-post-service::tauSplit_2"
+    ],
+    [
+      "compose-post-service::p_5",
+      "compose-post-service::7e7ec426-bd90-4e92-bbfc-8ab0f729af8d"
+    ],
+    [
+      "compose-post-service::p_6",
+      "compose-post-service::2cafbebc-503d-430f-a0dd-d5328ebdc8d1"
+    ],
+    [
+      "compose-post-service::p_7",
+      "compose-post-service::cc716a08-1dec-4660-ad6c-faeaea5b8ded"
+    ],
+    [
+      "compose-post-service::p_8",
+      "compose-post-service::2cafbebc-503d-430f-a0dd-d5328ebdc8d1"
+    ],
+    [
+      "compose-post-service::p_9",
+      "compose-post-service::bdcb5e10-d82f-4b59-b6c6-0816929e518d"
+    ],
+    [
+      "compose-post-service::skip_1",
+      "compose-post-service::sink"
+    ],
+    [
+      "compose-post-service::source",
+      "compose-post-service::cbd5e7d2-7987-4007-ad75-a0339e5d75a9"
+    ],
+    [
+      "compose-post-service::tauSplit_2",
+      "compose-post-service::p_11"
+    ],
+    [
+      "compose-post-service::tauSplit_2",
+      "compose-post-service::p_5"
+    ],
+    [
+      "compose-post-service::tauSplit_2",
+      "compose-post-service::p_7"
+    ],
+    [
+      "compose-post-service::tauSplit_2",
+      "compose-post-service::p_9"
+    ],
+    [
+      "home-timeline-service::1859825d-c5e0-4f2f-9a15-7954099e401d",
+      "home-timeline-service::p_7"
+    ],
+    [
+      "home-timeline-service::22460b28-72ba-4ccc-a463-a51619dda346",
+      "home-timeline-service::p_9"
+    ],
+    [
+      "home-timeline-service::3dada6ba-1987-4250-b1ac-ff89fa08cd6f",
+      "home-timeline-service::p_4"
+    ],
+    [
+      "home-timeline-service::6243a262-264b-40d6-ac9b-3365806c9284",
+      "home-timeline-service::p_10"
+    ],
+    [
+      "home-timeline-service::68b3b72b-b1cd-4982-8f5d-aef6093e0b94",
+      "home-timeline-service::p_4"
+    ],
+    [
+      "home-timeline-service::p_10",
+      "home-timeline-service::68b3b72b-b1cd-4982-8f5d-aef6093e0b94"
+    ],
+    [
+      "home-timeline-service::p_10",
+      "home-timeline-service::skip_5"
+    ],
+    [
+      "home-timeline-service::p_3",
+      "home-timeline-service::6243a262-264b-40d6-ac9b-3365806c9284"
+    ],
+    [
+      "home-timeline-service::p_3",
+      "home-timeline-service::tauSplit_3"
+    ],
+    [
+      "home-timeline-service::p_4",
+      "home-timeline-service::tau_2"
+    ],
+    [
+      "home-timeline-service::p_6",
+      "home-timeline-service::1859825d-c5e0-4f2f-9a15-7954099e401d"
+    ],
+    [
+      "home-timeline-service::p_7",
+      "home-timeline-service::3dada6ba-1987-4250-b1ac-ff89fa08cd6f"
+    ],
+    [
+      "home-timeline-service::p_8",
+      "home-timeline-service::22460b28-72ba-4ccc-a463-a51619dda346"
+    ],
+    [
+      "home-timeline-service::p_9",
+      "home-timeline-service::3dada6ba-1987-4250-b1ac-ff89fa08cd6f"
+    ],
+    [
+      "home-timeline-service::skip_5",
+      "home-timeline-service::p_4"
+    ],
+    [
+      "home-timeline-service::tauSplit_3",
+      "home-timeline-service::p_6"
+    ],
+    [
+      "home-timeline-service::tauSplit_3",
+      "home-timeline-service::p_8"
+    ],
+    [
+      "home-timeline-service::tau_1",
+      "home-timeline-service::p_3"
+    ],
+    [
+      "home-timeline-service::tau_2",
+      "home-timeline-service::sink"
+    ],
+    [
+      "media-service::87cee0fa-87ea-4b59-a5d9-a5d8735c9a2d",
+      "media-service::sink"
+    ],
+    [
+      "post-storage-service::04644372-942f-4382-b12a-322decbd018f",
+      "post-storage-service::p_6"
+    ],
+    [
+      "post-storage-service::1f89dd71-ab99-45f6-ad70-c7d1c313b0fd",
+      "post-storage-service::p_4"
+    ],
+    [
+      "post-storage-service::30bbecb0-e16e-4234-ab48-ae7e32fc84b1",
+      "post-storage-service::p_8"
+    ],
+    [
+      "post-storage-service::4dc2d69e-c496-4023-8b87-43211ed20aad",
+      "post-storage-service::p_7"
+    ],
+    [
+      "post-storage-service::aa510a3f-1b5f-4007-8b92-e8ef81ec8d61",
+      "post-storage-service::p_5"
+    ],
+    [
+      "post-storage-service::ae1bd85a-2595-4088-9389-993be6a640b1",
+      "post-storage-service::p_4"
+    ],
+    [
+      "post-storage-service::p_3",
+      "post-storage-service::04644372-942f-4382-b12a-322decbd018f"
+    ],
+    [
+      "post-storage-service::p_3",
+      "post-storage-service::aa510a3f-1b5f-4007-8b92-e8ef81ec8d61"
+    ],
+    [
+      "post-storage-service::p_4",
+      "post-storage-service::tau_2"
+    ],
+    [
+      "post-storage-service::p_5",
+      "post-storage-service::1f89dd71-ab99-45f6-ad70-c7d1c313b0fd"
+    ],
+    [
+      "post-storage-service::p_6",
+      "post-storage-service::4dc2d69e-c496-4023-8b87-43211ed20aad"
+    ],
+    [
+      "post-storage-service::p_6",
+      "post-storage-service::skip_3"
+    ],
+    [
+      "post-storage-service::p_7",
+      "post-storage-service::30bbecb0-e16e-4234-ab48-ae7e32fc84b1"
+    ],
+    [
+      "post-storage-service::p_7",
+      "post-storage-service::skip_4"
+    ],
+    [
+      "post-storage-service::p_8",
+      "post-storage-service::ae1bd85a-2595-4088-9389-993be6a640b1"
+    ],
+    [
+      "post-storage-service::skip_3",
+      "post-storage-service::p_4"
+    ],
+    [
+      "post-storage-service::skip_4",
+      "post-storage-service::p_4"
+    ],
+    [
+      "post-storage-service::tau_1",
+      "post-storage-service::p_3"
+    ],
+    [
+      "post-storage-service::tau_2",
+      "post-storage-service::sink"
+    ],
+    [
+      "text-service::182cfbc4-e4de-4003-89b5-998122bc4855",
+      "text-service::p_4"
+    ],
+    [
+      "text-service::182cfbc4-e4de-4003-89b5-998122bc4855",
+      "text-service::p_6"
+    ],
+    [
+      "text-service::1ef4b2b1-646d-4462-ae86-c1d1576d0af2",
+      "ch::ComposeUrls"
+    ],
+    [
+      "text-service::1ef4b2b1-646d-4462-ae86-c1d1576d0af2",
+      "text-service::p_5"
+    ],
+    [
+      "text-service::7a598c2a-1f64-4fa2-8647-8d03ecf8f219",
+      "ch::ComposeUserMentions"
+    ],
+    [
+      "text-service::7a598c2a-1f64-4fa2-8647-8d03ecf8f219",
+      "text-service::p_7"
+    ],
+    [
+      "text-service::p_4",
+      "text-service::1ef4b2b1-646d-4462-ae86-c1d1576d0af2"
+    ],
+    [
+      "text-service::p_5",
+      "text-service::tauJoin_2"
+    ],
+    [
+      "text-service::p_6",
+      "text-service::7a598c2a-1f64-4fa2-8647-8d03ecf8f219"
+    ],
+    [
+      "text-service::p_7",
+      "text-service::tauJoin_2"
+    ],
+    [
+      "text-service::tauJoin_2",
+      "text-service::sink"
+    ],
+    [
+      "unique-id-service::a49ddc80-1914-44bc-8b02-818ff61b0acb",
+      "unique-id-service::sink"
+    ],
+    [
+      "url-shorten-service::9f9566dc-2440-4c35-8981-2af98c2c4d89",
+      "url-shorten-service::sink"
+    ],
+    [
+      "url-shorten-service::faf66f42-f72a-4d66-904f-48b27ee065d8",
+      "url-shorten-service::p_3"
+    ],
+    [
+      "url-shorten-service::p_3",
+      "url-shorten-service::9f9566dc-2440-4c35-8981-2af98c2c4d89"
+    ],
+    [
+      "url-shorten-service::p_3",
+      "url-shorten-service::skip_1"
+    ],
+    [
+      "url-shorten-service::skip_1",
+      "url-shorten-service::sink"
+    ],
+    [
+      "user-mention-service::c10b24b7-09a7-4bc1-ae57-f2cf2798f72c",
+      "user-mention-service::sink"
+    ],
+    [
+      "user-mention-service::d4dcecf4-6ee9-4fd3-a177-cd90b1d76136",
+      "user-mention-service::p_3"
+    ],
+    [
+      "user-mention-service::p_3",
+      "user-mention-service::c10b24b7-09a7-4bc1-ae57-f2cf2798f72c"
+    ],
+    [
+      "user-mention-service::p_3",
+      "user-mention-service::skip_1"
+    ],
+    [
+      "user-mention-service::skip_1",
+      "user-mention-service::sink"
+    ],
+    [
+      "user-service::5faf408b-db6f-4dee-8506-63fb76995eed",
+      "user-service::sink"
+    ],
+    [
+      "user-timeline-service::01296a3d-cc7b-4d77-b8e5-f57970e89ed9",
+      "user-timeline-service::p_4"
+    ],
+    [
+      "user-timeline-service::1ae89771-a461-4d87-a75d-87fcfab26c9f",
+      "user-timeline-service::p_9"
+    ],
+    [
+      "user-timeline-service::3a03c2ab-7ffd-4b77-98d5-d2b1b03b0302",
+      "user-timeline-service::p_4"
+    ],
+    [
+      "user-timeline-service::9d1c86f9-fed4-47e6-89c3-81d61237c51f",
+      "user-timeline-service::p_5"
+    ],
+    [
+      "user-timeline-service::9d58b1a9-f093-4be9-bd9c-a2ab244903ba",
+      "user-timeline-service::p_6"
+    ],
+    [
+      "user-timeline-service::c90edde9-cf38-4d6b-990e-25b9f9f25f7e",
+      "user-timeline-service::p_8"
+    ],
+    [
+      "user-timeline-service::ddb9413e-7473-4c3a-983e-e85bf63479ae",
+      "user-timeline-service::p_7"
+    ],
+    [
+      "user-timeline-service::p_3",
+      "user-timeline-service::9d1c86f9-fed4-47e6-89c3-81d61237c51f"
+    ],
+    [
+      "user-timeline-service::p_3",
+      "user-timeline-service::ddb9413e-7473-4c3a-983e-e85bf63479ae"
+    ],
+    [
+      "user-timeline-service::p_4",
+      "user-timeline-service::tau_2"
+    ],
+    [
+      "user-timeline-service::p_5",
+      "user-timeline-service::9d58b1a9-f093-4be9-bd9c-a2ab244903ba"
+    ],
+    [
+      "user-timeline-service::p_6",
+      "user-timeline-service::01296a3d-cc7b-4d77-b8e5-f57970e89ed9"
+    ],
+    [
+      "user-timeline-service::p_7",
+      "user-timeline-service::c90edde9-cf38-4d6b-990e-25b9f9f25f7e"
+    ],
+    [
+      "user-timeline-service::p_8",
+      "user-timeline-service::1ae89771-a461-4d87-a75d-87fcfab26c9f"
+    ],
+    [
+      "user-timeline-service::p_8",
+      "user-timeline-service::skip_3"
+    ],
+    [
+      "user-timeline-service::p_9",
+      "user-timeline-service::3a03c2ab-7ffd-4b77-98d5-d2b1b03b0302"
+    ],
+    [
+      "user-timeline-service::p_9",
+      "user-timeline-service::skip_4"
+    ],
+    [
+      "user-timeline-service::skip_3",
+      "user-timeline-service::p_4"
+    ],
+    [
+      "user-timeline-service::skip_4",
+      "user-timeline-service::p_4"
+    ],
+    [
+      "user-timeline-service::tau_1",
+      "user-timeline-service::p_3"
+    ],
+    [
+      "user-timeline-service::tau_2",
+      "user-timeline-service::sink"
+    ]
+  ],
+  "channel_places": [
+    {
+      "callee_service": "text-service",
+      "caller_service": "compose-post-service",
+      "channel_name": "ComposeText",
+      "channel_place": "ch::ComposeText",
+      "client_span": "compose_text_client",
+      "launch_type": "async",
+      "pattern": "IP-4",
+      "server_span": "compose_text_server"
+    },
+    {
+      "callee_service": "url-shorten-service",
+      "caller_service": "text-service",
+      "channel_name": "ComposeUrls",
+      "channel_place": "ch::ComposeUrls",
+      "client_span": "compose_urls_client",
+      "launch_type": "async",
+      "pattern": "IP-4",
+      "server_span": "compose_urls_server"
+    },
+    {
+      "callee_service": "user-mention-service",
+      "caller_service": "text-service",
+      "channel_name": "ComposeUserMentions",
+      "channel_place": "ch::ComposeUserMentions",
+      "client_span": "compose_user_mentions_client",
+      "launch_type": "async",
+      "pattern": "IP-4",
+      "server_span": "compose_user_mentions_server"
+    },
+    {
+      "callee_service": "user-service",
+      "caller_service": "compose-post-service",
+      "channel_name": "ComposeCreatorWithUserId",
+      "channel_place": "ch::ComposeCreatorWithUserId",
+      "client_span": "compose_creator_client",
+      "launch_type": "async",
+      "pattern": "IP-4",
+      "server_span": "compose_creator_with_user_id_server"
+    },
+    {
+      "callee_service": "media-service",
+      "caller_service": "compose-post-service",
+      "channel_name": "ComposeMedia",
+      "channel_place": "ch::ComposeMedia",
+      "client_span": "compose_media_client",
+      "launch_type": "async",
+      "pattern": "IP-4",
+      "server_span": "compose_media_server"
+    },
+    {
+      "callee_service": "unique-id-service",
+      "caller_service": "compose-post-service",
+      "channel_name": "ComposeUniqueId",
+      "channel_place": "ch::ComposeUniqueId",
+      "client_span": "compose_unique_id_client",
+      "launch_type": "async",
+      "pattern": "IP-4",
+      "server_span": "compose_unique_id_server"
+    },
+    {
+      "callee_service": "post-storage-service",
+      "caller_service": "compose-post-service",
+      "channel_name": "StorePost",
+      "channel_place": "ch::StorePost",
+      "client_span": "store_post_client",
+      "launch_type": "async",
+      "pattern": "IP-1",
+      "server_span": "store_post_server"
+    },
+    {
+      "callee_service": "user-timeline-service",
+      "caller_service": "compose-post-service",
+      "channel_name": "WriteUserTimeline",
+      "channel_place": "ch::WriteUserTimeline",
+      "client_span": "write_user_timeline_client",
+      "launch_type": "deferred",
+      "pattern": "IP-1",
+      "server_span": "write_user_timeline_server"
+    },
+    {
+      "callee_service": "home-timeline-service",
+      "caller_service": "compose-post-service",
+      "channel_name": "WriteHomeTimeline",
+      "channel_place": "ch::WriteHomeTimeline",
+      "client_span": "write_home_timeline_client",
+      "launch_type": "deferred",
+      "pattern": "IP-1",
+      "server_span": "write_home_timeline_server"
+    }
+  ],
+  "final_marking": [
+    "compose-post-service::sink",
+    "home-timeline-service::sink",
+    "media-service::sink",
+    "post-storage-service::sink",
+    "text-service::sink",
+    "unique-id-service::sink",
+    "url-shorten-service::sink",
+    "user-mention-service::sink",
+    "user-service::sink",
+    "user-timeline-service::sink"
+  ],
+  "initial_marking": [
+    "compose-post-service::source"
+  ],
+  "participating_services": [
+    "compose-post-service",
+    "home-timeline-service",
+    "media-service",
+    "post-storage-service",
+    "text-service",
+    "unique-id-service",
+    "url-shorten-service",
+    "user-mention-service",
+    "user-service",
+    "user-timeline-service"
+  ],
+  "places": [
+    "ch::ComposeCreatorWithUserId",
+    "ch::ComposeMedia",
+    "ch::ComposeText",
+    "ch::ComposeUniqueId",
+    "ch::ComposeUrls",
+    "ch::ComposeUserMentions",
+    "ch::StorePost",
+    "ch::WriteHomeTimeline",
+    "ch::WriteUserTimeline",
+    "compose-post-service::p_10",
+    "compose-post-service::p_11",
+    "compose-post-service::p_12",
+    "compose-post-service::p_13",
+    "compose-post-service::p_14",
+    "compose-post-service::p_3",
+    "compose-post-service::p_5",
+    "compose-post-service::p_6",
+    "compose-post-service::p_7",
+    "compose-post-service::p_8",
+    "compose-post-service::p_9",
+    "compose-post-service::sink",
+    "compose-post-service::source",
+    "home-timeline-service::p_10",
+    "home-timeline-service::p_3",
+    "home-timeline-service::p_4",
+    "home-timeline-service::p_6",
+    "home-timeline-service::p_7",
+    "home-timeline-service::p_8",
+    "home-timeline-service::p_9",
+    "home-timeline-service::sink",
+    "media-service::sink",
+    "post-storage-service::p_3",
+    "post-storage-service::p_4",
+    "post-storage-service::p_5",
+    "post-storage-service::p_6",
+    "post-storage-service::p_7",
+    "post-storage-service::p_8",
+    "post-storage-service::sink",
+    "text-service::p_4",
+    "text-service::p_5",
+    "text-service::p_6",
+    "text-service::p_7",
+    "text-service::sink",
+    "unique-id-service::sink",
+    "url-shorten-service::p_3",
+    "url-shorten-service::sink",
+    "user-mention-service::p_3",
+    "user-mention-service::sink",
+    "user-service::sink",
+    "user-timeline-service::p_3",
+    "user-timeline-service::p_4",
+    "user-timeline-service::p_5",
+    "user-timeline-service::p_6",
+    "user-timeline-service::p_7",
+    "user-timeline-service::p_8",
+    "user-timeline-service::p_9",
+    "user-timeline-service::sink"
+  ],
+  "service_sinks": {
+    "compose-post-service": "compose-post-service::sink",
+    "home-timeline-service": "home-timeline-service::sink",
+    "media-service": "media-service::sink",
+    "post-storage-service": "post-storage-service::sink",
+    "text-service": "text-service::sink",
+    "unique-id-service": "unique-id-service::sink",
+    "url-shorten-service": "url-shorten-service::sink",
+    "user-mention-service": "user-mention-service::sink",
+    "user-service": "user-service::sink",
+    "user-timeline-service": "user-timeline-service::sink"
+  },
+  "service_sources": {
+    "compose-post-service": "compose-post-service::source",
+    "home-timeline-service": "home-timeline-service::source",
+    "media-service": "media-service::source",
+    "post-storage-service": "post-storage-service::source",
+    "text-service": "text-service::source",
+    "unique-id-service": "unique-id-service::source",
+    "url-shorten-service": "url-shorten-service::source",
+    "user-mention-service": "user-mention-service::source",
+    "user-service": "user-service::source",
+    "user-timeline-service": "user-timeline-service::source"
+  },
+  "transitions": [
+    {
+      "id": "compose-post-service::bdcb5e10-d82f-4b59-b6c6-0816929e518d",
+      "is_silent": false,
+      "label": "compose_creator_client",
+      "service": "compose-post-service"
+    },
+    {
+      "id": "user-service::5faf408b-db6f-4dee-8506-63fb76995eed",
+      "is_silent": false,
+      "label": "compose_creator_server",
+      "service": "user-service"
+    },
+    {
+      "id": "compose-post-service::7e7ec426-bd90-4e92-bbfc-8ab0f729af8d",
+      "is_silent": false,
+      "label": "compose_media_client",
+      "service": "compose-post-service"
+    },
+    {
+      "id": "media-service::87cee0fa-87ea-4b59-a5d9-a5d8735c9a2d",
+      "is_silent": false,
+      "label": "compose_media_server",
+      "service": "media-service"
+    },
+    {
+      "id": "compose-post-service::cbd5e7d2-7987-4007-ad75-a0339e5d75a9",
+      "is_silent": false,
+      "label": "compose_post_server",
+      "service": "compose-post-service"
+    },
+    {
+      "id": "compose-post-service::cc716a08-1dec-4660-ad6c-faeaea5b8ded",
+      "is_silent": false,
+      "label": "compose_text_client",
+      "service": "compose-post-service"
+    },
+    {
+      "id": "text-service::182cfbc4-e4de-4003-89b5-998122bc4855",
+      "is_silent": false,
+      "label": "compose_text_server",
+      "service": "text-service"
+    },
+    {
+      "id": "compose-post-service::b8a46e73-4809-4213-b939-11eec4b4fc0c",
+      "is_silent": false,
+      "label": "compose_unique_id_client",
+      "service": "compose-post-service"
+    },
+    {
+      "id": "unique-id-service::a49ddc80-1914-44bc-8b02-818ff61b0acb",
+      "is_silent": false,
+      "label": "compose_unique_id_server",
+      "service": "unique-id-service"
+    },
+    {
+      "id": "text-service::1ef4b2b1-646d-4462-ae86-c1d1576d0af2",
+      "is_silent": false,
+      "label": "compose_urls_client",
+      "service": "text-service"
+    },
+    {
+      "id": "url-shorten-service::faf66f42-f72a-4d66-904f-48b27ee065d8",
+      "is_silent": false,
+      "label": "compose_urls_server",
+      "service": "url-shorten-service"
+    },
+    {
+      "id": "text-service::7a598c2a-1f64-4fa2-8647-8d03ecf8f219",
+      "is_silent": false,
+      "label": "compose_user_mentions_client",
+      "service": "text-service"
+    },
+    {
+      "id": "user-mention-service::c10b24b7-09a7-4bc1-ae57-f2cf2798f72c",
+      "is_silent": false,
+      "label": "compose_user_mentions_memcached_get_client",
+      "service": "user-mention-service"
+    },
+    {
+      "id": "user-mention-service::d4dcecf4-6ee9-4fd3-a177-cd90b1d76136",
+      "is_silent": false,
+      "label": "compose_user_mentions_server",
+      "service": "user-mention-service"
+    },
+    {
+      "id": "home-timeline-service::1859825d-c5e0-4f2f-9a15-7954099e401d",
+      "is_silent": false,
+      "label": "get_followers_client",
+      "service": "home-timeline-service"
+    },
+    {
+      "id": "post-storage-service::ae1bd85a-2595-4088-9389-993be6a640b1",
+      "is_silent": false,
+      "label": "mmc_set_client",
+      "service": "post-storage-service"
+    },
+    {
+      "id": "post-storage-service::30bbecb0-e16e-4234-ab48-ae7e32fc84b1",
+      "is_silent": false,
+      "label": "mongo_find_client",
+      "service": "post-storage-service"
+    },
+    {
+      "id": "post-storage-service::4dc2d69e-c496-4023-8b87-43211ed20aad",
+      "is_silent": false,
+      "label": "post_storage_mmc_mget_client",
+      "service": "post-storage-service"
+    },
+    {
+      "id": "post-storage-service::1f89dd71-ab99-45f6-ad70-c7d1c313b0fd",
+      "is_silent": false,
+      "label": "post_storage_mongo_insert_client",
+      "service": "post-storage-service"
+    },
+    {
+      "id": "post-storage-service::04644372-942f-4382-b12a-322decbd018f",
+      "is_silent": false,
+      "label": "post_storage_read_posts_server",
+      "service": "post-storage-service"
+    },
+    {
+      "id": "home-timeline-service::68b3b72b-b1cd-4982-8f5d-aef6093e0b94",
+      "is_silent": false,
+      "label": "read_home_timeline_redis_find_client",
+      "service": "home-timeline-service"
+    },
+    {
+      "id": "home-timeline-service::6243a262-264b-40d6-ac9b-3365806c9284",
+      "is_silent": false,
+      "label": "read_home_timeline_server",
+      "service": "home-timeline-service"
+    },
+    {
+      "id": "user-timeline-service::c90edde9-cf38-4d6b-990e-25b9f9f25f7e",
+      "is_silent": false,
+      "label": "read_user_timeline_redis_find_client",
+      "service": "user-timeline-service"
+    },
+    {
+      "id": "user-timeline-service::ddb9413e-7473-4c3a-983e-e85bf63479ae",
+      "is_silent": false,
+      "label": "read_user_timeline_server",
+      "service": "user-timeline-service"
+    },
+    {
+      "id": "compose-post-service::2cafbebc-503d-430f-a0dd-d5328ebdc8d1",
+      "is_silent": false,
+      "label": "store_post_client",
+      "service": "compose-post-service"
+    },
+    {
+      "id": "post-storage-service::aa510a3f-1b5f-4007-8b92-e8ef81ec8d61",
+      "is_silent": false,
+      "label": "store_post_server",
+      "service": "post-storage-service"
+    },
+    {
+      "id": "url-shorten-service::9f9566dc-2440-4c35-8981-2af98c2c4d89",
+      "is_silent": false,
+      "label": "url_mongo_insert_client",
+      "service": "url-shorten-service"
+    },
+    {
+      "id": "user-timeline-service::1ae89771-a461-4d87-a75d-87fcfab26c9f",
+      "is_silent": false,
+      "label": "user_timeline_mongo_find_client",
+      "service": "user-timeline-service"
+    },
+    {
+      "id": "user-timeline-service::3a03c2ab-7ffd-4b77-98d5-d2b1b03b0302",
+      "is_silent": false,
+      "label": "user_timeline_redis_update_client",
+      "service": "user-timeline-service"
+    },
+    {
+      "id": "compose-post-service::e63af696-d746-42b7-86d0-792cf372cc0b",
+      "is_silent": false,
+      "label": "write_home_timeline_client",
+      "service": "compose-post-service"
+    },
+    {
+      "id": "home-timeline-service::3dada6ba-1987-4250-b1ac-ff89fa08cd6f",
+      "is_silent": false,
+      "label": "write_home_timeline_redis_update_client",
+      "service": "home-timeline-service"
+    },
+    {
+      "id": "home-timeline-service::22460b28-72ba-4ccc-a463-a51619dda346",
+      "is_silent": false,
+      "label": "write_home_timeline_server",
+      "service": "home-timeline-service"
+    },
+    {
+      "id": "compose-post-service::401c5b38-e720-4e10-a1cc-1f887acca0e0",
+      "is_silent": false,
+      "label": "write_user_timeline_client",
+      "service": "compose-post-service"
+    },
+    {
+      "id": "user-timeline-service::9d58b1a9-f093-4be9-bd9c-a2ab244903ba",
+      "is_silent": false,
+      "label": "write_user_timeline_mongo_insert_client",
+      "service": "user-timeline-service"
+    },
+    {
+      "id": "user-timeline-service::01296a3d-cc7b-4d77-b8e5-f57970e89ed9",
+      "is_silent": false,
+      "label": "write_user_timeline_redis_update_client",
+      "service": "user-timeline-service"
+    },
+    {
+      "id": "user-timeline-service::9d1c86f9-fed4-47e6-89c3-81d61237c51f",
+      "is_silent": false,
+      "label": "write_user_timeline_server",
+      "service": "user-timeline-service"
+    },
+    {
+      "id": "compose-post-service::skip_1",
+      "is_silent": true,
+      "label": null,
+      "service": "compose-post-service"
+    },
+    {
+      "id": "compose-post-service::tauSplit_2",
+      "is_silent": true,
+      "label": null,
+      "service": "compose-post-service"
+    },
+    {
+      "id": "home-timeline-service::skip_5",
+      "is_silent": true,
+      "label": null,
+      "service": "home-timeline-service"
+    },
+    {
+      "id": "home-timeline-service::tauSplit_3",
+      "is_silent": true,
+      "label": null,
+      "service": "home-timeline-service"
+    },
+    {
+      "id": "home-timeline-service::tau_1",
+      "is_silent": true,
+      "label": null,
+      "service": "home-timeline-service"
+    },
+    {
+      "id": "home-timeline-service::tau_2",
+      "is_silent": true,
+      "label": null,
+      "service": "home-timeline-service"
+    },
+    {
+      "id": "post-storage-service::skip_3",
+      "is_silent": true,
+      "label": null,
+      "service": "post-storage-service"
+    },
+    {
+      "id": "post-storage-service::skip_4",
+      "is_silent": true,
+      "label": null,
+      "service": "post-storage-service"
+    },
+    {
+      "id": "post-storage-service::tau_1",
+      "is_silent": true,
+      "label": null,
+      "service": "post-storage-service"
+    },
+    {
+      "id": "post-storage-service::tau_2",
+      "is_silent": true,
+      "label": null,
+      "service": "post-storage-service"
+    },
+    {
+      "id": "text-service::tauJoin_2",
+      "is_silent": true,
+      "label": null,
+      "service": "text-service"
+    },
+    {
+      "id": "url-shorten-service::skip_1",
+      "is_silent": true,
+      "label": null,
+      "service": "url-shorten-service"
+    },
+    {
+      "id": "user-mention-service::skip_1",
+      "is_silent": true,
+      "label": null,
+      "service": "user-mention-service"
+    },
+    {
+      "id": "user-timeline-service::skip_3",
+      "is_silent": true,
+      "label": null,
+      "service": "user-timeline-service"
+    },
+    {
+      "id": "user-timeline-service::skip_4",
+      "is_silent": true,
+      "label": null,
+      "service": "user-timeline-service"
+    },
+    {
+      "id": "user-timeline-service::tau_1",
+      "is_silent": true,
+      "label": null,
+      "service": "user-timeline-service"
+    },
+    {
+      "id": "user-timeline-service::tau_2",
+      "is_silent": true,
+      "label": null,
+      "service": "user-timeline-service"
+    }
+  ],
+  "workflow_name": "compose_post_workflow"
+}

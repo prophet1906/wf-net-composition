@@ -1,0 +1,993 @@
+{
+  "_meta": {
+    "generated_at": "2026-10-15T14:58:01.884569+00:00",
+    "name": "Social Network Composed Workflow Net",
+    "participating_services": [
+      "compose-post-service",
+      "home-timeline-service",
+      "media-service",
+      "post-storage-service",
+      "text-service",
+      "unique-id-service",
+      "url-shorten-service",
+      "user-mention-service",
+      "user-service",
+      "user-timeline-service"
+    ],
+    "total_arcs": 117,
+    "total_channels": 9,
+    "total_places": 56,
+    "total_services": 10,
+    "total_transitions": 49,
+    "version": "1.0.0",
+    "workflow": "compose_post_workflow"
+  },
+  "arcs": [
+    [
+      "ch::ComposeCreatorWithUserId",
+      "user-service::17db0c62-2224-435f-a377-ded35cff0229"
+    ],
+    [
+      "ch::ComposeMedia",
+      "media-service::23b652bd-ab80-4288-bf6c-575f3422d830"
+    ],
+    [
+      "ch::ComposeText",
+      "text-service::6d9c12f0-78f7-4120-a820-8cadec762375"
+    ],
+    [
+      "ch::ComposeUniqueId",
+      "unique-id-service::3da946db-2be4-4abe-8969-5fe04baad8a1"
+    ],
+    [
+      "ch::ComposeUrls",
+      "url-shorten-service::83dd8c99-6f44-4640-bebb-636a7e009641"
+    ],
+    [
+      "ch::ComposeUserMentions",
+      "user-mention-service::5c7f2eaa-5307-4510-b848-660a0a17b7fc"
+    ],
+    [
+      "ch::StorePost",
+      "post-storage-service::tau_1"
+    ],
+    [
+      "ch::WriteHomeTimeline",
+      "home-timeline-service::tau_1"
+    ],
+    [
+      "ch::WriteUserTimeline",
+      "user-timeline-service::tau_1"
+    ],
+    [
+      "compose-post-service::1b35fa09-596b-4c02-bbe1-138747819332",
+      "ch::WriteHomeTimeline"
+    ],
+    [
+      "compose-post-service::1b35fa09-596b-4c02-bbe1-138747819332",
+      "compose-post-service::sink"
+    ],
+    [
+      "compose-post-service::2113529f-2ccd-4581-b5e8-8786c796418d",
+      "ch::StorePost"
+    ],
+    [
+      "compose-post-service::2113529f-2ccd-4581-b5e8-8786c796418d",
+      "compose-post-service::p_13"
+    ],
+    [
+      "compose-post-service::51a44f45-8de9-4929-89c6-ce2f052f3479",
+      "ch::ComposeCreatorWithUserId"
+    ],
+    [
+      "compose-post-service::51a44f45-8de9-4929-89c6-ce2f052f3479",
+      "compose-post-service::p_10"
+    ],
+    [
+      "compose-post-service::7ddf316a-2d0b-4a9a-a15f-2db5d33fe251",
+      "ch::ComposeUniqueId"
+    ],
+    [
+      "compose-post-service::7ddf316a-2d0b-4a9a-a15f-2db5d33fe251",
+      "compose-post-service::p_12"
+    ],
+    [
+      "compose-post-service::a488db42-406f-44df-bc2e-0e6ccddde0e4",
+      "compose-post-service::p_11"
+    ],
+    [
+      "compose-post-service::a488db42-406f-44df-bc2e-0e6ccddde0e4",
+      "compose-post-service::p_5"
+    ],
+    [
+      "compose-post-service::a488db42-406f-44df-bc2e-0e6ccddde0e4",
+      "compose-post-service::p_7"
+    ],
+    [
+      "compose-post-service::a488db42-406f-44df-bc2e-0e6ccddde0e4",
+      "compose-post-service::p_9"
+    ],
+    [
+      "compose-post-service::bca0b1e8-77b1-4272-8ba5-8bd1f93ebc1e",
+      "ch::ComposeMedia"
+    ],
+    [
+      "compose-post-service::bca0b1e8-77b1-4272-8ba5-8bd1f93ebc1e",
+      "compose-post-service::p_6"
+    ],
+    [
+      "compose-post-service::c5384225-6b81-41c8-a814-3c5d94a3c2d2",
+      "ch::WriteUserTimeline"
+    ],
+    [
+      "compose-post-service::c5384225-6b81-41c8-a814-3c5d94a3c2d2",
+      "compose-post-service::p_14"
+    ],
+    [
+      "compose-post-service::fd62e87f-c36d-46a8-9a03-29b300e75c3d",
+      "ch::ComposeText"
+    ],
+    [
+      "compose-post-service::fd62e87f-c36d-46a8-9a03-29b300e75c3d",
+      "compose-post-service::p_8"
+    ],
+    [
+      "compose-post-service::p_10",
+      "compose-post-service::2113529f-2ccd-4581-b5e8-8786c796418d"
+    ],
+    [
+      "compose-post-service::p_11",
+      "compose-post-service::7ddf316a-2d0b-4a9a-a15f-2db5d33fe251"
+    ],
+    [
+      "compose-post-service::p_12",
+      "compose-post-service::2113529f-2ccd-4581-b5e8-8786c796418d"
+    ],
+    [
+      "compose-post-service::p_13",
+      "compose-post-service::c5384225-6b81-41c8-a814-3c5d94a3c2d2"
+    ],
+    [
+      "compose-post-service::p_14",
+      "compose-post-service::1b35fa09-596b-4c02-bbe1-138747819332"
+    ],
+    [
+      "compose-post-service::p_5",
+      "compose-post-service::bca0b1e8-77b1-4272-8ba5-8bd1f93ebc1e"
+    ],
+    [
+      "compose-post-service::p_6",
+      "compose-post-service::2113529f-2ccd-4581-b5e8-8786c796418d"
+    ],
+    [
+      "compose-post-service::p_7",
+      "compose-post-service::fd62e87f-c36d-46a8-9a03-29b300e75c3d"
+    ],
+    [
+      "compose-post-service::p_8",
+      "compose-post-service::2113529f-2ccd-4581-b5e8-8786c796418d"
+    ],
+    [
+      "compose-post-service::p_9",
+      "compose-post-service::51a44f45-8de9-4929-89c6-ce2f052f3479"
+    ],
+    [
+      "compose-post-service::source",
+      "compose-post-service::a488db42-406f-44df-bc2e-0e6ccddde0e4"
+    ],
+    [
+      "home-timeline-service::1f5826ea-535c-41da-9862-895b32a20f86",
+      "home-timeline-service::p_9"
+    ],
+    [
+      "home-timeline-service::3f5dd5b9-d0c8-4f87-88f5-95d07645afcd",
+      "home-timeline-service::p_4"
+    ],
+    [
+      "home-timeline-service::57c8c54b-6582-4377-9dc1-fd3fe368f139",
+      "home-timeline-service::p_7"
+    ],
+    [
+      "home-timeline-service::b222e99c-7536-4cb6-b551-9588b6b6f174",
+      "home-timeline-service::p_10"
+    ],
+    [
+      "home-timeline-service::ba8b9856-a70d-4b98-b77c-bd0c8011da07",
+      "home-timeline-service::p_4"
+    ],
+    [
+      "home-timeline-service::p_10",
+      "home-timeline-service::ba8b9856-a70d-4b98-b77c-bd0c8011da07"
+    ],
+    [
+      "home-timeline-service::p_3",
+      "home-timeline-service::b222e99c-7536-4cb6-b551-9588b6b6f174"
+    ],
+    [
+      "home-timeline-service::p_3",
+      "home-timeline-service::tauSplit_3"
+    ],
+    [
+      "home-timeline-service::p_4",
+      "home-timeline-service::tau_2"
+    ],
+    [
+      "home-timeline-service::p_6",
+      "home-timeline-service::57c8c54b-6582-4377-9dc1-fd3fe368f139"
+    ],
+    [
+      "home-timeline-service::p_7",
+      "home-timeline-service::3f5dd5b9-d0c8-4f87-88f5-95d07645afcd"
+    ],
+    [
+      "home-timeline-service::p_8",
+      "home-timeline-service::1f5826ea-535c-41da-9862-895b32a20f86"
+    ],
+    [
+      "home-timeline-service::p_9",
+      "home-timeline-service::3f5dd5b9-d0c8-4f87-88f5-95d07645afcd"
+    ],
+    [
+      "home-timeline-service::tauSplit_3",
+      "home-timeline-service::p_6"
+    ],
+    [
+      "home-timeline-service::tauSplit_3",
+      "home-timeline-service::p_8"
+    ],
+    [
+      "home-timeline-service::tau_1",
+      "home-timeline-service::p_3"
+    ],
+    [
+      "home-timeline-service::tau_2",
+      "home-timeline-service::sink"
+    ],
+    [
+      "media-service::23b652bd-ab80-4288-bf6c-575f3422d830",
+      "media-service::sink"
+    ],
+    [
+      "post-storage-service::46eb2d7d-72c2-43c4-abb5-a9f0efcf5a1d",
+      "post-storage-service::p_5"
+    ],
+    [
+      "post-storage-service::6e3bf7ed-3d13-4f29-a9ef-d5c805805e81",
+      "post-storage-service::p_7"
+    ],
+    [
+      "post-storage-service::ac98350c-e073-45f4-a75c-fced2795f948",
+      "post-storage-service::p_4"
+    ],
+    [
+      "post-storage-service::c93bbd54-f880-4cbd-b21b-23a8d881b380",
+      "post-storage-service::p_4"
+    ],
+    [
+      "post-storage-service::e5d5c6ea-a87e-4e5b-a569-e1ca7443a07d",
+      "post-storage-service::p_8"
+    ],
+    [
+      "post-storage-service::f60bbc1b-e318-4e06-a68b-cf022ef9c1e1",
+      "post-storage-service::p_6"
+    ],
+    [
+      "post-storage-service::p_3",
+      "post-storage-service::46eb2d7d-72c2-43c4-abb5-a9f0efcf5a1d"
+    ],
+    [
+      "post-storage-service::p_3",
+      "post-storage-service::f60bbc1b-e318-4e06-a68b-cf022ef9c1e1"
+    ],
+    [
+      "post-storage-service::p_4",
+      "post-storage-service::tau_2"
+    ],
+    [
+      "post-storage-service::p_5",
+      "post-storage-service::c93bbd54-f880-4cbd-b21b-23a8d881b380"
+    ],
+    [
+      "post-storage-service::p_6",
+      "post-storage-service::6e3bf7ed-3d13-4f29-a9ef-d5c805805e81"
+    ],
+    [
+      "post-storage-service::p_6",
+      "post-storage-service::skip_3"
+    ],
+    [
+      "post-storage-service::p_7",
+      "post-storage-service::e5d5c6ea-a87e-4e5b-a569-e1ca7443a07d"
+    ],
+    [
+      "post-storage-service::p_7",
+      "post-storage-service::skip_4"
+    ],
+    [
+      "post-storage-service::p_8",
+      "post-storage-service::ac98350c-e073-45f4-a75c-fced2795f948"
+    ],
+    [
+      "post-storage-service::skip_3",
+      "post-storage-service::p_4"
+    ],
+    [
+      "post-storage-service::skip_4",
+      "post-storage-service::p_4"
+    ],
+    [
+      "post-storage-service::tau_1",
+      "post-storage-service::p_3"
+    ],
+    [
+      "post-storage-service::tau_2",
+      "post-storage-service::sink"
+    ],
+    [
+      "text-service::1bc5e2ab-b74d-4fbc-9960-3fd527a4d598",
+      "ch::ComposeUrls"
+    ],
+    [
+      "text-service::1bc5e2ab-b74d-4fbc-9960-3fd527a4d598",
+      "text-service::p_5"
+    ],
+    [
+      "text-service::6d9c12f0-78f7-4120-a820-8cadec762375",
+      "text-service::p_4"
+    ],
+    [
+      "text-service::6d9c12f0-78f7-4120-a820-8cadec762375",
+      "text-service::p_6"
+    ],
+    [
+      "text-service::9d70d8e5-2eba-4293-83b4-27f0e370c0cb",
+      "ch::ComposeUserMentions"
+    ],
+    [
+      "text-service::9d70d8e5-2eba-4293-83b4-27f0e370c0cb",
+      "text-service::p_7"
+    ],
+    [
+      "text-service::p_4",
+      "text-service::1bc5e2ab-b74d-4fbc-9960-3fd527a4d598"
+    ],
+    [
+      "text-service::p_5",
+      "text-service::tauJoin_2"
+    ],
+    [
+      "text-service::p_6",
+      "text-service::9d70d8e5-2eba-4293-83b4-27f0e370c0cb"
+    ],
+    [
+      "text-service::p_7",
+      "text-service::tauJoin_2"
+    ],
+    [
+      "text-service::tauJoin_2",
+      "text-service::sink"
+    ],
+    [
+      "unique-id-service::3da946db-2be4-4abe-8969-5fe04baad8a1",
+      "unique-id-service::sink"
+    ],
+    [
+      "url-shorten-service::492a3e0a-81c3-469a-89df-34f662e807a1",
+      "url-shorten-service::sink"
+    ],
+    [
+      "url-shorten-service::83dd8c99-6f44-4640-bebb-636a7e009641",
+      "url-shorten-service::p_3"
+    ],
+    [
+      "url-shorten-service::p_3",
+      "url-shorten-service::492a3e0a-81c3-469a-89df-34f662e807a1"
+    ],
+    [
+      "url-shorten-service::p_3",
+      "url-shorten-service::skip_1"
+    ],
+    [
+      "url-shorten-service::skip_1",
+      "url-shorten-service::sink"
+    ],
+    [
+      "user-mention-service::5c7f2eaa-5307-4510-b848-660a0a17b7fc",
+      "user-mention-service::p_3"
+    ],
+    [
+      "user-mention-service::7e7c050d-e9a8-4b22-b5c8-00b8382c0e9b",
+      "user-mention-service::sink"
+    ],
+    [
+      "user-mention-service::p_3",
+      "user-mention-service::7e7c050d-e9a8-4b22-b5c8-00b8382c0e9b"
+    ],
+    [
+      "user-mention-service::p_3",
+      "user-mention-service::skip_1"
+    ],
+    [
+      "user-mention-service::skip_1",
+      "user-mention-service::sink"
+    ],
+    [
+      "user-service::17db0c62-2224-435f-a377-ded35cff0229",
+      "user-service::sink"
+    ],
+    [
+      "user-timeline-service::1bbe0594-9c8f-4c6d-8ba2-16535b7a6ccb",
+      "user-timeline-service::p_6"
+    ],
+    [
+      "user-timeline-service::30677caf-2734-41e1-bcdc-fd48ba00cf83",
+      "user-timeline-service::p_5"
+    ],
+    [
+      "user-timeline-service::44361df5-22c9-4dfc-8829-c49e33c3f22d",
+      "user-timeline-service::p_4"
+    ],
+    [
+      "user-timeline-service::58b5194c-2ab0-482b-b29b-dde7781f2731",
+      "user-timeline-service::p_8"
+    ],
+    [
+      "user-timeline-service::7bbc4bd0-0899-4a8e-9baf-caf2820b5182",
+      "user-timeline-service::p_4"
+    ],
+    [
+      "user-timeline-service::a23ce6cf-788f-4d36-a127-1ba1f874ae8d",
+      "user-timeline-service::p_9"
+    ],
+    [
+      "user-timeline-service::beaa96a4-535b-495b-8db2-575ffab5e767",
+      "user-timeline-service::p_7"
+    ],
+    [
+      "user-timeline-service::p_3",
+      "user-timeline-service::30677caf-2734-41e1-bcdc-fd48ba00cf83"
+    ],
+    [
+      "user-timeline-service::p_3",
+      "user-timeline-service::beaa96a4-535b-495b-8db2-575ffab5e767"
+    ],
+    [
+      "user-timeline-service::p_4",
+      "user-timeline-service::tau_2"
+    ],
+    [
+      "user-timeline-service::p_5",
+      "user-timeline-service::1bbe0594-9c8f-4c6d-8ba2-16535b7a6ccb"
+    ],
+    [
+      "user-timeline-service::p_6",
+      "user-timeline-service::7bbc4bd0-0899-4a8e-9baf-caf2820b5182"
+    ],
+    [
+      "user-timeline-service::p_7",
+      "user-timeline-service::58b5194c-2ab0-482b-b29b-dde7781f2731"
+    ],
+    [
+      "user-timeline-service::p_8",
+      "user-timeline-service::a23ce6cf-788f-4d36-a127-1ba1f874ae8d"
+    ],
+    [
+      "user-timeline-service::p_9",
+      "user-timeline-service::44361df5-22c9-4dfc-8829-c49e33c3f22d"
+    ],
+    [
+      "user-timeline-service::p_9",
+      "user-timeline-service::skip_3"
+    ],
+    [
+      "user-timeline-service::skip_3",
+      "user-timeline-service::p_4"
+    ],
+    [
+      "user-timeline-service::tau_1",
+      "user-timeline-service::p_3"
+    ],
+    [
+      "user-timeline-service::tau_2",
+      "user-timeline-service::sink"
+    ]
+  ],
+  "channel_places": [
+    {
+      "callee_service": "text-service",
+      "caller_service": "compose-post-service",
+      "channel_name": "ComposeText",
+      "channel_place": "ch::ComposeText",
+      "client_span": "compose_text_client",
+      "launch_type": "async",
+      "pattern": "IP-4",
+      "server_span": "compose_text_server"
+    },
+    {
+      "callee_service": "url-shorten-service",
+      "caller_service": "text-service",
+      "channel_name": "ComposeUrls",
+      "channel_place": "ch::ComposeUrls",
+      "client_span": "compose_urls_client",
+      "launch_type": "async",
+      "pattern": "IP-4",
+      "server_span": "compose_urls_server"
+    },
+    {
+      "callee_service": "user-mention-service",
+      "caller_service": "text-service",
+      "channel_name": "ComposeUserMentions",
+      "channel_place": "ch::ComposeUserMentions",
+      "client_span": "compose_user_mentions_client",
+      "launch_type": "async",
+      "pattern": "IP-4",
+      "server_span": "compose_user_mentions_server"
+    },
+    {
+      "callee_service": "user-service",
+      "caller_service": "compose-post-service",
+      "channel_name": "ComposeCreatorWithUserId",
+      "channel_place": "ch::ComposeCreatorWithUserId",
+      "client_span": "compose_creator_client",
+      "launch_type": "async",
+      "pattern": "IP-4",
+      "server_span": "compose_creator_with_user_id_server"
+    },
+    {
+      "callee_service": "media-service",
+      "caller_service": "compose-post-service",
+      "channel_name": "ComposeMedia",
+      "channel_place": "ch::ComposeMedia",
+      "client_span": "compose_media_client",
+      "launch_type": "async",
+      "pattern": "IP-4",
+      "server_span": "compose_media_server"
+    },
+    {
+      "callee_service": "unique-id-service",
+      "caller_service": "compose-post-service",
+      "channel_name": "ComposeUniqueId",
+      "channel_place": "ch::ComposeUniqueId",
+      "client_span": "compose_unique_id_client",
+      "launch_type": "async",
+      "pattern": "IP-4",
+      "server_span": "compose_unique_id_server"
+    },
+    {
+      "callee_service": "post-storage-service",
+      "caller_service": "compose-post-service",
+      "channel_name": "StorePost",
+      "channel_place": "ch::StorePost",
+      "client_span": "store_post_client",
+      "launch_type": "async",
+      "pattern": "IP-1",
+      "server_span": "store_post_server"
+    },
+    {
+      "callee_service": "user-timeline-service",
+      "caller_service": "compose-post-service",
+      "channel_name": "WriteUserTimeline",
+      "channel_place": "ch::WriteUserTimeline",
+      "client_span": "write_user_timeline_client",
+      "launch_type": "deferred",
+      "pattern": "IP-1",
+      "server_span": "write_user_timeline_server"
+    },
+    {
+      "callee_service": "home-timeline-service",
+      "caller_service": "compose-post-service",
+      "channel_name": "WriteHomeTimeline",
+      "channel_place": "ch::WriteHomeTimeline",
+      "client_span": "write_home_timeline_client",
+      "launch_type": "deferred",
+      "pattern": "IP-1",
+      "server_span": "write_home_timeline_server"
+    }
+  ],
+  "final_marking": [
+    "compose-post-service::sink",
+    "home-timeline-service::sink",
+    "media-service::sink",
+    "post-storage-service::sink",
+    "text-service::sink",
+    "unique-id-service::sink",
+    "url-shorten-service::sink",
+    "user-mention-service::sink",
+    "user-service::sink",
+    "user-timeline-service::sink"
+  ],
+  "initial_marking": [
+    "compose-post-service::source"
+  ],
+  "participating_services": [
+    "compose-post-service",
+    "home-timeline-service",
+    "media-service",
+    "post-storage-service",
+    "text-service",
+    "unique-id-service",
+    "url-shorten-service",
+    "user-mention-service",
+    "user-service",
+    "user-timeline-service"
+  ],
+  "places": [
+    "ch::ComposeCreatorWithUserId",
+    "ch::ComposeMedia",
+    "ch::ComposeText",
+    "ch::ComposeUniqueId",
+    "ch::ComposeUrls",
+    "ch::ComposeUserMentions",
+    "ch::StorePost",
+    "ch::WriteHomeTimeline",
+    "ch::WriteUserTimeline",
+    "compose-post-service::p_10",
+    "compose-post-service::p_11",
+    "compose-post-service::p_12",
+    "compose-post-service::p_13",
+    "compose-post-service::p_14",
+    "compose-post-service::p_5",
+    "compose-post-service::p_6",
+    "compose-post-service::p_7",
+    "compose-post-service::p_8",
+    "compose-post-service::p_9",
+    "compose-post-service::sink",
+    "compose-post-service::source",
+    "home-timeline-service::p_10",
+    "home-timeline-service::p_3",
+    "home-timeline-service::p_4",
+    "home-timeline-service::p_6",
+    "home-timeline-service::p_7",
+    "home-timeline-service::p_8",
+    "home-timeline-service::p_9",
+    "home-timeline-service::sink",
+    "media-service::sink",
+    "post-storage-service::p_3",
+    "post-storage-service::p_4",
+    "post-storage-service::p_5",
+    "post-storage-service::p_6",
+    "post-storage-service::p_7",
+    "post-storage-service::p_8",
+    "post-storage-service::sink",
+    "text-service::p_4",
+    "text-service::p_5",
+    "text-service::p_6",
+    "text-service::p_7",
+    "text-service::sink",
+    "unique-id-service::sink",
+    "url-shorten-service::p_3",
+    "url-shorten-service::sink",
+    "user-mention-service::p_3",
+    "user-mention-service::sink",
+    "user-service::sink",
+    "user-timeline-service::p_3",
+    "user-timeline-service::p_4",
+    "user-timeline-service::p_5",
+    "user-timeline-service::p_6",
+    "user-timeline-service::p_7",
+    "user-timeline-service::p_8",
+    "user-timeline-service::p_9",
+    "user-timeline-service::sink"
+  ],
+  "service_sinks": {
+    "compose-post-service": "compose-post-service::sink",
+    "home-timeline-service": "home-timeline-service::sink",
+    "media-service": "media-service::sink",
+    "post-storage-service": "post-storage-service::sink",
+    "text-service": "text-service::sink",
+    "unique-id-service": "unique-id-service::sink",
+    "url-shorten-service": "url-shorten-service::sink",
+    "user-mention-service": "user-mention-service::sink",
+    "user-service": "user-service::sink",
+    "user-timeline-service": "user-timeline-service::sink"
+  },
+  "service_sources": {
+    "compose-post-service": "compose-post-service::source",
+    "home-timeline-service": "home-timeline-service::source",
+    "media-service": "media-service::source",
+    "post-storage-service": "post-storage-service::source",
+    "text-service": "text-service::source",
+    "unique-id-service": "unique-id-service::source",
+    "url-shorten-service": "url-shorten-service::source",
+    "user-mention-service": "user-mention-service::source",
+    "user-service": "user-service::source",
+    "user-timeline-service": "user-timeline-service::source"
+  },
+  "transitions": [
+    {
+      "id": "compose-post-service::51a44f45-8de9-4929-89c6-ce2f052f3479",
+      "is_silent": false,
+      "label": "compose_creator_client",
+      "service": "compose-post-service"
+    },
+    {
+      "id": "user-service::17db0c62-2224-435f-a377-ded35cff0229",
+      "is_silent": false,
+      "label": "compose_creator_server",
+      "service": "user-service"
+    },
+    {
+      "id": "compose-post-service::bca0b1e8-77b1-4272-8ba5-8bd1f93ebc1e",
+      "is_silent": false,
+      "label": "compose_media_client",
+      "service": "compose-post-service"
+    },
+    {
+      "id": "media-service::23b652bd-ab80-4288-bf6c-575f3422d830",
+      "is_silent": false,
+      "label": "compose_media_server",
+      "service": "media-service"
+    },
+    {
+      "id": "compose-post-service::a488db42-406f-44df-bc2e-0e6ccddde0e4",
+      "is_silent": false,
+      "label": "compose_post_server",
+      "service": "compose-post-service"
+    },
+    {
+      "id": "compose-post-service::fd62e87f-c36d-46a8-9a03-29b300e75c3d",
+      "is_silent": false,
+      "label": "compose_text_client",
+      "service": "compose-post-service"
+    },
+    {
+      "id": "text-service::6d9c12f0-78f7-4120-a820-8cadec762375",
+      "is_silent": false,
+      "label": "compose_text_server",
+      "service": "text-service"
+    },
+    {
+      "id": "compose-post-service::7ddf316a-2d0b-4a9a-a15f-2db5d33fe251",
+      "is_silent": false,
+      "label": "compose_unique_id_client",
+      "service": "compose-post-service"
+    },
+    {
+      "id": "unique-id-service::3da946db-2be4-4abe-8969-5fe04baad8a1",
+      "is_silent": false,
+      "label": "compose_unique_id_server",
+      "service": "unique-id-service"
+    },
+    {
+      "id": "text-service::1bc5e2ab-b74d-4fbc-9960-3fd527a4d598",
+      "is_silent": false,
+      "label": "compose_urls_client",
+      "service": "text-service"
+    },
+    {
+      "id": "url-shorten-service::83dd8c99-6f44-4640-bebb-636a7e009641",
+      "is_silent": false,
+      "label": "compose_urls_server",
+      "service": "url-shorten-service"
+    },
+    {
+      "id": "text-service::9d70d8e5-2eba-4293-83b4-27f0e370c0cb",
+      "is_silent": false,
+      "label": "compose_user_mentions_client",
+      "service": "text-service"
+    },
+    {
+      "id": "user-mention-service::7e7c050d-e9a8-4b22-b5c8-00b8382c0e9b",
+      "is_silent": false,
+      "label": "compose_user_mentions_memcached_get_client",
+      "service": "user-mention-service"
+    },
+    {
+      "id": "user-mention-service::5c7f2eaa-5307-4510-b848-660a0a17b7fc",
+      "is_silent": false,
+      "label": "compose_user_mentions_server",
+      "service": "user-mention-service"
+    },
+    {
+      "id": "home-timeline-service::57c8c54b-6582-4377-9dc1-fd3fe368f139",
+      "is_silent": false,
+      "label": "get_followers_client",
+      "service": "home-timeline-service"
+    },
+    {
+      "id": "post-storage-service::ac98350c-e073-45f4-a75c-fced2795f948",
+      "is_silent": false,
+      "label": "mmc_set_client",
+      "service": "post-storage-service"
+    },
+    {
+      "id": "post-storage-service::e5d5c6ea-a87e-4e5b-a569-e1ca7443a07d",
+      "is_silent": false,
+      "label": "mongo_find_client",
+      "service": "post-storage-service"
+    },
+    {
+      "id": "post-storage-service::6e3bf7ed-3d13-4f29-a9ef-d5c805805e81",
+      "is_silent": false,
+      "label": "post_storage_mmc_mget_client",
+      "service": "post-storage-service"
+    },
+    {
+      "id": "post-storage-service::c93bbd54-f880-4cbd-b21b-23a8d881b380",
+      "is_silent": false,
+      "label": "post_storage_mongo_insert_client",
+      "service": "post-storage-service"
+    },
+    {
+      "id": "post-storage-service::f60bbc1b-e318-4e06-a68b-cf022ef9c1e1",
+      "is_silent": false,
+      "label": "post_storage_read_posts_server",
+      "service": "post-storage-service"
+    },
+    {
+      "id": "home-timeline-service::ba8b9856-a70d-4b98-b77c-bd0c8011da07",
+      "is_silent": false,
+      "label": "read_home_timeline_redis_find_client",
+      "service": "home-timeline-service"
+    },
+    {
+      "id": "home-timeline-service::b222e99c-7536-4cb6-b551-9588b6b6f174",
+      "is_silent": false,
+      "label": "read_home_timeline_server",
+      "service": "home-timeline-service"
+    },
+    {
+      "id": "user-timeline-service::58b5194c-2ab0-482b-b29b-dde7781f2731",
+      "is_silent": false,
+      "label": "read_user_timeline_redis_find_client",
+      "service": "user-timeline-service"
+    },
+    {
+      "id": "user-timeline-service::beaa96a4-535b-495b-8db2-575ffab5e767",
+      "is_silent": false,
+      "label": "read_user_timeline_server",
+      "service": "user-timeline-service"
+    },
+    {
+      "id": "compose-post-service::2113529f-2ccd-4581-b5e8-8786c796418d",
+      "is_silent": false,
+      "label": "store_post_client",
+      "service": "compose-post-service"
+    },
+    {
+      "id": "post-storage-service::46eb2d7d-72c2-43c4-abb5-a9f0efcf5a1d",
+      "is_silent": false,
+      "label": "store_post_server",
+      "service": "post-storage-service"
+    },
+    {
+      "id": "url-shorten-service::492a3e0a-81c3-469a-89df-34f662e807a1",
+      "is_silent": false,
+      "label": "url_mongo_insert_client",
+      "service": "url-shorten-service"
+    },
+    {
+      "id": "user-timeline-service::a23ce6cf-788f-4d36-a127-1ba1f874ae8d",
+      "is_silent": false,
+      "label": "user_timeline_mongo_find_client",
+      "service": "user-timeline-service"
+    },
+    {
+      "id": "user-timeline-service::44361df5-22c9-4dfc-8829-c49e33c3f22d",
+      "is_silent": false,
+      "label": "user_timeline_redis_update_client",
+      "service": "user-timeline-service"
+    },
+    {
+      "id": "compose-post-service::1b35fa09-596b-4c02-bbe1-138747819332",
+      "is_silent": false,
+      "label": "write_home_timeline_client",
+      "service": "compose-post-service"
+    },
+    {
+      "id": "home-timeline-service::3f5dd5b9-d0c8-4f87-88f5-95d07645afcd",
+      "is_silent": false,
+      "label": "write_home_timeline_redis_update_client",
+      "service": "home-timeline-service"
+    },
+    {
+      "id": "home-timeline-service::1f5826ea-535c-41da-9862-895b32a20f86",
+      "is_silent": false,
+      "label": "write_home_timeline_server",
+      "service": "home-timeline-service"
+    },
+    {
+      "id": "compose-post-service::c5384225-6b81-41c8-a814-3c5d94a3c2d2",
+      "is_silent": false,
+      "label": "write_user_timeline_client",
+      "service": "compose-post-service"
+    },
+    {
+      "id": "user-timeline-service::1bbe0594-9c8f-4c6d-8ba2-16535b7a6ccb",
+      "is_silent": false,
+      "label": "write_user_timeline_mongo_insert_client",
+      "service": "user-timeline-service"
+    },
+    {
+      "id": "user-timeline-service::7bbc4bd0-0899-4a8e-9baf-caf2820b5182",
+      "is_silent": false,
+      "label": "write_user_timeline_redis_update_client",
+      "service": "user-timeline-service"
+    },
+    {
+      "id": "user-timeline-service::30677caf-2734-41e1-bcdc-fd48ba00cf83",
+      "is_silent": false,
+      "label": "write_user_timeline_server",
+      "service": "user-timeline-service"
+    },
+    {
+      "id": "home-timeline-service::tauSplit_3",
+      "is_silent": true,
+      "label": null,
+      "service": "home-timeline-service"
+    },
+    {
+      "id": "home-timeline-service::tau_1",
+      "is_silent": true,
+      "label": null,
+      "service": "home-timeline-service"
+    },
+    {
+      "id": "home-timeline-service::tau_2",
+      "is_silent": true,
+      "label": null,
+      "service": "home-timeline-service"
+    },
+    {
+      "id": "post-storage-service::skip_3",
+      "is_silent": true,
+      "label": null,
+      "service": "post-storage-service"
+    },
+    {
+      "id": "post-storage-service::skip_4",
+      "is_silent": true,
+      "label": null,
+      "service": "post-storage-service"
+    },
+    {
+      "id": "post-storage-service::tau_1",
+      "is_silent": true,
+      "label": null,
+      "service": "post-storage-service"
+    },
+    {
+      "id": "post-storage-service::tau_2",
+      "is_silent": true,
+      "label": null,
+      "service": "post-storage-service"
+    },
+    {
+      "id": "text-service::tauJoin_2",
+      "is_silent": true,
+      "label": null,
+      "service": "text-service"
+    },
+    {
+      "id": "url-shorten-service::skip_1",
+      "is_silent": true,
+      "label": null,
+      "service": "url-shorten-service"
+    },
+    {
+      "id": "user-mention-service::skip_1",
+      "is_silent": true,
+      "label": null,
+      "service": "user-mention-service"
+    },
+    {
+      "id": "user-timeline-service::skip_3",
+      "is_silent": true,
+      "label": null,
+      "service": "user-timeline-service"
+    },
+    {
+      "id": "user-timeline-service::tau_1",
+      "is_silent": true,
+      "label": null,
+      "service": "user-timeline-service"
+    },
+    {
+      "id": "user-timeline-service::tau_2",
+      "is_silent": true,
+      "label": null,
+      "service": "user-timeline-service"
+    }
+  ],
+  "workflow_name": "compose_post_workflow"
+}

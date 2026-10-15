@@ -1,0 +1,14 @@
+# =============================================================================
+# Local Makefile extensions for Rocq Proofs (included by generated Makefile)
+# =============================================================================
+
+.PHONY: check rebuild
+
+# Run the independent Rocq kernel proof checker on compiled modules
+check: all
+	@echo "==> Validating proofs with kernel checker (rocq check)..."
+	@rocq check -Q . MicroserviceComposition MicroserviceComposition.composition
+	@echo "==> All proof terms successfully verified by the kernel."
+
+# Clean and rebuild from scratch
+rebuild: clean all

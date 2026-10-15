@@ -1,0 +1,92 @@
+digraph "compose_post_workflow" {
+  // Portrait Layout & Global Settings
+  rankdir="TB";
+  charset="UTF-8";
+  compound=true;
+  bgcolor="#FAFAFA";
+  node [fontname="Helvetica,Arial,sans-serif", fontsize=9];
+  edge [fontname="Helvetica,Arial,sans-serif", fontsize=8, color="#333333", arrowsize=0.7];
+
+  // Places (Petri Net Conventions: Single circle initial with token, double circle final sink)
+  "p_source" [shape=circle, style="filled", fillcolor="#D0E1F9", color="#1E395B", penwidth=1.8, label="●", xlabel=<<FONT POINT-SIZE="8" COLOR="#1E395B">source</FONT>>, width=0.28, height=0.28, fixedsize=true, fontsize=10];
+  "p_ingress_out" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">ingress_out</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+  "p_b_text_service_ComposeText_0_in" [shape=circle, style="filled", fillcolor="#F3F4F6", color="#4B5563", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#4B5563">text-service::ComposeText (in)</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+  "p_b_text_service_ComposeText_0_nested_fork_in" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">text-service nested fork</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+  "p_b_text_service_ComposeText_0_c0_url_shorten_service_ComposeUrls_in" [shape=circle, style="filled", fillcolor="#F3F4F6", color="#4B5563", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#4B5563">url-shorten-service::ComposeUrls (in)</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+  "p_b_text_service_ComposeText_0_c0_url_shorten_service_ComposeUrls_out" [shape=circle, style="filled", fillcolor="#F3F4F6", color="#4B5563", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#4B5563">url-shorten-service::ComposeUrls (out)</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+  "p_b_text_service_ComposeText_0_c1_user_mention_service_ComposeUserMentions_in" [shape=circle, style="filled", fillcolor="#F3F4F6", color="#4B5563", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#4B5563">user-mention-service::ComposeUserMentions (in)</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+  "p_b_text_service_ComposeText_0_c1_user_mention_service_ComposeUserMentions_out" [shape=circle, style="filled", fillcolor="#F3F4F6", color="#4B5563", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#4B5563">user-mention-service::ComposeUserMentions (out)</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+  "p_b_text_service_ComposeText_0_nested_exit_in" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">text-service nested exit</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+  "p_b_text_service_ComposeText_0_out" [shape=circle, style="filled", fillcolor="#F3F4F6", color="#4B5563", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#4B5563">text-service::ComposeText (out)</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+  "p_b_user_service_ComposeCreatorWithUserId_1_in" [shape=circle, style="filled", fillcolor="#F3F4F6", color="#4B5563", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#4B5563">user-service::ComposeCreatorWithUserId (in)</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+  "p_b_user_service_ComposeCreatorWithUserId_1_out" [shape=circle, style="filled", fillcolor="#F3F4F6", color="#4B5563", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#4B5563">user-service::ComposeCreatorWithUserId (out)</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+  "p_b_media_service_ComposeMedia_2_in" [shape=circle, style="filled", fillcolor="#F3F4F6", color="#4B5563", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#4B5563">media-service::ComposeMedia (in)</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+  "p_b_media_service_ComposeMedia_2_out" [shape=circle, style="filled", fillcolor="#F3F4F6", color="#4B5563", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#4B5563">media-service::ComposeMedia (out)</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+  "p_b_unique_id_service_ComposeUniqueId_3_in" [shape=circle, style="filled", fillcolor="#F3F4F6", color="#4B5563", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#4B5563">unique-id-service::ComposeUniqueId (in)</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+  "p_b_unique_id_service_ComposeUniqueId_3_out" [shape=circle, style="filled", fillcolor="#F3F4F6", color="#4B5563", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#4B5563">unique-id-service::ComposeUniqueId (out)</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+  "p_post_compose_post_barrier" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">post_compose_post_barrier</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+  "p_p2_post_storage_service_StorePost_0_out" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">post-storage-service::StorePost (out)</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+  "p_p2_user_timeline_service_WriteUserTimeline_1_out" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">user-timeline-service::WriteUserTimeline (out)</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+  "p_p2_home_timeline_service_WriteHomeTimeline_2_out" [shape=circle, style="filled", fillcolor="#EBF3FA", color="#2A6496", penwidth=1.2, label="", xlabel=<<FONT POINT-SIZE="7" COLOR="#2A6496">home-timeline-service::WriteHomeTimeline (out)</FONT>>, width=0.22, height=0.22, fixedsize=true, fontsize=7];
+  "p_sink" [shape=doublecircle, style="filled", fillcolor="#FDE8E8", color="#9B1C1C", penwidth=1.8, label="", xlabel=<<FONT POINT-SIZE="8" COLOR="#9B1C1C">sink</FONT>>, width=0.28, height=0.28, fixedsize=true, fontsize=9];
+
+  // Transitions (Clean styling, no decorative icons)
+  "t_ingress" [shape=box, style="filled", fillcolor="#E0F2FE", color="#0284C7", penwidth=1.5, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#0369A1">Ingress: ComposePost</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="8" COLOR="#475569">compose-post-service::ComposePost</FONT></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">span: compose_post_client</FONT></TD></TR></TABLE>>];
+  "t_fork_p1" [shape=box, style="filled", fillcolor="#FEF3C7", color="#D97706", penwidth=1.5, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#92400E">Fork: Phase P1</FONT></B></TD></TR></TABLE>>];
+  "t_b_text_service_ComposeText_0_entry" [shape=box, style="filled", fillcolor="#F1F5F9", color="#64748B", penwidth=1.5, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#334155">Entry: text-service::ComposeText</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="8" COLOR="#475569">text-service::ComposeText</FONT></TD></TR></TABLE>>];
+  "t_b_text_service_ComposeText_0_nested_fork" [shape=box, style="filled", fillcolor="#FEF3C7", color="#D97706", penwidth=1.5, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#92400E">Fork: text-service Children</FONT></B></TD></TR></TABLE>>];
+  "t_b_text_service_ComposeText_0_c0_url_shorten_service_ComposeUrls" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.5, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">url-shorten-service::ComposeUrls</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">span: compose_urls_client</FONT></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#854D0E">[async]</FONT></TD></TR></TABLE>>];
+  "t_b_text_service_ComposeText_0_c1_user_mention_service_ComposeUserMentions" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.5, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">user-mention-service::ComposeUserMentions</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">span: compose_user_mentions_client</FONT></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#854D0E">[async]</FONT></TD></TR></TABLE>>];
+  "t_b_text_service_ComposeText_0_nested_join" [shape=box, style="filled", fillcolor="#FEF3C7", color="#D97706", penwidth=1.5, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#92400E">Join: text-service Children</FONT></B></TD></TR></TABLE>>];
+  "t_b_text_service_ComposeText_0_exit" [shape=box, style="filled", fillcolor="#F1F5F9", color="#64748B", penwidth=1.5, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#334155">Exit: text-service::ComposeText</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="8" COLOR="#475569">text-service::ComposeText</FONT></TD></TR></TABLE>>];
+  "t_b_user_service_ComposeCreatorWithUserId_1" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.5, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">user-service::ComposeCreatorWithUserId</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">span: compose_creator_client</FONT></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#854D0E">[async]</FONT></TD></TR></TABLE>>];
+  "t_b_media_service_ComposeMedia_2" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.5, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">media-service::ComposeMedia</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">span: compose_media_client</FONT></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#854D0E">[async]</FONT></TD></TR></TABLE>>];
+  "t_b_unique_id_service_ComposeUniqueId_3" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.5, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">unique-id-service::ComposeUniqueId</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">span: compose_unique_id_client</FONT></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#854D0E">[async]</FONT></TD></TR></TABLE>>];
+  "t_join_compose_post_barrier" [shape=box, style="filled", fillcolor="#FEF3C7", color="#D97706", penwidth=1.5, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#92400E">Join: compose_post_barrier</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="8" COLOR="#78350F">Barrier: compose_post_barrier</FONT></TD></TR></TABLE>>];
+  "t_p2_post_storage_service_StorePost_0" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.5, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">post-storage-service::StorePost</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">span: store_post_client</FONT></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#854D0E">[async]</FONT></TD></TR></TABLE>>];
+  "t_p2_user_timeline_service_WriteUserTimeline_1" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.5, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">user-timeline-service::WriteUserTimeline</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">span: write_user_timeline_client</FONT></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#854D0E">[deferred]</FONT></TD></TR></TABLE>>];
+  "t_p2_home_timeline_service_WriteHomeTimeline_2" [shape=box, style="filled", fillcolor="#F2F9EC", color="#3C763D", penwidth=1.5, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#1B4D1B">home-timeline-service::WriteHomeTimeline</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#64748B">span: write_home_timeline_client</FONT></TD></TR><TR><TD><FONT POINT-SIZE="7" COLOR="#854D0E">[deferred]</FONT></TD></TR></TABLE>>];
+  "t_egress" [shape=box, style="filled", fillcolor="#DCFCE7", color="#16A34A", penwidth=1.5, label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1"><TR><TD><B><FONT COLOR="#15803D">Egress: ComposePost Return</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="8" COLOR="#475569">compose-post-service::ComposePost</FONT></TD></TR></TABLE>>];
+
+  // Arcs
+  "p_source" -> "t_ingress";
+  "t_ingress" -> "p_ingress_out";
+  "p_ingress_out" -> "t_fork_p1";
+  "t_fork_p1" -> "p_b_text_service_ComposeText_0_in";
+  "p_b_text_service_ComposeText_0_in" -> "t_b_text_service_ComposeText_0_entry";
+  "t_b_text_service_ComposeText_0_entry" -> "p_b_text_service_ComposeText_0_nested_fork_in";
+  "p_b_text_service_ComposeText_0_nested_fork_in" -> "t_b_text_service_ComposeText_0_nested_fork";
+  "t_b_text_service_ComposeText_0_nested_fork" -> "p_b_text_service_ComposeText_0_c0_url_shorten_service_ComposeUrls_in";
+  "p_b_text_service_ComposeText_0_c0_url_shorten_service_ComposeUrls_in" -> "t_b_text_service_ComposeText_0_c0_url_shorten_service_ComposeUrls";
+  "t_b_text_service_ComposeText_0_c0_url_shorten_service_ComposeUrls" -> "p_b_text_service_ComposeText_0_c0_url_shorten_service_ComposeUrls_out";
+  "t_b_text_service_ComposeText_0_nested_fork" -> "p_b_text_service_ComposeText_0_c1_user_mention_service_ComposeUserMentions_in";
+  "p_b_text_service_ComposeText_0_c1_user_mention_service_ComposeUserMentions_in" -> "t_b_text_service_ComposeText_0_c1_user_mention_service_ComposeUserMentions";
+  "t_b_text_service_ComposeText_0_c1_user_mention_service_ComposeUserMentions" -> "p_b_text_service_ComposeText_0_c1_user_mention_service_ComposeUserMentions_out";
+  "p_b_text_service_ComposeText_0_c0_url_shorten_service_ComposeUrls_out" -> "t_b_text_service_ComposeText_0_nested_join";
+  "p_b_text_service_ComposeText_0_c1_user_mention_service_ComposeUserMentions_out" -> "t_b_text_service_ComposeText_0_nested_join";
+  "t_b_text_service_ComposeText_0_nested_join" -> "p_b_text_service_ComposeText_0_nested_exit_in";
+  "p_b_text_service_ComposeText_0_nested_exit_in" -> "t_b_text_service_ComposeText_0_exit";
+  "t_b_text_service_ComposeText_0_exit" -> "p_b_text_service_ComposeText_0_out";
+  "t_fork_p1" -> "p_b_user_service_ComposeCreatorWithUserId_1_in";
+  "p_b_user_service_ComposeCreatorWithUserId_1_in" -> "t_b_user_service_ComposeCreatorWithUserId_1";
+  "t_b_user_service_ComposeCreatorWithUserId_1" -> "p_b_user_service_ComposeCreatorWithUserId_1_out";
+  "t_fork_p1" -> "p_b_media_service_ComposeMedia_2_in";
+  "p_b_media_service_ComposeMedia_2_in" -> "t_b_media_service_ComposeMedia_2";
+  "t_b_media_service_ComposeMedia_2" -> "p_b_media_service_ComposeMedia_2_out";
+  "t_fork_p1" -> "p_b_unique_id_service_ComposeUniqueId_3_in";
+  "p_b_unique_id_service_ComposeUniqueId_3_in" -> "t_b_unique_id_service_ComposeUniqueId_3";
+  "t_b_unique_id_service_ComposeUniqueId_3" -> "p_b_unique_id_service_ComposeUniqueId_3_out";
+  "p_b_text_service_ComposeText_0_out" -> "t_join_compose_post_barrier";
+  "p_b_user_service_ComposeCreatorWithUserId_1_out" -> "t_join_compose_post_barrier";
+  "p_b_media_service_ComposeMedia_2_out" -> "t_join_compose_post_barrier";
+  "p_b_unique_id_service_ComposeUniqueId_3_out" -> "t_join_compose_post_barrier";
+  "t_join_compose_post_barrier" -> "p_post_compose_post_barrier";
+  "p_post_compose_post_barrier" -> "t_p2_post_storage_service_StorePost_0";
+  "t_p2_post_storage_service_StorePost_0" -> "p_p2_post_storage_service_StorePost_0_out";
+  "p_p2_post_storage_service_StorePost_0_out" -> "t_p2_user_timeline_service_WriteUserTimeline_1";
+  "t_p2_user_timeline_service_WriteUserTimeline_1" -> "p_p2_user_timeline_service_WriteUserTimeline_1_out";
+  "p_p2_user_timeline_service_WriteUserTimeline_1_out" -> "t_p2_home_timeline_service_WriteHomeTimeline_2";
+  "t_p2_home_timeline_service_WriteHomeTimeline_2" -> "p_p2_home_timeline_service_WriteHomeTimeline_2_out";
+  "p_p2_home_timeline_service_WriteHomeTimeline_2_out" -> "t_egress";
+  "t_egress" -> "p_sink";
+}

@@ -1,0 +1,623 @@
+{
+  "_meta": {
+    "name": "Social Network Topology Oracle",
+    "version": "1.0.0",
+    "idl_file": "social_network.thrift",
+    "zero_optional_verified": true,
+    "dsb_source": "../DeathStarBench/socialNetwork"
+  },
+  "ingress": [
+    {
+      "endpoint": "/wrk2-api/home-timeline/read",
+      "method": "POST",
+      "entry_service": "home-timeline-service",
+      "entry_channel": "ReadHomeTimeline",
+      "span_client": "read_home_timeline_client",
+      "workflow": "read_home_timeline_workflow",
+      "payload_fields": [
+        "creator",
+        "media",
+        "post_id",
+        "post_type",
+        "req_id",
+        "start",
+        "stop",
+        "text",
+        "timestamp",
+        "urls",
+        "user_id",
+        "user_mentions"
+      ]
+    },
+    {
+      "endpoint": "/wrk2-api/post/compose",
+      "method": "POST",
+      "entry_service": "compose-post-service",
+      "entry_channel": "ComposePost",
+      "span_client": "compose_post_client",
+      "workflow": "compose_post_workflow",
+      "payload_fields": [
+        "media_ids",
+        "media_types",
+        "post_type",
+        "text",
+        "user_id",
+        "username"
+      ]
+    },
+    {
+      "endpoint": "/wrk2-api/user/follow",
+      "method": "POST",
+      "entry_service": "social-graph-service",
+      "entry_channel": "Follow",
+      "span_client": "follow_client",
+      "workflow": "follow_workflow",
+      "payload_fields": [
+        "followee_id",
+        "followee_name",
+        "user_id",
+        "user_name"
+      ]
+    },
+    {
+      "endpoint": "/wrk2-api/user/register",
+      "method": "POST",
+      "entry_service": "user-service",
+      "entry_channel": "RegisterUserWithId",
+      "span_client": "register_client",
+      "workflow": "register_user_with_id_workflow",
+      "payload_fields": [
+        "first_name",
+        "last_name",
+        "password",
+        "user_id",
+        "username"
+      ]
+    },
+    {
+      "endpoint": "/wrk2-api/user/unfollow",
+      "method": "POST",
+      "entry_service": "social-graph-service",
+      "entry_channel": "Unfollow",
+      "span_client": "unfollow_client",
+      "workflow": "unfollow_workflow",
+      "payload_fields": [
+        "followee_id",
+        "followee_name",
+        "user_id",
+        "user_name"
+      ]
+    },
+    {
+      "endpoint": "/wrk2-api/user-timeline/read",
+      "method": "POST",
+      "entry_service": "user-timeline-service",
+      "entry_channel": "ReadUserTimeline",
+      "span_client": "ReadUserTimeline",
+      "workflow": "read_user_timeline_workflow",
+      "payload_fields": [
+        "creator",
+        "media",
+        "post_id",
+        "post_type",
+        "req_id",
+        "start",
+        "stop",
+        "text",
+        "timestamp",
+        "urls",
+        "user_id",
+        "user_mentions"
+      ]
+    }
+  ],
+  "workflows": {
+    "read_home_timeline_workflow": {
+      "entry_service": "home-timeline-service",
+      "entry_channel": "ReadHomeTimeline",
+      "endpoint": "/wrk2-api/home-timeline/read",
+      "method": "POST",
+      "server_span": "read_home_timeline_server",
+      "client_span": "read_home_timeline_client",
+      "phases": {
+        "P1": {
+          "type": "sequential",
+          "dispatches": [
+            {
+              "service": "post-storage-service",
+              "channel": "ReadPosts",
+              "client_span": "read_posts_client",
+              "launch_type": "direct",
+              "server_span": "read_posts_server",
+              "nested_dispatches": []
+            }
+          ]
+        }
+      }
+    },
+    "compose_post_workflow": {
+      "entry_service": "compose-post-service",
+      "entry_channel": "ComposePost",
+      "endpoint": "/wrk2-api/post/compose",
+      "method": "POST",
+      "server_span": "compose_post_server",
+      "client_span": "compose_post_client",
+      "phases": {
+        "P1": {
+          "type": "concurrent",
+          "dispatches": [
+            {
+              "service": "text-service",
+              "channel": "ComposeText",
+              "client_span": "compose_text_client",
+              "launch_type": "async",
+              "server_span": "compose_text_server",
+              "nested_dispatches": [
+                {
+                  "service": "url-shorten-service",
+                  "channel": "ComposeUrls",
+                  "client_span": "compose_urls_client",
+                  "launch_type": "async",
+                  "server_span": "compose_urls_server"
+                },
+                {
+                  "service": "user-mention-service",
+                  "channel": "ComposeUserMentions",
+                  "client_span": "compose_user_mentions_client",
+                  "launch_type": "async",
+                  "server_span": "compose_user_mentions_server"
+                }
+              ]
+            },
+            {
+              "service": "user-service",
+              "channel": "ComposeCreatorWithUserId",
+              "client_span": "compose_creator_client",
+              "launch_type": "async",
+              "server_span": "compose_creator_with_user_id_server",
+              "nested_dispatches": []
+            },
+            {
+              "service": "media-service",
+              "channel": "ComposeMedia",
+              "client_span": "compose_media_client",
+              "launch_type": "async",
+              "server_span": "compose_media_server",
+              "nested_dispatches": []
+            },
+            {
+              "service": "unique-id-service",
+              "channel": "ComposeUniqueId",
+              "client_span": "compose_unique_id_client",
+              "launch_type": "async",
+              "server_span": "compose_unique_id_server",
+              "nested_dispatches": []
+            }
+          ]
+        },
+        "barrier": {
+          "name": "compose_post_barrier",
+          "type": "join_barrier",
+          "waits_on": [
+            "unique_id_future",
+            "creator_future",
+            "media_future",
+            "text_future"
+          ]
+        },
+        "P2": {
+          "type": "sequential",
+          "dispatches": [
+            {
+              "service": "post-storage-service",
+              "channel": "StorePost",
+              "client_span": "store_post_client",
+              "launch_type": "async",
+              "server_span": "store_post_server",
+              "nested_dispatches": []
+            },
+            {
+              "service": "user-timeline-service",
+              "channel": "WriteUserTimeline",
+              "client_span": "write_user_timeline_client",
+              "launch_type": "deferred",
+              "server_span": "write_user_timeline_server",
+              "nested_dispatches": []
+            },
+            {
+              "service": "home-timeline-service",
+              "channel": "WriteHomeTimeline",
+              "client_span": "write_home_timeline_client",
+              "launch_type": "deferred",
+              "server_span": "write_home_timeline_server",
+              "nested_dispatches": []
+            }
+          ]
+        }
+      }
+    },
+    "follow_workflow": {
+      "entry_service": "social-graph-service",
+      "entry_channel": "Follow",
+      "endpoint": "/wrk2-api/user/follow",
+      "method": "POST",
+      "server_span": "follow_server",
+      "client_span": "follow_client",
+      "phases": {
+        "barrier": {
+          "name": "follow_barrier",
+          "type": "join_barrier",
+          "waits_on": [
+            "redis_update_future",
+            "mongo_update_follower_future",
+            "mongo_update_followee_future"
+          ]
+        }
+      }
+    },
+    "register_user_with_id_workflow": {
+      "entry_service": "user-service",
+      "entry_channel": "RegisterUserWithId",
+      "endpoint": "/wrk2-api/user/register",
+      "method": "POST",
+      "server_span": "register_user_withid_server",
+      "client_span": "register_client",
+      "phases": {
+        "P1": {
+          "type": "sequential",
+          "dispatches": [
+            {
+              "service": "social-graph-service",
+              "channel": "InsertUser",
+              "client_span": "insert_user_client",
+              "launch_type": "direct",
+              "server_span": "insert_user_server",
+              "nested_dispatches": []
+            }
+          ]
+        }
+      }
+    },
+    "unfollow_workflow": {
+      "entry_service": "social-graph-service",
+      "entry_channel": "Unfollow",
+      "endpoint": "/wrk2-api/user/unfollow",
+      "method": "POST",
+      "server_span": "unfollow_server",
+      "client_span": "unfollow_client",
+      "phases": {
+        "barrier": {
+          "name": "unfollow_barrier",
+          "type": "join_barrier",
+          "waits_on": [
+            "redis_update_future",
+            "mongo_update_follower_future",
+            "mongo_update_followee_future"
+          ]
+        }
+      }
+    },
+    "read_user_timeline_workflow": {
+      "entry_service": "user-timeline-service",
+      "entry_channel": "ReadUserTimeline",
+      "endpoint": "/wrk2-api/user-timeline/read",
+      "method": "POST",
+      "server_span": "read_user_timeline_server",
+      "client_span": "ReadUserTimeline",
+      "phases": {
+        "P1": {
+          "type": "concurrent",
+          "dispatches": [
+            {
+              "service": "post-storage-service",
+              "channel": "ReadPosts",
+              "client_span": "read_posts_client",
+              "launch_type": "async",
+              "server_span": "read_posts_server",
+              "nested_dispatches": []
+            }
+          ]
+        },
+        "barrier": {
+          "name": "read_user_timeline_barrier",
+          "type": "join_barrier",
+          "waits_on": [
+            "post_future"
+          ]
+        }
+      }
+    }
+  },
+  "services": {
+    "unique-id-service": {
+      "channels": [
+        {
+          "name": "ComposeUniqueId",
+          "pattern": "IP-4",
+          "return_type": "i64",
+          "server_span": "compose_unique_id_server",
+          "client_span": "compose_unique_id_client"
+        }
+      ]
+    },
+    "text-service": {
+      "channels": [
+        {
+          "name": "ComposeText",
+          "pattern": "IP-4",
+          "return_type": "TextServiceReturn",
+          "server_span": "compose_text_server",
+          "client_span": "compose_text_client",
+          "nested_dispatches": [
+            {
+              "service": "url-shorten-service",
+              "channel": "ComposeUrls",
+              "client_span": "compose_urls_client",
+              "launch_type": "async",
+              "server_span": "compose_urls_server"
+            },
+            {
+              "service": "user-mention-service",
+              "channel": "ComposeUserMentions",
+              "client_span": "compose_user_mentions_client",
+              "launch_type": "async",
+              "server_span": "compose_user_mentions_server"
+            }
+          ]
+        }
+      ]
+    },
+    "user-service": {
+      "channels": [
+        {
+          "name": "RegisterUser",
+          "pattern": "IP-1",
+          "return_type": "void",
+          "server_span": "register_user_server",
+          "client_span": "register_user_client"
+        },
+        {
+          "name": "RegisterUserWithId",
+          "pattern": "IP-1",
+          "return_type": "void",
+          "server_span": "register_user_with_id_server",
+          "client_span": "register_user_with_id_client"
+        },
+        {
+          "name": "Login",
+          "pattern": "IP-4",
+          "return_type": "string",
+          "server_span": "login_server",
+          "client_span": "login_client"
+        },
+        {
+          "name": "ComposeCreatorWithUserId",
+          "pattern": "IP-4",
+          "return_type": "Creator",
+          "server_span": "compose_creator_with_user_id_server",
+          "client_span": "compose_creator_with_user_id_client"
+        },
+        {
+          "name": "ComposeCreatorWithUsername",
+          "pattern": "IP-4",
+          "return_type": "Creator",
+          "server_span": "compose_creator_with_username_server",
+          "client_span": "compose_creator_with_username_client"
+        },
+        {
+          "name": "GetUserId",
+          "pattern": "IP-4",
+          "return_type": "i64",
+          "server_span": "get_user_id_server",
+          "client_span": "user_mmc_get_user_id_client"
+        }
+      ]
+    },
+    "compose-post-service": {
+      "channels": [
+        {
+          "name": "ComposePost",
+          "pattern": "IP-1",
+          "return_type": "void",
+          "server_span": "compose_post_server",
+          "client_span": "compose_post_client"
+        }
+      ]
+    },
+    "post-storage-service": {
+      "channels": [
+        {
+          "name": "StorePost",
+          "pattern": "IP-1",
+          "return_type": "void",
+          "server_span": "store_post_server",
+          "client_span": "store_post_client"
+        },
+        {
+          "name": "ReadPost",
+          "pattern": "IP-4",
+          "return_type": "Post",
+          "server_span": "post_storage_read_posts_server",
+          "client_span": "read_post_client"
+        },
+        {
+          "name": "ReadPosts",
+          "pattern": "IP-4",
+          "return_type": "list<Post>",
+          "server_span": "post_storage_read_posts_server",
+          "client_span": "read_posts_client"
+        }
+      ]
+    },
+    "home-timeline-service": {
+      "channels": [
+        {
+          "name": "ReadHomeTimeline",
+          "pattern": "IP-4",
+          "return_type": "list<Post>",
+          "server_span": "read_home_timeline_server",
+          "client_span": "read_home_timeline_redis_find_client"
+        },
+        {
+          "name": "WriteHomeTimeline",
+          "pattern": "IP-1",
+          "return_type": "void",
+          "server_span": "write_home_timeline_server",
+          "client_span": "write_home_timeline_redis_update_client"
+        }
+      ]
+    },
+    "user-timeline-service": {
+      "channels": [
+        {
+          "name": "WriteUserTimeline",
+          "pattern": "IP-1",
+          "return_type": "void",
+          "server_span": "write_user_timeline_server",
+          "client_span": "write_user_timeline_redis_update_client"
+        },
+        {
+          "name": "ReadUserTimeline",
+          "pattern": "IP-4",
+          "return_type": "list<Post>",
+          "server_span": "read_user_timeline_server",
+          "client_span": "read_user_timeline_redis_find_client",
+          "nested_dispatches": [
+            {
+              "service": "post-storage-service",
+              "channel": "ReadPosts",
+              "client_span": "read_posts_client",
+              "launch_type": "async",
+              "server_span": "read_posts_server"
+            }
+          ]
+        }
+      ]
+    },
+    "social-graph-service": {
+      "channels": [
+        {
+          "name": "GetFollowers",
+          "pattern": "IP-4",
+          "return_type": "list<i64>",
+          "server_span": "get_followers_server",
+          "client_span": "get_followers_client"
+        },
+        {
+          "name": "GetFollowees",
+          "pattern": "IP-4",
+          "return_type": "list<i64>",
+          "server_span": "get_followees_server",
+          "client_span": "get_followees_client"
+        },
+        {
+          "name": "Follow",
+          "pattern": "IP-1",
+          "return_type": "void",
+          "server_span": "unfollow_with_username_server",
+          "client_span": "follow_client"
+        },
+        {
+          "name": "Unfollow",
+          "pattern": "IP-1",
+          "return_type": "void",
+          "server_span": "unfollow_with_username_server",
+          "client_span": "unfollow_client"
+        },
+        {
+          "name": "FollowWithUsername",
+          "pattern": "IP-1",
+          "return_type": "void",
+          "server_span": "unfollow_with_username_server",
+          "client_span": "follow_with_username_client",
+          "nested_dispatches": [
+            {
+              "service": "user-service",
+              "channel": "GetUserId",
+              "client_span": "get_user_id_client",
+              "launch_type": "async",
+              "server_span": "get_user_id_server"
+            },
+            {
+              "service": "user-service",
+              "channel": "GetUserId",
+              "client_span": "get_user_id_client",
+              "launch_type": "async",
+              "server_span": "get_user_id_server"
+            }
+          ]
+        },
+        {
+          "name": "UnfollowWithUsername",
+          "pattern": "IP-1",
+          "return_type": "void",
+          "server_span": "unfollow_with_username_server",
+          "client_span": "unfollow_with_username_client",
+          "nested_dispatches": [
+            {
+              "service": "user-service",
+              "channel": "GetUserId",
+              "client_span": "get_user_id_client",
+              "launch_type": "async",
+              "server_span": "get_user_id_server"
+            },
+            {
+              "service": "user-service",
+              "channel": "GetUserId",
+              "client_span": "get_user_id_client",
+              "launch_type": "async",
+              "server_span": "get_user_id_server"
+            }
+          ]
+        },
+        {
+          "name": "InsertUser",
+          "pattern": "IP-1",
+          "return_type": "void",
+          "server_span": "insert_user_server",
+          "client_span": "insert_user_client"
+        }
+      ]
+    },
+    "user-mention-service": {
+      "channels": [
+        {
+          "name": "ComposeUserMentions",
+          "pattern": "IP-4",
+          "return_type": "list<UserMention>",
+          "server_span": "compose_user_mentions_server",
+          "client_span": "compose_user_mentions_mongo_find_client"
+        }
+      ]
+    },
+    "url-shorten-service": {
+      "channels": [
+        {
+          "name": "ComposeUrls",
+          "pattern": "IP-4",
+          "return_type": "list<Url>",
+          "server_span": "compose_urls_server",
+          "client_span": "compose_urls_client"
+        },
+        {
+          "name": "GetExtendedUrls",
+          "pattern": "IP-4",
+          "return_type": "list<string>",
+          "server_span": "get_extended_urls_server",
+          "client_span": "get_extended_urls_client"
+        }
+      ]
+    },
+    "media-service": {
+      "channels": [
+        {
+          "name": "ComposeMedia",
+          "pattern": "IP-4",
+          "return_type": "list<Media>",
+          "server_span": "compose_media_server",
+          "client_span": "compose_media_client"
+        }
+      ]
+    }
+  }
+}

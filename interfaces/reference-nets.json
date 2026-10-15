@@ -1,0 +1,1123 @@
+{
+  "_meta": {
+    "name": "Social Network GWF Reference Nets",
+    "version": "1.0.0",
+    "topology_source": "interfaces/social-network.json",
+    "generated_at": "2026-08-18T11:49:20.344047+00:00",
+    "all_valid_wf_nets": true,
+    "total_workflows": 6,
+    "diagram_dir": "interfaces/diagrams"
+  },
+  "workflows": {
+    "read_home_timeline_workflow": {
+      "name": "read_home_timeline_workflow",
+      "entry_service": "home-timeline-service",
+      "entry_channel": "ReadHomeTimeline",
+      "diagram_svg": "interfaces/diagrams/read_home_timeline_workflow.svg",
+      "diagram_png": "interfaces/diagrams/read_home_timeline_workflow.png",
+      "places": [
+        {
+          "id": "p_source",
+          "name": "source",
+          "type": "source",
+          "initial_marking": 1,
+          "final_marking": 0
+        },
+        {
+          "id": "p_ingress_out",
+          "name": "ingress_out",
+          "type": "internal",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_p1_post_storage_service_ReadPosts_0_out",
+          "name": "post-storage-service::ReadPosts (out)",
+          "type": "internal",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_sink",
+          "name": "sink",
+          "type": "sink",
+          "initial_marking": 0,
+          "final_marking": 1
+        }
+      ],
+      "transitions": [
+        {
+          "id": "t_ingress",
+          "name": "Ingress: ReadHomeTimeline",
+          "type": "ingress",
+          "service": "home-timeline-service",
+          "channel": "ReadHomeTimeline",
+          "span_client": "read_home_timeline_client",
+          "span_server": "read_home_timeline_server"
+        },
+        {
+          "id": "t_p1_post_storage_service_ReadPosts_0",
+          "name": "post-storage-service::ReadPosts",
+          "type": "rpc_dispatch",
+          "service": "post-storage-service",
+          "channel": "ReadPosts",
+          "span_client": "read_posts_client",
+          "span_server": "read_posts_server",
+          "phase": "P1",
+          "launch_type": "direct"
+        },
+        {
+          "id": "t_egress",
+          "name": "Egress: ReadHomeTimeline Return",
+          "type": "egress",
+          "service": "home-timeline-service",
+          "channel": "ReadHomeTimeline",
+          "span_server": "read_home_timeline_server"
+        }
+      ],
+      "arcs": [
+        {
+          "source": "p_source",
+          "target": "t_ingress",
+          "weight": 1
+        },
+        {
+          "source": "t_ingress",
+          "target": "p_ingress_out",
+          "weight": 1
+        },
+        {
+          "source": "p_ingress_out",
+          "target": "t_p1_post_storage_service_ReadPosts_0",
+          "weight": 1
+        },
+        {
+          "source": "t_p1_post_storage_service_ReadPosts_0",
+          "target": "p_p1_post_storage_service_ReadPosts_0_out",
+          "weight": 1
+        },
+        {
+          "source": "p_p1_post_storage_service_ReadPosts_0_out",
+          "target": "t_egress",
+          "weight": 1
+        },
+        {
+          "source": "t_egress",
+          "target": "p_sink",
+          "weight": 1
+        }
+      ],
+      "validation": {
+        "is_wf_net": true,
+        "source_places": [
+          "p_source"
+        ],
+        "sink_places": [
+          "p_sink"
+        ],
+        "unreachable_from_source": [],
+        "cannot_reach_sink": [],
+        "bipartite_valid": true
+      }
+    },
+    "compose_post_workflow": {
+      "name": "compose_post_workflow",
+      "entry_service": "compose-post-service",
+      "entry_channel": "ComposePost",
+      "diagram_svg": "interfaces/diagrams/compose_post_workflow.svg",
+      "diagram_png": "interfaces/diagrams/compose_post_workflow.png",
+      "places": [
+        {
+          "id": "p_source",
+          "name": "source",
+          "type": "source",
+          "initial_marking": 1,
+          "final_marking": 0
+        },
+        {
+          "id": "p_ingress_out",
+          "name": "ingress_out",
+          "type": "internal",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_b_text_service_ComposeText_0_in",
+          "name": "text-service::ComposeText (in)",
+          "type": "branch_pre",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_b_text_service_ComposeText_0_nested_fork_in",
+          "name": "text-service nested fork",
+          "type": "internal",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_b_text_service_ComposeText_0_c0_url_shorten_service_ComposeUrls_in",
+          "name": "url-shorten-service::ComposeUrls (in)",
+          "type": "branch_pre",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_b_text_service_ComposeText_0_c0_url_shorten_service_ComposeUrls_out",
+          "name": "url-shorten-service::ComposeUrls (out)",
+          "type": "branch_post",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_b_text_service_ComposeText_0_c1_user_mention_service_ComposeUserMentions_in",
+          "name": "user-mention-service::ComposeUserMentions (in)",
+          "type": "branch_pre",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_b_text_service_ComposeText_0_c1_user_mention_service_ComposeUserMentions_out",
+          "name": "user-mention-service::ComposeUserMentions (out)",
+          "type": "branch_post",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_b_text_service_ComposeText_0_nested_exit_in",
+          "name": "text-service nested exit",
+          "type": "internal",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_b_text_service_ComposeText_0_out",
+          "name": "text-service::ComposeText (out)",
+          "type": "branch_post",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_b_user_service_ComposeCreatorWithUserId_1_in",
+          "name": "user-service::ComposeCreatorWithUserId (in)",
+          "type": "branch_pre",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_b_user_service_ComposeCreatorWithUserId_1_out",
+          "name": "user-service::ComposeCreatorWithUserId (out)",
+          "type": "branch_post",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_b_media_service_ComposeMedia_2_in",
+          "name": "media-service::ComposeMedia (in)",
+          "type": "branch_pre",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_b_media_service_ComposeMedia_2_out",
+          "name": "media-service::ComposeMedia (out)",
+          "type": "branch_post",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_b_unique_id_service_ComposeUniqueId_3_in",
+          "name": "unique-id-service::ComposeUniqueId (in)",
+          "type": "branch_pre",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_b_unique_id_service_ComposeUniqueId_3_out",
+          "name": "unique-id-service::ComposeUniqueId (out)",
+          "type": "branch_post",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_post_compose_post_barrier",
+          "name": "post_compose_post_barrier",
+          "type": "internal",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_p2_post_storage_service_StorePost_0_out",
+          "name": "post-storage-service::StorePost (out)",
+          "type": "internal",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_p2_user_timeline_service_WriteUserTimeline_1_out",
+          "name": "user-timeline-service::WriteUserTimeline (out)",
+          "type": "internal",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_p2_home_timeline_service_WriteHomeTimeline_2_out",
+          "name": "home-timeline-service::WriteHomeTimeline (out)",
+          "type": "internal",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_sink",
+          "name": "sink",
+          "type": "sink",
+          "initial_marking": 0,
+          "final_marking": 1
+        }
+      ],
+      "transitions": [
+        {
+          "id": "t_ingress",
+          "name": "Ingress: ComposePost",
+          "type": "ingress",
+          "service": "compose-post-service",
+          "channel": "ComposePost",
+          "span_client": "compose_post_client",
+          "span_server": "compose_post_server"
+        },
+        {
+          "id": "t_fork_p1",
+          "name": "Fork: Phase P1",
+          "type": "fork",
+          "phase": "P1"
+        },
+        {
+          "id": "t_b_text_service_ComposeText_0_entry",
+          "name": "Entry: text-service::ComposeText",
+          "type": "nested_entry",
+          "service": "text-service",
+          "channel": "ComposeText",
+          "span_client": "compose_text_client",
+          "span_server": "compose_text_server",
+          "launch_type": "async"
+        },
+        {
+          "id": "t_b_text_service_ComposeText_0_nested_fork",
+          "name": "Fork: text-service Children",
+          "type": "nested_fork",
+          "service": "text-service"
+        },
+        {
+          "id": "t_b_text_service_ComposeText_0_c0_url_shorten_service_ComposeUrls",
+          "name": "url-shorten-service::ComposeUrls",
+          "type": "rpc_dispatch",
+          "service": "url-shorten-service",
+          "channel": "ComposeUrls",
+          "span_client": "compose_urls_client",
+          "span_server": "compose_urls_server",
+          "launch_type": "async"
+        },
+        {
+          "id": "t_b_text_service_ComposeText_0_c1_user_mention_service_ComposeUserMentions",
+          "name": "user-mention-service::ComposeUserMentions",
+          "type": "rpc_dispatch",
+          "service": "user-mention-service",
+          "channel": "ComposeUserMentions",
+          "span_client": "compose_user_mentions_client",
+          "span_server": "compose_user_mentions_server",
+          "launch_type": "async"
+        },
+        {
+          "id": "t_b_text_service_ComposeText_0_nested_join",
+          "name": "Join: text-service Children",
+          "type": "nested_join",
+          "service": "text-service"
+        },
+        {
+          "id": "t_b_text_service_ComposeText_0_exit",
+          "name": "Exit: text-service::ComposeText",
+          "type": "nested_exit",
+          "service": "text-service",
+          "channel": "ComposeText",
+          "span_server": "compose_text_server"
+        },
+        {
+          "id": "t_b_user_service_ComposeCreatorWithUserId_1",
+          "name": "user-service::ComposeCreatorWithUserId",
+          "type": "rpc_dispatch",
+          "service": "user-service",
+          "channel": "ComposeCreatorWithUserId",
+          "span_client": "compose_creator_client",
+          "span_server": "compose_creator_with_user_id_server",
+          "phase": "P1",
+          "launch_type": "async"
+        },
+        {
+          "id": "t_b_media_service_ComposeMedia_2",
+          "name": "media-service::ComposeMedia",
+          "type": "rpc_dispatch",
+          "service": "media-service",
+          "channel": "ComposeMedia",
+          "span_client": "compose_media_client",
+          "span_server": "compose_media_server",
+          "phase": "P1",
+          "launch_type": "async"
+        },
+        {
+          "id": "t_b_unique_id_service_ComposeUniqueId_3",
+          "name": "unique-id-service::ComposeUniqueId",
+          "type": "rpc_dispatch",
+          "service": "unique-id-service",
+          "channel": "ComposeUniqueId",
+          "span_client": "compose_unique_id_client",
+          "span_server": "compose_unique_id_server",
+          "phase": "P1",
+          "launch_type": "async"
+        },
+        {
+          "id": "t_join_compose_post_barrier",
+          "name": "Join: compose_post_barrier",
+          "type": "join_barrier",
+          "phase": "P1",
+          "barrier_name": "compose_post_barrier"
+        },
+        {
+          "id": "t_p2_post_storage_service_StorePost_0",
+          "name": "post-storage-service::StorePost",
+          "type": "rpc_dispatch",
+          "service": "post-storage-service",
+          "channel": "StorePost",
+          "span_client": "store_post_client",
+          "span_server": "store_post_server",
+          "phase": "P2",
+          "launch_type": "async"
+        },
+        {
+          "id": "t_p2_user_timeline_service_WriteUserTimeline_1",
+          "name": "user-timeline-service::WriteUserTimeline",
+          "type": "rpc_dispatch",
+          "service": "user-timeline-service",
+          "channel": "WriteUserTimeline",
+          "span_client": "write_user_timeline_client",
+          "span_server": "write_user_timeline_server",
+          "phase": "P2",
+          "launch_type": "deferred"
+        },
+        {
+          "id": "t_p2_home_timeline_service_WriteHomeTimeline_2",
+          "name": "home-timeline-service::WriteHomeTimeline",
+          "type": "rpc_dispatch",
+          "service": "home-timeline-service",
+          "channel": "WriteHomeTimeline",
+          "span_client": "write_home_timeline_client",
+          "span_server": "write_home_timeline_server",
+          "phase": "P2",
+          "launch_type": "deferred"
+        },
+        {
+          "id": "t_egress",
+          "name": "Egress: ComposePost Return",
+          "type": "egress",
+          "service": "compose-post-service",
+          "channel": "ComposePost",
+          "span_server": "compose_post_server"
+        }
+      ],
+      "arcs": [
+        {
+          "source": "p_source",
+          "target": "t_ingress",
+          "weight": 1
+        },
+        {
+          "source": "t_ingress",
+          "target": "p_ingress_out",
+          "weight": 1
+        },
+        {
+          "source": "p_ingress_out",
+          "target": "t_fork_p1",
+          "weight": 1
+        },
+        {
+          "source": "t_fork_p1",
+          "target": "p_b_text_service_ComposeText_0_in",
+          "weight": 1
+        },
+        {
+          "source": "p_b_text_service_ComposeText_0_in",
+          "target": "t_b_text_service_ComposeText_0_entry",
+          "weight": 1
+        },
+        {
+          "source": "t_b_text_service_ComposeText_0_entry",
+          "target": "p_b_text_service_ComposeText_0_nested_fork_in",
+          "weight": 1
+        },
+        {
+          "source": "p_b_text_service_ComposeText_0_nested_fork_in",
+          "target": "t_b_text_service_ComposeText_0_nested_fork",
+          "weight": 1
+        },
+        {
+          "source": "t_b_text_service_ComposeText_0_nested_fork",
+          "target": "p_b_text_service_ComposeText_0_c0_url_shorten_service_ComposeUrls_in",
+          "weight": 1
+        },
+        {
+          "source": "p_b_text_service_ComposeText_0_c0_url_shorten_service_ComposeUrls_in",
+          "target": "t_b_text_service_ComposeText_0_c0_url_shorten_service_ComposeUrls",
+          "weight": 1
+        },
+        {
+          "source": "t_b_text_service_ComposeText_0_c0_url_shorten_service_ComposeUrls",
+          "target": "p_b_text_service_ComposeText_0_c0_url_shorten_service_ComposeUrls_out",
+          "weight": 1
+        },
+        {
+          "source": "t_b_text_service_ComposeText_0_nested_fork",
+          "target": "p_b_text_service_ComposeText_0_c1_user_mention_service_ComposeUserMentions_in",
+          "weight": 1
+        },
+        {
+          "source": "p_b_text_service_ComposeText_0_c1_user_mention_service_ComposeUserMentions_in",
+          "target": "t_b_text_service_ComposeText_0_c1_user_mention_service_ComposeUserMentions",
+          "weight": 1
+        },
+        {
+          "source": "t_b_text_service_ComposeText_0_c1_user_mention_service_ComposeUserMentions",
+          "target": "p_b_text_service_ComposeText_0_c1_user_mention_service_ComposeUserMentions_out",
+          "weight": 1
+        },
+        {
+          "source": "p_b_text_service_ComposeText_0_c0_url_shorten_service_ComposeUrls_out",
+          "target": "t_b_text_service_ComposeText_0_nested_join",
+          "weight": 1
+        },
+        {
+          "source": "p_b_text_service_ComposeText_0_c1_user_mention_service_ComposeUserMentions_out",
+          "target": "t_b_text_service_ComposeText_0_nested_join",
+          "weight": 1
+        },
+        {
+          "source": "t_b_text_service_ComposeText_0_nested_join",
+          "target": "p_b_text_service_ComposeText_0_nested_exit_in",
+          "weight": 1
+        },
+        {
+          "source": "p_b_text_service_ComposeText_0_nested_exit_in",
+          "target": "t_b_text_service_ComposeText_0_exit",
+          "weight": 1
+        },
+        {
+          "source": "t_b_text_service_ComposeText_0_exit",
+          "target": "p_b_text_service_ComposeText_0_out",
+          "weight": 1
+        },
+        {
+          "source": "t_fork_p1",
+          "target": "p_b_user_service_ComposeCreatorWithUserId_1_in",
+          "weight": 1
+        },
+        {
+          "source": "p_b_user_service_ComposeCreatorWithUserId_1_in",
+          "target": "t_b_user_service_ComposeCreatorWithUserId_1",
+          "weight": 1
+        },
+        {
+          "source": "t_b_user_service_ComposeCreatorWithUserId_1",
+          "target": "p_b_user_service_ComposeCreatorWithUserId_1_out",
+          "weight": 1
+        },
+        {
+          "source": "t_fork_p1",
+          "target": "p_b_media_service_ComposeMedia_2_in",
+          "weight": 1
+        },
+        {
+          "source": "p_b_media_service_ComposeMedia_2_in",
+          "target": "t_b_media_service_ComposeMedia_2",
+          "weight": 1
+        },
+        {
+          "source": "t_b_media_service_ComposeMedia_2",
+          "target": "p_b_media_service_ComposeMedia_2_out",
+          "weight": 1
+        },
+        {
+          "source": "t_fork_p1",
+          "target": "p_b_unique_id_service_ComposeUniqueId_3_in",
+          "weight": 1
+        },
+        {
+          "source": "p_b_unique_id_service_ComposeUniqueId_3_in",
+          "target": "t_b_unique_id_service_ComposeUniqueId_3",
+          "weight": 1
+        },
+        {
+          "source": "t_b_unique_id_service_ComposeUniqueId_3",
+          "target": "p_b_unique_id_service_ComposeUniqueId_3_out",
+          "weight": 1
+        },
+        {
+          "source": "p_b_text_service_ComposeText_0_out",
+          "target": "t_join_compose_post_barrier",
+          "weight": 1
+        },
+        {
+          "source": "p_b_user_service_ComposeCreatorWithUserId_1_out",
+          "target": "t_join_compose_post_barrier",
+          "weight": 1
+        },
+        {
+          "source": "p_b_media_service_ComposeMedia_2_out",
+          "target": "t_join_compose_post_barrier",
+          "weight": 1
+        },
+        {
+          "source": "p_b_unique_id_service_ComposeUniqueId_3_out",
+          "target": "t_join_compose_post_barrier",
+          "weight": 1
+        },
+        {
+          "source": "t_join_compose_post_barrier",
+          "target": "p_post_compose_post_barrier",
+          "weight": 1
+        },
+        {
+          "source": "p_post_compose_post_barrier",
+          "target": "t_p2_post_storage_service_StorePost_0",
+          "weight": 1
+        },
+        {
+          "source": "t_p2_post_storage_service_StorePost_0",
+          "target": "p_p2_post_storage_service_StorePost_0_out",
+          "weight": 1
+        },
+        {
+          "source": "p_p2_post_storage_service_StorePost_0_out",
+          "target": "t_p2_user_timeline_service_WriteUserTimeline_1",
+          "weight": 1
+        },
+        {
+          "source": "t_p2_user_timeline_service_WriteUserTimeline_1",
+          "target": "p_p2_user_timeline_service_WriteUserTimeline_1_out",
+          "weight": 1
+        },
+        {
+          "source": "p_p2_user_timeline_service_WriteUserTimeline_1_out",
+          "target": "t_p2_home_timeline_service_WriteHomeTimeline_2",
+          "weight": 1
+        },
+        {
+          "source": "t_p2_home_timeline_service_WriteHomeTimeline_2",
+          "target": "p_p2_home_timeline_service_WriteHomeTimeline_2_out",
+          "weight": 1
+        },
+        {
+          "source": "p_p2_home_timeline_service_WriteHomeTimeline_2_out",
+          "target": "t_egress",
+          "weight": 1
+        },
+        {
+          "source": "t_egress",
+          "target": "p_sink",
+          "weight": 1
+        }
+      ],
+      "validation": {
+        "is_wf_net": true,
+        "source_places": [
+          "p_source"
+        ],
+        "sink_places": [
+          "p_sink"
+        ],
+        "unreachable_from_source": [],
+        "cannot_reach_sink": [],
+        "bipartite_valid": true
+      }
+    },
+    "follow_workflow": {
+      "name": "follow_workflow",
+      "entry_service": "social-graph-service",
+      "entry_channel": "Follow",
+      "diagram_svg": "interfaces/diagrams/follow_workflow.svg",
+      "diagram_png": "interfaces/diagrams/follow_workflow.png",
+      "places": [
+        {
+          "id": "p_source",
+          "name": "source",
+          "type": "source",
+          "initial_marking": 1,
+          "final_marking": 0
+        },
+        {
+          "id": "p_ingress_out",
+          "name": "ingress_out",
+          "type": "internal",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_post_barrier_follow_barrier",
+          "name": "post_follow_barrier",
+          "type": "internal",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_sink",
+          "name": "sink",
+          "type": "sink",
+          "initial_marking": 0,
+          "final_marking": 1
+        }
+      ],
+      "transitions": [
+        {
+          "id": "t_ingress",
+          "name": "Ingress: Follow",
+          "type": "ingress",
+          "service": "social-graph-service",
+          "channel": "Follow",
+          "span_client": "follow_client",
+          "span_server": "follow_server"
+        },
+        {
+          "id": "t_barrier_follow_barrier",
+          "name": "Barrier: follow_barrier",
+          "type": "join_barrier",
+          "barrier_name": "follow_barrier"
+        },
+        {
+          "id": "t_egress",
+          "name": "Egress: Follow Return",
+          "type": "egress",
+          "service": "social-graph-service",
+          "channel": "Follow",
+          "span_server": "follow_server"
+        }
+      ],
+      "arcs": [
+        {
+          "source": "p_source",
+          "target": "t_ingress",
+          "weight": 1
+        },
+        {
+          "source": "t_ingress",
+          "target": "p_ingress_out",
+          "weight": 1
+        },
+        {
+          "source": "p_ingress_out",
+          "target": "t_barrier_follow_barrier",
+          "weight": 1
+        },
+        {
+          "source": "t_barrier_follow_barrier",
+          "target": "p_post_barrier_follow_barrier",
+          "weight": 1
+        },
+        {
+          "source": "p_post_barrier_follow_barrier",
+          "target": "t_egress",
+          "weight": 1
+        },
+        {
+          "source": "t_egress",
+          "target": "p_sink",
+          "weight": 1
+        }
+      ],
+      "validation": {
+        "is_wf_net": true,
+        "source_places": [
+          "p_source"
+        ],
+        "sink_places": [
+          "p_sink"
+        ],
+        "unreachable_from_source": [],
+        "cannot_reach_sink": [],
+        "bipartite_valid": true
+      }
+    },
+    "register_user_with_id_workflow": {
+      "name": "register_user_with_id_workflow",
+      "entry_service": "user-service",
+      "entry_channel": "RegisterUserWithId",
+      "diagram_svg": "interfaces/diagrams/register_user_with_id_workflow.svg",
+      "diagram_png": "interfaces/diagrams/register_user_with_id_workflow.png",
+      "places": [
+        {
+          "id": "p_source",
+          "name": "source",
+          "type": "source",
+          "initial_marking": 1,
+          "final_marking": 0
+        },
+        {
+          "id": "p_ingress_out",
+          "name": "ingress_out",
+          "type": "internal",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_p1_social_graph_service_InsertUser_0_out",
+          "name": "social-graph-service::InsertUser (out)",
+          "type": "internal",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_sink",
+          "name": "sink",
+          "type": "sink",
+          "initial_marking": 0,
+          "final_marking": 1
+        }
+      ],
+      "transitions": [
+        {
+          "id": "t_ingress",
+          "name": "Ingress: RegisterUserWithId",
+          "type": "ingress",
+          "service": "user-service",
+          "channel": "RegisterUserWithId",
+          "span_client": "register_client",
+          "span_server": "register_user_withid_server"
+        },
+        {
+          "id": "t_p1_social_graph_service_InsertUser_0",
+          "name": "social-graph-service::InsertUser",
+          "type": "rpc_dispatch",
+          "service": "social-graph-service",
+          "channel": "InsertUser",
+          "span_client": "insert_user_client",
+          "span_server": "insert_user_server",
+          "phase": "P1",
+          "launch_type": "direct"
+        },
+        {
+          "id": "t_egress",
+          "name": "Egress: RegisterUserWithId Return",
+          "type": "egress",
+          "service": "user-service",
+          "channel": "RegisterUserWithId",
+          "span_server": "register_user_withid_server"
+        }
+      ],
+      "arcs": [
+        {
+          "source": "p_source",
+          "target": "t_ingress",
+          "weight": 1
+        },
+        {
+          "source": "t_ingress",
+          "target": "p_ingress_out",
+          "weight": 1
+        },
+        {
+          "source": "p_ingress_out",
+          "target": "t_p1_social_graph_service_InsertUser_0",
+          "weight": 1
+        },
+        {
+          "source": "t_p1_social_graph_service_InsertUser_0",
+          "target": "p_p1_social_graph_service_InsertUser_0_out",
+          "weight": 1
+        },
+        {
+          "source": "p_p1_social_graph_service_InsertUser_0_out",
+          "target": "t_egress",
+          "weight": 1
+        },
+        {
+          "source": "t_egress",
+          "target": "p_sink",
+          "weight": 1
+        }
+      ],
+      "validation": {
+        "is_wf_net": true,
+        "source_places": [
+          "p_source"
+        ],
+        "sink_places": [
+          "p_sink"
+        ],
+        "unreachable_from_source": [],
+        "cannot_reach_sink": [],
+        "bipartite_valid": true
+      }
+    },
+    "unfollow_workflow": {
+      "name": "unfollow_workflow",
+      "entry_service": "social-graph-service",
+      "entry_channel": "Unfollow",
+      "diagram_svg": "interfaces/diagrams/unfollow_workflow.svg",
+      "diagram_png": "interfaces/diagrams/unfollow_workflow.png",
+      "places": [
+        {
+          "id": "p_source",
+          "name": "source",
+          "type": "source",
+          "initial_marking": 1,
+          "final_marking": 0
+        },
+        {
+          "id": "p_ingress_out",
+          "name": "ingress_out",
+          "type": "internal",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_post_barrier_unfollow_barrier",
+          "name": "post_unfollow_barrier",
+          "type": "internal",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_sink",
+          "name": "sink",
+          "type": "sink",
+          "initial_marking": 0,
+          "final_marking": 1
+        }
+      ],
+      "transitions": [
+        {
+          "id": "t_ingress",
+          "name": "Ingress: Unfollow",
+          "type": "ingress",
+          "service": "social-graph-service",
+          "channel": "Unfollow",
+          "span_client": "unfollow_client",
+          "span_server": "unfollow_server"
+        },
+        {
+          "id": "t_barrier_unfollow_barrier",
+          "name": "Barrier: unfollow_barrier",
+          "type": "join_barrier",
+          "barrier_name": "unfollow_barrier"
+        },
+        {
+          "id": "t_egress",
+          "name": "Egress: Unfollow Return",
+          "type": "egress",
+          "service": "social-graph-service",
+          "channel": "Unfollow",
+          "span_server": "unfollow_server"
+        }
+      ],
+      "arcs": [
+        {
+          "source": "p_source",
+          "target": "t_ingress",
+          "weight": 1
+        },
+        {
+          "source": "t_ingress",
+          "target": "p_ingress_out",
+          "weight": 1
+        },
+        {
+          "source": "p_ingress_out",
+          "target": "t_barrier_unfollow_barrier",
+          "weight": 1
+        },
+        {
+          "source": "t_barrier_unfollow_barrier",
+          "target": "p_post_barrier_unfollow_barrier",
+          "weight": 1
+        },
+        {
+          "source": "p_post_barrier_unfollow_barrier",
+          "target": "t_egress",
+          "weight": 1
+        },
+        {
+          "source": "t_egress",
+          "target": "p_sink",
+          "weight": 1
+        }
+      ],
+      "validation": {
+        "is_wf_net": true,
+        "source_places": [
+          "p_source"
+        ],
+        "sink_places": [
+          "p_sink"
+        ],
+        "unreachable_from_source": [],
+        "cannot_reach_sink": [],
+        "bipartite_valid": true
+      }
+    },
+    "read_user_timeline_workflow": {
+      "name": "read_user_timeline_workflow",
+      "entry_service": "user-timeline-service",
+      "entry_channel": "ReadUserTimeline",
+      "diagram_svg": "interfaces/diagrams/read_user_timeline_workflow.svg",
+      "diagram_png": "interfaces/diagrams/read_user_timeline_workflow.png",
+      "places": [
+        {
+          "id": "p_source",
+          "name": "source",
+          "type": "source",
+          "initial_marking": 1,
+          "final_marking": 0
+        },
+        {
+          "id": "p_ingress_out",
+          "name": "ingress_out",
+          "type": "internal",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_b_post_storage_service_ReadPosts_0_in",
+          "name": "post-storage-service::ReadPosts (in)",
+          "type": "branch_pre",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_b_post_storage_service_ReadPosts_0_out",
+          "name": "post-storage-service::ReadPosts (out)",
+          "type": "branch_post",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_post_read_user_timeline_barrier",
+          "name": "post_read_user_timeline_barrier",
+          "type": "internal",
+          "initial_marking": 0,
+          "final_marking": 0
+        },
+        {
+          "id": "p_sink",
+          "name": "sink",
+          "type": "sink",
+          "initial_marking": 0,
+          "final_marking": 1
+        }
+      ],
+      "transitions": [
+        {
+          "id": "t_ingress",
+          "name": "Ingress: ReadUserTimeline",
+          "type": "ingress",
+          "service": "user-timeline-service",
+          "channel": "ReadUserTimeline",
+          "span_client": "ReadUserTimeline",
+          "span_server": "read_user_timeline_server"
+        },
+        {
+          "id": "t_fork_p1",
+          "name": "Fork: Phase P1",
+          "type": "fork",
+          "phase": "P1"
+        },
+        {
+          "id": "t_b_post_storage_service_ReadPosts_0",
+          "name": "post-storage-service::ReadPosts",
+          "type": "rpc_dispatch",
+          "service": "post-storage-service",
+          "channel": "ReadPosts",
+          "span_client": "read_posts_client",
+          "span_server": "read_posts_server",
+          "phase": "P1",
+          "launch_type": "async"
+        },
+        {
+          "id": "t_join_read_user_timeline_barrier",
+          "name": "Join: read_user_timeline_barrier",
+          "type": "join_barrier",
+          "phase": "P1",
+          "barrier_name": "read_user_timeline_barrier"
+        },
+        {
+          "id": "t_egress",
+          "name": "Egress: ReadUserTimeline Return",
+          "type": "egress",
+          "service": "user-timeline-service",
+          "channel": "ReadUserTimeline",
+          "span_server": "read_user_timeline_server"
+        }
+      ],
+      "arcs": [
+        {
+          "source": "p_source",
+          "target": "t_ingress",
+          "weight": 1
+        },
+        {
+          "source": "t_ingress",
+          "target": "p_ingress_out",
+          "weight": 1
+        },
+        {
+          "source": "p_ingress_out",
+          "target": "t_fork_p1",
+          "weight": 1
+        },
+        {
+          "source": "t_fork_p1",
+          "target": "p_b_post_storage_service_ReadPosts_0_in",
+          "weight": 1
+        },
+        {
+          "source": "p_b_post_storage_service_ReadPosts_0_in",
+          "target": "t_b_post_storage_service_ReadPosts_0",
+          "weight": 1
+        },
+        {
+          "source": "t_b_post_storage_service_ReadPosts_0",
+          "target": "p_b_post_storage_service_ReadPosts_0_out",
+          "weight": 1
+        },
+        {
+          "source": "p_b_post_storage_service_ReadPosts_0_out",
+          "target": "t_join_read_user_timeline_barrier",
+          "weight": 1
+        },
+        {
+          "source": "t_join_read_user_timeline_barrier",
+          "target": "p_post_read_user_timeline_barrier",
+          "weight": 1
+        },
+        {
+          "source": "p_post_read_user_timeline_barrier",
+          "target": "t_egress",
+          "weight": 1
+        },
+        {
+          "source": "t_egress",
+          "target": "p_sink",
+          "weight": 1
+        }
+      ],
+      "validation": {
+        "is_wf_net": true,
+        "source_places": [
+          "p_source"
+        ],
+        "sink_places": [
+          "p_sink"
+        ],
+        "unreachable_from_source": [],
+        "cannot_reach_sink": [],
+        "bipartite_valid": true
+      }
+    }
+  }
+}

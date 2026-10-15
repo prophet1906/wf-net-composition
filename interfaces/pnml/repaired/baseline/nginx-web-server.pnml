@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<pnml>
+  <net id="imdf_net_1792076517.1695209" type="http://www.pnml.org/version-2009/grammar/pnmlcoremodel">
+    <name>
+      <text>imdf_net_1792076517.1695209</text>
+    </name>
+    <page id="n0">
+      <place id="p_11">
+        <name>
+          <text>p_11</text>
+        </name>
+      </place>
+      <place id="p_14">
+        <name>
+          <text>p_14</text>
+        </name>
+      </place>
+      <place id="source">
+        <name>
+          <text>source</text>
+        </name>
+        <initialMarking>
+          <text>1</text>
+        </initialMarking>
+      </place>
+      <place id="p_3">
+        <name>
+          <text>p_3</text>
+        </name>
+      </place>
+      <place id="p_4">
+        <name>
+          <text>p_4</text>
+        </name>
+      </place>
+      <place id="sink">
+        <name>
+          <text>sink</text>
+        </name>
+      </place>
+      <place id="p_6">
+        <name>
+          <text>p_6</text>
+        </name>
+      </place>
+      <place id="p_7">
+        <name>
+          <text>p_7</text>
+        </name>
+      </place>
+      <place id="p_10">
+        <name>
+          <text>p_10</text>
+        </name>
+      </place>
+      <place id="p_15">
+        <name>
+          <text>p_15</text>
+        </name>
+      </place>
+      <transition id="9850ade2-92ba-44ff-8f67-83d50c4a4903">
+        <name>
+          <text>/wrk2-api/user-timeline/read</text>
+        </name>
+      </transition>
+      <transition id="skip_13">
+        <name>
+          <text>skip_13</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="c1a93e7c-14a8-4ba0-b2f4-8c4b855fff54"/>
+      </transition>
+      <transition id="b62c0ded-ee0f-4c38-abb9-465cc69b413a">
+        <name>
+          <text>/wrk2-api/post/compose</text>
+        </name>
+      </transition>
+      <transition id="skip_5">
+        <name>
+          <text>skip_5</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="ccafbc30-7d58-4460-8e77-dba4c1969d28"/>
+      </transition>
+      <transition id="init_loop_7">
+        <name>
+          <text>init_loop_7</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="4bdae5b7-97dc-4fae-9d92-2024f4a0cb38"/>
+      </transition>
+      <transition id="7eea496c-7157-47e8-8c30-225322ce9629">
+        <name>
+          <text>read_home_timeline_client</text>
+        </name>
+      </transition>
+      <transition id="654de145-130d-4afa-91e1-8e76c4fa2f7b">
+        <name>
+          <text>/wrk2-api/home-timeline/read</text>
+        </name>
+      </transition>
+      <transition id="skip_9">
+        <name>
+          <text>skip_9</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="400e61d0-d95f-4aed-b474-96cf018946b0"/>
+      </transition>
+      <transition id="init_loop_11">
+        <name>
+          <text>init_loop_11</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="b83dccae-1985-454a-8841-8cb93e591957"/>
+      </transition>
+      <transition id="tau_1">
+        <name>
+          <text>tau_1</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="403d7141-80b1-43b3-b4de-7ef24fb21e00"/>
+      </transition>
+      <transition id="tau_2">
+        <name>
+          <text>tau_2</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="0313637d-c559-4544-a56f-33d6c9481845"/>
+      </transition>
+      <transition id="init_loop_3">
+        <name>
+          <text>init_loop_3</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="e0c04d20-c0ce-4cdd-a95f-38e3fd2bc6f1"/>
+      </transition>
+      <transition id="b20aad2a-3572-4a1a-8d9e-eb1a6b25ff33">
+        <name>
+          <text>compose_post_client</text>
+        </name>
+      </transition>
+      <transition id="64bfc258-ad42-4b8b-9afc-1623f5f62a9b">
+        <name>
+          <text>ReadUserTimeline</text>
+        </name>
+      </transition>
+      <arc id="4725728784" source="init_loop_11" target="p_14"/>
+      <arc id="4725726928" source="p_14" target="9850ade2-92ba-44ff-8f67-83d50c4a4903"/>
+      <arc id="4725722960" source="p_3" target="init_loop_11"/>
+      <arc id="4725735056" source="b20aad2a-3572-4a1a-8d9e-eb1a6b25ff33" target="p_4"/>
+      <arc id="4725726608" source="init_loop_7" target="p_10"/>
+      <arc id="4725727760" source="tau_1" target="p_3"/>
+      <arc id="4725728144" source="p_4" target="tau_2"/>
+      <arc id="4725720336" source="init_loop_3" target="p_6"/>
+      <arc id="4725723280" source="b62c0ded-ee0f-4c38-abb9-465cc69b413a" target="p_7"/>
+      <arc id="4725722256" source="p_3" target="init_loop_7"/>
+      <arc id="4725731344" source="654de145-130d-4afa-91e1-8e76c4fa2f7b" target="p_11"/>
+      <arc id="4725729808" source="skip_5" target="p_6"/>
+      <arc id="4725729936" source="p_11" target="7eea496c-7157-47e8-8c30-225322ce9629"/>
+      <arc id="4725729296" source="skip_13" target="p_14"/>
+      <arc id="4725720272" source="skip_9" target="p_10"/>
+      <arc id="4725730704" source="p_15" target="skip_13"/>
+      <arc id="4725722640" source="64bfc258-ad42-4b8b-9afc-1623f5f62a9b" target="p_4"/>
+      <arc id="4725727248" source="9850ade2-92ba-44ff-8f67-83d50c4a4903" target="p_15"/>
+      <arc id="4725723856" source="p_10" target="654de145-130d-4afa-91e1-8e76c4fa2f7b"/>
+      <arc id="4725723984" source="source" target="tau_1"/>
+      <arc id="4725734864" source="p_3" target="init_loop_3"/>
+      <arc id="4725721040" source="tau_2" target="sink"/>
+      <arc id="4725734608" source="p_6" target="b62c0ded-ee0f-4c38-abb9-465cc69b413a"/>
+      <arc id="4725732816" source="p_7" target="skip_5"/>
+      <arc id="4725725392" source="p_15" target="64bfc258-ad42-4b8b-9afc-1623f5f62a9b"/>
+      <arc id="4725721424" source="p_7" target="b20aad2a-3572-4a1a-8d9e-eb1a6b25ff33"/>
+      <arc id="4725734096" source="p_11" target="skip_9"/>
+      <arc id="4725732496" source="7eea496c-7157-47e8-8c30-225322ce9629" target="p_4"/>
+    </page>
+    <finalmarkings>
+      <marking>
+        <place idref="sink">
+          <text>1</text>
+        </place>
+      </marking>
+    </finalmarkings>
+  </net>
+</pnml>

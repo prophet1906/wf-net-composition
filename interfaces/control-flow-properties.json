@@ -1,0 +1,152 @@
+{
+  "_meta": {
+    "name": "Social Network Control-Flow Property Specification Catalog",
+    "version": "1.0.0",
+    "workflow": "compose_post_workflow",
+    "total_properties": 8,
+    "description": "Formal LoLA CTL temporal properties validating cross-service causal ordering, fork-join barrier synchronization, mutual exclusion, clean drainage, channel 1-safety, deadlock freedom, and asynchronous concurrency witnesses."
+  },
+  "properties": [
+    {
+      "id": "PROP_FORK_JOIN_DISPATCH_BARRIER",
+      "name": "Fork-Join Dispatch Barrier: All Fan-Out Requests Before StorePost",
+      "category": "FORK_JOIN_SYNC",
+      "description": "StorePost channel message cannot be dispatched before all 4 caller parallel fan-out dispatches (media, text, unique-id, user) have fired.",
+      "formula": "EF(ch__StorePost > 0 AND (compose_post_service__p_5 > 0 OR compose_post_service__p_7 > 0 OR compose_post_service__p_9 > 0 OR compose_post_service__p_11 > 0))",
+      "expected_verdict": "UNSAT",
+      "target_services": [
+        "compose-post-service"
+      ],
+      "severity": "CRITICAL",
+      "rationale": "Dispatching post storage prior to initiating all required parallel sub-tasks violates caller-side fork-join barrier semantics."
+    },
+    {
+      "id": "PROP_SERVICE_SEQUENCING_DISPATCH",
+      "name": "Service Sequencing: StorePost Dispatch Precedes Timeline Writes",
+      "category": "SERVICE_SEQUENCING",
+      "description": "Timeline fan-out writes (WriteHomeTimeline and WriteUserTimeline) cannot be dispatched prior to StorePost dispatch.",
+      "formula": "EF((ch__WriteHomeTimeline > 0 OR ch__WriteUserTimeline > 0) AND compose_post_service__p_13 = 0 AND compose_post_service__p_14 = 0 AND compose_post_service__sink = 0)",
+      "expected_verdict": "UNSAT",
+      "target_services": [
+        "compose-post-service",
+        "post-storage-service",
+        "home-timeline-service",
+        "user-timeline-service"
+      ],
+      "severity": "HIGH",
+      "rationale": "Timeline indexing before database persistence causes phantom read races where timeline feeds reference unpersisted posts."
+    },
+    {
+      "id": "PROP_CAUSAL_INVOCATION_ORDER",
+      "name": "Causal Invocations: Downstream RPCs Require Prior Workflow Initiation",
+      "category": "CAUSAL_PRECEDENCE",
+      "description": "Downstream child RPC channels (ComposeUrls and ComposeUserMentions) cannot hold tokens while root workflow remains at initial source marking.",
+      "formula": "EF((ch__ComposeUrls > 0 OR ch__ComposeUserMentions > 0) AND compose_post_service__source > 0)",
+      "expected_verdict": "UNSAT",
+      "target_services": [
+        "compose-post-service",
+        "text-service",
+        "url-shorten-service",
+        "user-mention-service"
+      ],
+      "severity": "CRITICAL",
+      "rationale": "Spontaneous invocation of downstream RPCs before root request dispatch indicates broken causal tracking."
+    },
+    {
+      "id": "PROP_MUTUAL_EXCLUSION_SOURCE_SINK",
+      "name": "Mutual Exclusion: Workflow Source and Sink Conflict Freedom",
+      "category": "MUTUAL_EXCLUSION",
+      "description": "The root compose-post-service source place and sink place cannot be concurrently marked.",
+      "formula": "EF(compose_post_service__source > 0 AND compose_post_service__sink > 0)",
+      "expected_verdict": "UNSAT",
+      "target_services": [
+        "compose-post-service"
+      ],
+      "severity": "MEDIUM",
+      "rationale": "Concurrent source and sink tokens violate 1-safety workflow net boundedness."
+    },
+    {
+      "id": "PROP_CLEAN_CHANNEL_DRAINAGE",
+      "name": "Clean Channel Drainage: Residual Message Freedom Upon Termination",
+      "category": "CLEAN_DRAINAGE",
+      "description": "When all participating service sink places are marked, all 9 interface channels must hold zero residual tokens.",
+      "formula": "EF(compose_post_service__sink > 0 AND home_timeline_service__sink > 0 AND media_service__sink > 0 AND post_storage_service__sink > 0 AND text_service__sink > 0 AND unique_id_service__sink > 0 AND url_shorten_service__sink > 0 AND user_mention_service__sink > 0 AND user_service__sink > 0 AND user_timeline_service__sink > 0 AND (ch__ComposeCreatorWithUserId > 0 OR ch__ComposeMedia > 0 OR ch__ComposeText > 0 OR ch__ComposeUniqueId > 0 OR ch__ComposeUrls > 0 OR ch__ComposeUserMentions > 0 OR ch__StorePost > 0 OR ch__WriteHomeTimeline > 0 OR ch__WriteUserTimeline > 0))",
+      "expected_verdict": "UNSAT",
+      "target_services": [
+        "compose-post-service",
+        "home-timeline-service",
+        "media-service",
+        "post-storage-service",
+        "text-service",
+        "unique-id-service",
+        "url-shorten-service",
+        "user-mention-service",
+        "user-service",
+        "user-timeline-service"
+      ],
+      "severity": "HIGH",
+      "rationale": "Residual channel tokens indicate leaked RPC messages, unconsumed buffers, or missing join synchronizations."
+    },
+    {
+      "id": "PROP_CHANNEL_1_BOUNDEDNESS",
+      "name": "Channel 1-Boundedness: 1-Safety Invariant Across All Communication Channels",
+      "category": "CHANNEL_BOUNDEDNESS",
+      "description": "No interface channel place can hold more than 1 token in any reachable marking.",
+      "formula": "EF(ch__ComposeCreatorWithUserId > 1 OR ch__ComposeMedia > 1 OR ch__ComposeText > 1 OR ch__ComposeUniqueId > 1 OR ch__ComposeUrls > 1 OR ch__ComposeUserMentions > 1 OR ch__StorePost > 1 OR ch__WriteHomeTimeline > 1 OR ch__WriteUserTimeline > 1)",
+      "expected_verdict": "UNSAT",
+      "target_services": [
+        "compose-post-service",
+        "home-timeline-service",
+        "media-service",
+        "post-storage-service",
+        "text-service",
+        "unique-id-service",
+        "url-shorten-service",
+        "user-mention-service",
+        "user-service",
+        "user-timeline-service"
+      ],
+      "severity": "CRITICAL",
+      "rationale": "Channel token accumulation violates 1-boundedness and causes memory buffer overflow in asynchronous RPC queues."
+    },
+    {
+      "id": "PROP_DEADLOCK_PROGRESS",
+      "name": "Quasi-Liveness: Premature Deadlock Freedom",
+      "category": "DEADLOCK_FREEDOM",
+      "description": "No reachable intermediate state can become trapped in a premature deadlock before global completion.",
+      "formula": "EF(DEADLOCK AND NOT (compose_post_service__sink > 0 AND home_timeline_service__sink > 0 AND media_service__sink > 0 AND post_storage_service__sink > 0 AND text_service__sink > 0 AND unique_id_service__sink > 0 AND url_shorten_service__sink > 0 AND user_mention_service__sink > 0 AND user_service__sink > 0 AND user_timeline_service__sink > 0))",
+      "expected_verdict": "UNSAT",
+      "target_services": [
+        "compose-post-service",
+        "home-timeline-service",
+        "media-service",
+        "post-storage-service",
+        "text-service",
+        "unique-id-service",
+        "url-shorten-service",
+        "user-mention-service",
+        "user-service",
+        "user-timeline-service"
+      ],
+      "severity": "CRITICAL",
+      "rationale": "Premature deadlock halts workflow execution without reaching terminal service sinks."
+    },
+    {
+      "id": "PROP_ASYNC_CONCURRENCY_WITNESS",
+      "name": "Asynchronous Concurrency: Callee Interleaving Witness Reachability",
+      "category": "CONCURRENCY_WITNESS",
+      "description": "Validates reachability of state where StorePost channel is active while asynchronous child services are executing in parallel.",
+      "formula": "EF(ch__StorePost > 0 AND (media_service__sink = 0 OR text_service__sink = 0 OR unique_id_service__sink = 0 OR user_service__sink = 0))",
+      "expected_verdict": "SAT",
+      "target_services": [
+        "compose-post-service",
+        "media-service",
+        "text-service",
+        "unique-id-service",
+        "user-service"
+      ],
+      "severity": "INFO",
+      "rationale": "Demonstrates formal witness extraction for asynchronous message-passing concurrency interleavings."
+    }
+  ]
+}

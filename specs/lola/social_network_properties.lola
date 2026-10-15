@@ -1,0 +1,53 @@
+{ ============================================================================ }
+{ Formal LoLA CTL Property Specification Suite for Social Network Composed Net }
+{ Target Workflow: compose_post_workflow                                       }
+{ Model: Composed Generalized Workflow Net (N_C)                              }
+{ ============================================================================ }
+
+{ Property: PROP_FORK_JOIN_DISPATCH_BARRIER: Fork-Join Dispatch Barrier }
+{ Category: FORK_JOIN_SYNC }
+{ Expected: UNSAT }
+{ Description: StorePost cannot be dispatched before all 4 caller parallel sub-tasks have fired. }
+FORMULA EF(ch__StorePost > 0 AND (compose_post_service__p_5 > 0 OR compose_post_service__p_7 > 0 OR compose_post_service__p_9 > 0 OR compose_post_service__p_11 > 0));
+
+{ Property: PROP_SERVICE_SEQUENCING_DISPATCH: Service Sequencing }
+{ Category: SERVICE_SEQUENCING }
+{ Expected: UNSAT }
+{ Description: Timeline fan-out writes cannot be dispatched prior to StorePost dispatch. }
+FORMULA EF((ch__WriteHomeTimeline > 0 OR ch__WriteUserTimeline > 0) AND compose_post_service__p_13 = 0 AND compose_post_service__p_14 = 0 AND compose_post_service__sink = 0);
+
+{ Property: PROP_CAUSAL_INVOCATION_ORDER: Causal Invocations }
+{ Category: CAUSAL_PRECEDENCE }
+{ Expected: UNSAT }
+{ Description: Downstream child RPC channels cannot hold tokens while root workflow is in initial state. }
+FORMULA EF((ch__ComposeUrls > 0 OR ch__ComposeUserMentions > 0) AND compose_post_service__source > 0);
+
+{ Property: PROP_MUTUAL_EXCLUSION_SOURCE_SINK: Mutual Exclusion }
+{ Category: MUTUAL_EXCLUSION }
+{ Expected: UNSAT }
+{ Description: Root compose-post-service source place and sink place cannot be concurrently marked. }
+FORMULA EF(compose_post_service__source > 0 AND compose_post_service__sink > 0);
+
+{ Property: PROP_CLEAN_CHANNEL_DRAINAGE: Clean Channel Drainage }
+{ Category: CLEAN_DRAINAGE }
+{ Expected: UNSAT }
+{ Description: When all service sink places are marked, all 9 interface channels must hold zero residual tokens. }
+FORMULA EF(compose_post_service__sink > 0 AND home_timeline_service__sink > 0 AND media_service__sink > 0 AND post_storage_service__sink > 0 AND text_service__sink > 0 AND unique_id_service__sink > 0 AND url_shorten_service__sink > 0 AND user_mention_service__sink > 0 AND user_service__sink > 0 AND user_timeline_service__sink > 0 AND (ch__ComposeCreatorWithUserId > 0 OR ch__ComposeMedia > 0 OR ch__ComposeText > 0 OR ch__ComposeUniqueId > 0 OR ch__ComposeUrls > 0 OR ch__ComposeUserMentions > 0 OR ch__StorePost > 0 OR ch__WriteHomeTimeline > 0 OR ch__WriteUserTimeline > 0));
+
+{ Property: PROP_CHANNEL_1_BOUNDEDNESS: Channel 1-Boundedness }
+{ Category: CHANNEL_BOUNDEDNESS }
+{ Expected: UNSAT }
+{ Description: No interface channel place can hold more than 1 token in any reachable marking. }
+FORMULA EF(ch__ComposeCreatorWithUserId > 1 OR ch__ComposeMedia > 1 OR ch__ComposeText > 1 OR ch__ComposeUniqueId > 1 OR ch__ComposeUrls > 1 OR ch__ComposeUserMentions > 1 OR ch__StorePost > 1 OR ch__WriteHomeTimeline > 1 OR ch__WriteUserTimeline > 1);
+
+{ Property: PROP_DEADLOCK_PROGRESS: Quasi-Liveness Progress }
+{ Category: DEADLOCK_FREEDOM }
+{ Expected: UNSAT }
+{ Description: No reachable intermediate state can become trapped in a premature deadlock before global completion. }
+FORMULA EF(DEADLOCK AND NOT (compose_post_service__sink > 0 AND home_timeline_service__sink > 0 AND media_service__sink > 0 AND post_storage_service__sink > 0 AND text_service__sink > 0 AND unique_id_service__sink > 0 AND url_shorten_service__sink > 0 AND user_mention_service__sink > 0 AND user_service__sink > 0 AND user_timeline_service__sink > 0));
+
+{ Property: PROP_ASYNC_CONCURRENCY_WITNESS: Asynchronous Concurrency Witness }
+{ Category: CONCURRENCY_WITNESS }
+{ Expected: SAT }
+{ Description: Validates reachability of state where StorePost is active while child services execute in parallel. }
+FORMULA EF(ch__StorePost > 0 AND (media_service__sink = 0 OR text_service__sink = 0 OR unique_id_service__sink = 0 OR user_service__sink = 0));

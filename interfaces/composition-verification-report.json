@@ -1,0 +1,325 @@
+{
+  "_meta": {
+    "all_properties_hold": true,
+    "generated_at": "2026-08-18T18:51:48.141473+00:00",
+    "name": "Composition Verification Certificate",
+    "states_explored": 152154,
+    "total_arcs": 117,
+    "total_channels": 9,
+    "total_execution_time_ms": 3151.32,
+    "total_places": 56,
+    "total_services": 10,
+    "total_transitions": 49,
+    "version": "1.0.0",
+    "workflow": "compose_post_workflow"
+  },
+  "composed_net": {
+    "arcs_count": 117,
+    "channels": [
+      {
+        "callee_service": "text-service",
+        "caller_service": "compose-post-service",
+        "channel_name": "ComposeText",
+        "channel_place": "ch::ComposeText",
+        "client_span": "compose_text_client",
+        "launch_type": "async",
+        "pattern": "IP-4",
+        "server_span": "compose_text_server"
+      },
+      {
+        "callee_service": "url-shorten-service",
+        "caller_service": "text-service",
+        "channel_name": "ComposeUrls",
+        "channel_place": "ch::ComposeUrls",
+        "client_span": "compose_urls_client",
+        "launch_type": "async",
+        "pattern": "IP-4",
+        "server_span": "compose_urls_server"
+      },
+      {
+        "callee_service": "user-mention-service",
+        "caller_service": "text-service",
+        "channel_name": "ComposeUserMentions",
+        "channel_place": "ch::ComposeUserMentions",
+        "client_span": "compose_user_mentions_client",
+        "launch_type": "async",
+        "pattern": "IP-4",
+        "server_span": "compose_user_mentions_server"
+      },
+      {
+        "callee_service": "user-service",
+        "caller_service": "compose-post-service",
+        "channel_name": "ComposeCreatorWithUserId",
+        "channel_place": "ch::ComposeCreatorWithUserId",
+        "client_span": "compose_creator_client",
+        "launch_type": "async",
+        "pattern": "IP-4",
+        "server_span": "compose_creator_with_user_id_server"
+      },
+      {
+        "callee_service": "media-service",
+        "caller_service": "compose-post-service",
+        "channel_name": "ComposeMedia",
+        "channel_place": "ch::ComposeMedia",
+        "client_span": "compose_media_client",
+        "launch_type": "async",
+        "pattern": "IP-4",
+        "server_span": "compose_media_server"
+      },
+      {
+        "callee_service": "unique-id-service",
+        "caller_service": "compose-post-service",
+        "channel_name": "ComposeUniqueId",
+        "channel_place": "ch::ComposeUniqueId",
+        "client_span": "compose_unique_id_client",
+        "launch_type": "async",
+        "pattern": "IP-4",
+        "server_span": "compose_unique_id_server"
+      },
+      {
+        "callee_service": "post-storage-service",
+        "caller_service": "compose-post-service",
+        "channel_name": "StorePost",
+        "channel_place": "ch::StorePost",
+        "client_span": "store_post_client",
+        "launch_type": "async",
+        "pattern": "IP-1",
+        "server_span": "store_post_server"
+      },
+      {
+        "callee_service": "user-timeline-service",
+        "caller_service": "compose-post-service",
+        "channel_name": "WriteUserTimeline",
+        "channel_place": "ch::WriteUserTimeline",
+        "client_span": "write_user_timeline_client",
+        "launch_type": "deferred",
+        "pattern": "IP-1",
+        "server_span": "write_user_timeline_server"
+      },
+      {
+        "callee_service": "home-timeline-service",
+        "caller_service": "compose-post-service",
+        "channel_name": "WriteHomeTimeline",
+        "channel_place": "ch::WriteHomeTimeline",
+        "client_span": "write_home_timeline_client",
+        "launch_type": "deferred",
+        "pattern": "IP-1",
+        "server_span": "write_home_timeline_server"
+      }
+    ],
+    "participating_services": [
+      "compose-post-service",
+      "home-timeline-service",
+      "media-service",
+      "post-storage-service",
+      "text-service",
+      "unique-id-service",
+      "url-shorten-service",
+      "user-mention-service",
+      "user-service",
+      "user-timeline-service"
+    ],
+    "places_count": 56,
+    "transitions_count": 49,
+    "workflow_name": "compose_post_workflow"
+  },
+  "properties": {
+    "channel_1_boundedness": {
+      "all_channels_1_bounded": true,
+      "channel_verdicts": {
+        "ch::ComposeCreatorWithUserId": {
+          "is_1_bounded": true,
+          "max_observed_tokens": 1,
+          "status": "HOLDS",
+          "verdict": "TRUE"
+        },
+        "ch::ComposeMedia": {
+          "is_1_bounded": true,
+          "max_observed_tokens": 1,
+          "status": "HOLDS",
+          "verdict": "TRUE"
+        },
+        "ch::ComposeText": {
+          "is_1_bounded": true,
+          "max_observed_tokens": 1,
+          "status": "HOLDS",
+          "verdict": "TRUE"
+        },
+        "ch::ComposeUniqueId": {
+          "is_1_bounded": true,
+          "max_observed_tokens": 1,
+          "status": "HOLDS",
+          "verdict": "TRUE"
+        },
+        "ch::ComposeUrls": {
+          "is_1_bounded": true,
+          "max_observed_tokens": 1,
+          "status": "HOLDS",
+          "verdict": "TRUE"
+        },
+        "ch::ComposeUserMentions": {
+          "is_1_bounded": true,
+          "max_observed_tokens": 1,
+          "status": "HOLDS",
+          "verdict": "TRUE"
+        },
+        "ch::StorePost": {
+          "is_1_bounded": true,
+          "max_observed_tokens": 1,
+          "status": "HOLDS",
+          "verdict": "TRUE"
+        },
+        "ch::WriteHomeTimeline": {
+          "is_1_bounded": true,
+          "max_observed_tokens": 1,
+          "status": "HOLDS",
+          "verdict": "TRUE"
+        },
+        "ch::WriteUserTimeline": {
+          "is_1_bounded": true,
+          "max_observed_tokens": 1,
+          "status": "HOLDS",
+          "verdict": "TRUE"
+        }
+      },
+      "description": "Verifies 1-safe capacity bounds across all asynchronous interface channels",
+      "engine": "internal",
+      "execution_time_ms": 0.01,
+      "formula": "FORALL ch in Channels: AG(ch <= 1)",
+      "max_channel_depth": {
+        "ch::ComposeCreatorWithUserId": 1,
+        "ch::ComposeMedia": 1,
+        "ch::ComposeText": 1,
+        "ch::ComposeUniqueId": 1,
+        "ch::ComposeUrls": 1,
+        "ch::ComposeUserMentions": 1,
+        "ch::StorePost": 1,
+        "ch::WriteHomeTimeline": 1,
+        "ch::WriteUserTimeline": 1
+      },
+      "name": "Channel 1-Boundedness",
+      "property_id": "CHANNEL_1_BOUNDEDNESS",
+      "states_explored": 152154,
+      "status": "HOLDS"
+    },
+    "orphaned_message_freedom": {
+      "description": "Verifies that no residual tokens linger in any interface channel place upon workflow completion",
+      "engine": "internal",
+      "execution_time_ms": 0.4,
+      "formula": "FORMULA EF((compose_post_service__sink > 0 AND home_timeline_service__sink > 0 AND media_service__sink > 0 AND post_storage_service__sink > 0 AND text_service__sink > 0 AND unique_id_service__sink > 0 AND url_shorten_service__sink > 0 AND user_mention_service__sink > 0 AND user_service__sink > 0 AND user_timeline_service__sink > 0) AND (ch__ComposeCreatorWithUserId > 0 OR ch__ComposeMedia > 0 OR ch__ComposeText > 0 OR ch__ComposeUniqueId > 0 OR ch__ComposeUrls > 0 OR ch__ComposeUserMentions > 0 OR ch__StorePost > 0 OR ch__WriteHomeTimeline > 0 OR ch__WriteUserTimeline > 0))",
+      "name": "Orphaned Message Freedom",
+      "property_id": "ORPHANED_MESSAGE_FREEDOM",
+      "states_explored": 152154,
+      "status": "HOLDS",
+      "verdict": "UNSAT"
+    },
+    "p0_soundness": {
+      "description": "Verifies absence of reachable premature deadlocks prior to global multi-service completion",
+      "engine": "internal",
+      "execution_time_ms": 0.62,
+      "formula": "FORMULA EF(DEADLOCK AND NOT (compose_post_service__sink > 0 AND home_timeline_service__sink > 0 AND media_service__sink > 0 AND post_storage_service__sink > 0 AND text_service__sink > 0 AND unique_id_service__sink > 0 AND url_shorten_service__sink > 0 AND user_mention_service__sink > 0 AND user_service__sink > 0 AND user_timeline_service__sink > 0))",
+      "name": "P0 Soundness / Deadlock Freedom",
+      "property_id": "P0_SOUNDNESS",
+      "states_explored": 152154,
+      "status": "HOLDS",
+      "verdict": "UNSAT"
+    },
+    "response_liveness": {
+      "all_ip4_channels_live": true,
+      "description": "Verifies mandatory consumption and return-flow reachability over IP-4 request-response channels",
+      "details": [
+        {
+          "callee_service": "text-service",
+          "callee_sink": "text-service::sink",
+          "caller_service": "compose-post-service",
+          "channel_name": "ComposeText",
+          "channel_place": "ch::ComposeText",
+          "consumer_found": true,
+          "consumers": [
+            "text-service::854a9111-d506-41e3-916f-151b297bbfe1"
+          ],
+          "is_live": true,
+          "pattern": "IP-4"
+        },
+        {
+          "callee_service": "url-shorten-service",
+          "callee_sink": "url-shorten-service::sink",
+          "caller_service": "text-service",
+          "channel_name": "ComposeUrls",
+          "channel_place": "ch::ComposeUrls",
+          "consumer_found": true,
+          "consumers": [
+            "url-shorten-service::607f9881-c40d-4838-b5af-4c2e87f52b15"
+          ],
+          "is_live": true,
+          "pattern": "IP-4"
+        },
+        {
+          "callee_service": "user-mention-service",
+          "callee_sink": "user-mention-service::sink",
+          "caller_service": "text-service",
+          "channel_name": "ComposeUserMentions",
+          "channel_place": "ch::ComposeUserMentions",
+          "consumer_found": true,
+          "consumers": [
+            "user-mention-service::948a3653-a032-499e-9066-fd49b289f12d"
+          ],
+          "is_live": true,
+          "pattern": "IP-4"
+        },
+        {
+          "callee_service": "user-service",
+          "callee_sink": "user-service::sink",
+          "caller_service": "compose-post-service",
+          "channel_name": "ComposeCreatorWithUserId",
+          "channel_place": "ch::ComposeCreatorWithUserId",
+          "consumer_found": true,
+          "consumers": [
+            "user-service::21b6fb79-4beb-4172-ab9a-9f7cd853fbed"
+          ],
+          "is_live": true,
+          "pattern": "IP-4"
+        },
+        {
+          "callee_service": "media-service",
+          "callee_sink": "media-service::sink",
+          "caller_service": "compose-post-service",
+          "channel_name": "ComposeMedia",
+          "channel_place": "ch::ComposeMedia",
+          "consumer_found": true,
+          "consumers": [
+            "media-service::bc62fd71-dd36-44e5-952b-bc1d7e92e536"
+          ],
+          "is_live": true,
+          "pattern": "IP-4"
+        },
+        {
+          "callee_service": "unique-id-service",
+          "callee_sink": "unique-id-service::sink",
+          "caller_service": "compose-post-service",
+          "channel_name": "ComposeUniqueId",
+          "channel_place": "ch::ComposeUniqueId",
+          "consumer_found": true,
+          "consumers": [
+            "unique-id-service::758164bc-d6c8-43cc-a7d2-7227f586c6f1"
+          ],
+          "is_live": true,
+          "pattern": "IP-4"
+        }
+      ],
+      "execution_time_ms": 0.04,
+      "name": "Response-Liveness",
+      "property_id": "RESPONSE_LIVENESS",
+      "status": "HOLDS",
+      "total_ip4_channels": 6
+    }
+  },
+  "summary": {
+    "all_properties_hold": true,
+    "channel_1_boundedness_holds": true,
+    "orphaned_message_freedom_holds": true,
+    "p0_soundness_holds": true,
+    "response_liveness_holds": true,
+    "total_execution_time_ms": 3151.32
+  }
+}

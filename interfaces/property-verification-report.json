@@ -1,0 +1,242 @@
+{
+  "_meta": {
+    "all_properties_hold": true,
+    "generated_at": "2026-09-30T07:36:05.780584+00:00",
+    "name": "Social Network Control-Flow Property Verification Certificate",
+    "properties_holding": 8,
+    "properties_unknown": 0,
+    "properties_violated": 0,
+    "total_execution_time_ms": 6005.15,
+    "total_properties": 8,
+    "version": "1.0.0",
+    "workflow": "composed-net"
+  },
+  "summary": {
+    "all_properties_hold": true,
+    "holds": 8,
+    "total_execution_time_ms": 6005.15,
+    "total_properties": 8,
+    "unknown": 0,
+    "violated": 0
+  },
+  "verifications": [
+    {
+      "actual_verdict": "UNSAT",
+      "category": "FORK_JOIN_SYNC",
+      "counterexample": null,
+      "description": "StorePost channel message cannot be dispatched before all 4 caller parallel fan-out dispatches (media, text, unique-id, user) have fired.",
+      "engine": "python",
+      "execution_time_ms": 742.23,
+      "expected_verdict": "UNSAT",
+      "formula": "EF(ch__StorePost > 0 AND (compose_post_service__p_5 > 0 OR compose_post_service__p_7 > 0 OR compose_post_service__p_9 > 0 OR compose_post_service__p_11 > 0))",
+      "name": "Fork-Join Dispatch Barrier: All Fan-Out Requests Before StorePost",
+      "property_id": "PROP_FORK_JOIN_DISPATCH_BARRIER",
+      "raw_lola_output": null,
+      "states_explored": 152154,
+      "status": "HOLDS"
+    },
+    {
+      "actual_verdict": "UNSAT",
+      "category": "SERVICE_SEQUENCING",
+      "counterexample": null,
+      "description": "Timeline fan-out writes (WriteHomeTimeline and WriteUserTimeline) cannot be dispatched prior to StorePost dispatch.",
+      "engine": "python",
+      "execution_time_ms": 742.23,
+      "expected_verdict": "UNSAT",
+      "formula": "EF((ch__WriteHomeTimeline > 0 OR ch__WriteUserTimeline > 0) AND compose_post_service__p_13 = 0 AND compose_post_service__p_14 = 0 AND compose_post_service__sink = 0)",
+      "name": "Service Sequencing: StorePost Dispatch Precedes Timeline Writes",
+      "property_id": "PROP_SERVICE_SEQUENCING_DISPATCH",
+      "raw_lola_output": null,
+      "states_explored": 152154,
+      "status": "HOLDS"
+    },
+    {
+      "actual_verdict": "UNSAT",
+      "category": "CAUSAL_PRECEDENCE",
+      "counterexample": null,
+      "description": "Downstream child RPC channels (ComposeUrls and ComposeUserMentions) cannot hold tokens while root workflow remains at initial source marking.",
+      "engine": "python",
+      "execution_time_ms": 742.23,
+      "expected_verdict": "UNSAT",
+      "formula": "EF((ch__ComposeUrls > 0 OR ch__ComposeUserMentions > 0) AND compose_post_service__source > 0)",
+      "name": "Causal Invocations: Downstream RPCs Require Prior Workflow Initiation",
+      "property_id": "PROP_CAUSAL_INVOCATION_ORDER",
+      "raw_lola_output": null,
+      "states_explored": 152154,
+      "status": "HOLDS"
+    },
+    {
+      "actual_verdict": "UNSAT",
+      "category": "MUTUAL_EXCLUSION",
+      "counterexample": null,
+      "description": "The root compose-post-service source place and sink place cannot be concurrently marked.",
+      "engine": "python",
+      "execution_time_ms": 742.23,
+      "expected_verdict": "UNSAT",
+      "formula": "EF(compose_post_service__source > 0 AND compose_post_service__sink > 0)",
+      "name": "Mutual Exclusion: Workflow Source and Sink Conflict Freedom",
+      "property_id": "PROP_MUTUAL_EXCLUSION_SOURCE_SINK",
+      "raw_lola_output": null,
+      "states_explored": 152154,
+      "status": "HOLDS"
+    },
+    {
+      "actual_verdict": "UNSAT",
+      "category": "CLEAN_DRAINAGE",
+      "counterexample": null,
+      "description": "When all participating service sink places are marked, all 9 interface channels must hold zero residual tokens.",
+      "engine": "python",
+      "execution_time_ms": 742.23,
+      "expected_verdict": "UNSAT",
+      "formula": "EF(compose_post_service__sink > 0 AND home_timeline_service__sink > 0 AND media_service__sink > 0 AND post_storage_service__sink > 0 AND text_service__sink > 0 AND unique_id_service__sink > 0 AND url_shorten_service__sink > 0 AND user_mention_service__sink > 0 AND user_service__sink > 0 AND user_timeline_service__sink > 0 AND (ch__ComposeCreatorWithUserId > 0 OR ch__ComposeMedia > 0 OR ch__ComposeText > 0 OR ch__ComposeUniqueId > 0 OR ch__ComposeUrls > 0 OR ch__ComposeUserMentions > 0 OR ch__StorePost > 0 OR ch__WriteHomeTimeline > 0 OR ch__WriteUserTimeline > 0))",
+      "name": "Clean Channel Drainage: Residual Message Freedom Upon Termination",
+      "property_id": "PROP_CLEAN_CHANNEL_DRAINAGE",
+      "raw_lola_output": null,
+      "states_explored": 152154,
+      "status": "HOLDS"
+    },
+    {
+      "actual_verdict": "UNSAT",
+      "category": "CHANNEL_BOUNDEDNESS",
+      "counterexample": null,
+      "description": "No interface channel place can hold more than 1 token in any reachable marking.",
+      "engine": "python",
+      "execution_time_ms": 742.23,
+      "expected_verdict": "UNSAT",
+      "formula": "EF(ch__ComposeCreatorWithUserId > 1 OR ch__ComposeMedia > 1 OR ch__ComposeText > 1 OR ch__ComposeUniqueId > 1 OR ch__ComposeUrls > 1 OR ch__ComposeUserMentions > 1 OR ch__StorePost > 1 OR ch__WriteHomeTimeline > 1 OR ch__WriteUserTimeline > 1)",
+      "name": "Channel 1-Boundedness: 1-Safety Invariant Across All Communication Channels",
+      "property_id": "PROP_CHANNEL_1_BOUNDEDNESS",
+      "raw_lola_output": null,
+      "states_explored": 152154,
+      "status": "HOLDS"
+    },
+    {
+      "actual_verdict": "UNSAT",
+      "category": "DEADLOCK_FREEDOM",
+      "counterexample": null,
+      "description": "No reachable intermediate state can become trapped in a premature deadlock before global completion.",
+      "engine": "python",
+      "execution_time_ms": 742.23,
+      "expected_verdict": "UNSAT",
+      "formula": "EF(DEADLOCK AND NOT (compose_post_service__sink > 0 AND home_timeline_service__sink > 0 AND media_service__sink > 0 AND post_storage_service__sink > 0 AND text_service__sink > 0 AND unique_id_service__sink > 0 AND url_shorten_service__sink > 0 AND user_mention_service__sink > 0 AND user_service__sink > 0 AND user_timeline_service__sink > 0))",
+      "name": "Quasi-Liveness: Premature Deadlock Freedom",
+      "property_id": "PROP_DEADLOCK_PROGRESS",
+      "raw_lola_output": null,
+      "states_explored": 152154,
+      "status": "HOLDS"
+    },
+    {
+      "actual_verdict": "SAT",
+      "category": "CONCURRENCY_WITNESS",
+      "counterexample": {
+        "explanation": "Trace of 6 step(s) reached a state satisfying target condition: ch__StorePost > 0 AND (media_service__sink = 0 OR text_service__sink = 0 OR unique_id_service__sink = 0 OR user_service__sink = 0)",
+        "firing_sequence": [
+          {
+            "label": "t_compose_post_server",
+            "marking_after": {
+              "compose_post_service__p_11": 1,
+              "compose_post_service__p_5": 1,
+              "compose_post_service__p_7": 1,
+              "compose_post_service__p_9": 1
+            },
+            "service": "",
+            "step": 1,
+            "transition_id": "t_compose_post_server"
+          },
+          {
+            "label": "t_compose_text_client",
+            "marking_after": {
+              "ch__ComposeText": 1,
+              "compose_post_service__p_11": 1,
+              "compose_post_service__p_5": 1,
+              "compose_post_service__p_8": 1,
+              "compose_post_service__p_9": 1
+            },
+            "service": "",
+            "step": 2,
+            "transition_id": "t_compose_text_client"
+          },
+          {
+            "label": "t_compose_creator_client",
+            "marking_after": {
+              "ch__ComposeCreatorWithUserId": 1,
+              "ch__ComposeText": 1,
+              "compose_post_service__p_10": 1,
+              "compose_post_service__p_11": 1,
+              "compose_post_service__p_5": 1,
+              "compose_post_service__p_8": 1
+            },
+            "service": "",
+            "step": 3,
+            "transition_id": "t_compose_creator_client"
+          },
+          {
+            "label": "t_compose_unique_id_client",
+            "marking_after": {
+              "ch__ComposeCreatorWithUserId": 1,
+              "ch__ComposeText": 1,
+              "ch__ComposeUniqueId": 1,
+              "compose_post_service__p_10": 1,
+              "compose_post_service__p_12": 1,
+              "compose_post_service__p_5": 1,
+              "compose_post_service__p_8": 1
+            },
+            "service": "",
+            "step": 4,
+            "transition_id": "t_compose_unique_id_client"
+          },
+          {
+            "label": "t_compose_media_client",
+            "marking_after": {
+              "ch__ComposeCreatorWithUserId": 1,
+              "ch__ComposeMedia": 1,
+              "ch__ComposeText": 1,
+              "ch__ComposeUniqueId": 1,
+              "compose_post_service__p_10": 1,
+              "compose_post_service__p_12": 1,
+              "compose_post_service__p_6": 1,
+              "compose_post_service__p_8": 1
+            },
+            "service": "",
+            "step": 5,
+            "transition_id": "t_compose_media_client"
+          },
+          {
+            "label": "t_store_post_client",
+            "marking_after": {
+              "ch__ComposeCreatorWithUserId": 1,
+              "ch__ComposeMedia": 1,
+              "ch__ComposeText": 1,
+              "ch__ComposeUniqueId": 1,
+              "ch__StorePost": 1,
+              "compose_post_service__p_13": 1
+            },
+            "service": "",
+            "step": 6,
+            "transition_id": "t_store_post_client"
+          }
+        ],
+        "length": 6,
+        "violated_marking": {
+          "ch__ComposeCreatorWithUserId": 1,
+          "ch__ComposeMedia": 1,
+          "ch__ComposeText": 1,
+          "ch__ComposeUniqueId": 1,
+          "ch__StorePost": 1,
+          "compose_post_service__p_13": 1
+        }
+      },
+      "description": "Validates reachability of state where StorePost channel is active while asynchronous child services are executing in parallel.",
+      "engine": "python",
+      "execution_time_ms": 742.23,
+      "expected_verdict": "SAT",
+      "formula": "EF(ch__StorePost > 0 AND (media_service__sink = 0 OR text_service__sink = 0 OR unique_id_service__sink = 0 OR user_service__sink = 0))",
+      "name": "Asynchronous Concurrency: Callee Interleaving Witness Reachability",
+      "property_id": "PROP_ASYNC_CONCURRENCY_WITNESS",
+      "raw_lola_output": null,
+      "states_explored": 152154,
+      "status": "HOLDS"
+    }
+  ],
+  "workflow": "composed-net"
+}

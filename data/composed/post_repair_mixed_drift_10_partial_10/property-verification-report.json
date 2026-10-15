@@ -1,0 +1,193 @@
+{
+  "_meta": {
+    "all_properties_hold": true,
+    "generated_at": "2026-10-15T14:47:51.630282+00:00",
+    "name": "Social Network Control-Flow Property Verification Certificate",
+    "properties_holding": 8,
+    "properties_unknown": 0,
+    "properties_violated": 0,
+    "total_execution_time_ms": 90.77,
+    "total_properties": 8,
+    "version": "1.0.0",
+    "workflow": "compose_post_workflow"
+  },
+  "summary": {
+    "all_properties_hold": true,
+    "holds": 8,
+    "total_execution_time_ms": 90.77,
+    "total_properties": 8,
+    "unknown": 0,
+    "violated": 0
+  },
+  "verifications": [
+    {
+      "actual_verdict": "UNSAT",
+      "category": "FORK_JOIN_SYNC",
+      "counterexample": null,
+      "description": "StorePost channel message cannot be dispatched before all 4 caller parallel fan-out dispatches (media, text, unique-id, user) have fired.",
+      "engine": "lola",
+      "execution_time_ms": 9.0,
+      "expected_verdict": "UNSAT",
+      "formula": "EF(ch__StorePost > 0 AND (compose_post_service__p_5 > 0 OR compose_post_service__p_7 > 0 OR compose_post_service__p_9 > 0 OR compose_post_service__p_11 > 0))",
+      "name": "Fork-Join Dispatch Barrier: All Fan-Out Requests Before StorePost",
+      "property_id": "PROP_FORK_JOIN_DISPATCH_BARRIER",
+      "raw_lola_output": "\nlola: NET\nlola:   reading net from /var/folders/w3/h46h06bs43s3q46hcqy69jyh0000gn/T/tmpfaf2q9dh/net.lola\nlola:   finished parsing\nlola:   closed net file /var/folders/w3/h46h06bs43s3q46hcqy69jyh0000gn/T/tmpfaf2q9dh/net.lola\nlola:   105/65536 symbol table entries, 0 collisions\nlola:   preprocessing... \nlola:   finding significant places\nlola:   56 places, 49 transitions, 41 significant places\nlola:   computing forward-conflicting sets\nlola:   computing back-conflicting sets\nlola:   53 transition conflict sets\nlola: TASK\nlola:   read: EF ((ch__StorePost > 0 AND (((compose_post_service__p_5 > 0 OR compose_post_service__p_7 > 0) OR compose_post_service__p_9 > 0) OR compose_post_service__p_11 > 0)))\nlola:   formula length: 164\nlola:   checking reachability\nlola:   Planning: workflow for reachability check: search (--findpath=off)\nlola:   warning: encoder does not fully support coverability graphs\nlola: STORE\nlola:   using a bit-perfect encoder (--encoder=bit)\nlola:   using 8 bytes per marking, with 23 unused bits\nlola:   using a prefix tree store (--store=prefix)\nlola: SEARCH\nlola:   warning: encoder does not fully support coverability graphs\nlola:   using reachability preserving stubborn set method with insertion algorithm (--stubborn=tarjan)\nlola: RUNNING\nlola: RESULT\nlola:   result: no\nlola:   The predicate is unreachable.\nlola:   6 markings, 5 edges\n",
+      "states_explored": 0,
+      "status": "HOLDS"
+    },
+    {
+      "actual_verdict": "UNSAT",
+      "category": "SERVICE_SEQUENCING",
+      "counterexample": null,
+      "description": "Timeline fan-out writes (WriteHomeTimeline and WriteUserTimeline) cannot be dispatched prior to StorePost dispatch.",
+      "engine": "lola",
+      "execution_time_ms": 9.41,
+      "expected_verdict": "UNSAT",
+      "formula": "EF((ch__WriteHomeTimeline > 0 OR ch__WriteUserTimeline > 0) AND compose_post_service__p_13 = 0 AND compose_post_service__p_14 = 0 AND compose_post_service__sink = 0)",
+      "name": "Service Sequencing: StorePost Dispatch Precedes Timeline Writes",
+      "property_id": "PROP_SERVICE_SEQUENCING_DISPATCH",
+      "raw_lola_output": "\nlola: NET\nlola:   reading net from /var/folders/w3/h46h06bs43s3q46hcqy69jyh0000gn/T/tmpnlwa9yxg/net.lola\nlola:   finished parsing\nlola:   closed net file /var/folders/w3/h46h06bs43s3q46hcqy69jyh0000gn/T/tmpnlwa9yxg/net.lola\nlola:   105/65536 symbol table entries, 0 collisions\nlola:   preprocessing... \nlola:   finding significant places\nlola:   56 places, 49 transitions, 41 significant places\nlola:   computing forward-conflicting sets\nlola:   computing back-conflicting sets\nlola:   53 transition conflict sets\nlola: TASK\nlola:   read: EF (((((ch__WriteHomeTimeline > 0 OR ch__WriteUserTimeline > 0) AND compose_post_service__p_13 = 0) AND compose_post_service__p_14 = 0) AND compose_post_service__sink = 0))\nlola:   formula length: 172\nlola:   checking reachability\nlola:   Planning: workflow for reachability check: search (--findpath=off)\nlola:   warning: encoder does not fully support coverability graphs\nlola: STORE\nlola:   using a bit-perfect encoder (--encoder=bit)\nlola:   using 8 bytes per marking, with 23 unused bits\nlola:   using a prefix tree store (--store=prefix)\nlola: SEARCH\nlola:   warning: encoder does not fully support coverability graphs\nlola:   using reachability preserving stubborn set method with insertion algorithm (--stubborn=tarjan)\nlola: RUNNING\nlola: RESULT\nlola:   result: no\nlola:   The predicate is unreachable.\nlola:   9 markings, 8 edges\n",
+      "states_explored": 0,
+      "status": "HOLDS"
+    },
+    {
+      "actual_verdict": "UNSAT",
+      "category": "CAUSAL_PRECEDENCE",
+      "counterexample": null,
+      "description": "Downstream child RPC channels (ComposeUrls and ComposeUserMentions) cannot hold tokens while root workflow remains at initial source marking.",
+      "engine": "lola",
+      "execution_time_ms": 8.75,
+      "expected_verdict": "UNSAT",
+      "formula": "EF((ch__ComposeUrls > 0 OR ch__ComposeUserMentions > 0) AND compose_post_service__source > 0)",
+      "name": "Causal Invocations: Downstream RPCs Require Prior Workflow Initiation",
+      "property_id": "PROP_CAUSAL_INVOCATION_ORDER",
+      "raw_lola_output": "\nlola: NET\nlola:   reading net from /var/folders/w3/h46h06bs43s3q46hcqy69jyh0000gn/T/tmprea3xx27/net.lola\nlola:   finished parsing\nlola:   closed net file /var/folders/w3/h46h06bs43s3q46hcqy69jyh0000gn/T/tmprea3xx27/net.lola\nlola:   105/65536 symbol table entries, 0 collisions\nlola:   preprocessing... \nlola:   finding significant places\nlola:   56 places, 49 transitions, 41 significant places\nlola:   computing forward-conflicting sets\nlola:   computing back-conflicting sets\nlola:   53 transition conflict sets\nlola: TASK\nlola:   read: EF (((ch__ComposeUrls > 0 OR ch__ComposeUserMentions > 0) AND compose_post_service__source > 0))\nlola:   formula length: 96\nlola:   checking reachability\nlola:   Planning: workflow for reachability check: search (--findpath=off)\nlola:   warning: encoder does not fully support coverability graphs\nlola: STORE\nlola:   using a bit-perfect encoder (--encoder=bit)\nlola:   using 8 bytes per marking, with 23 unused bits\nlola:   using a prefix tree store (--store=prefix)\nlola: SEARCH\nlola:   warning: encoder does not fully support coverability graphs\nlola:   using reachability preserving stubborn set method with insertion algorithm (--stubborn=tarjan)\nlola: RUNNING\nlola: RESULT\nlola:   result: no\nlola:   The predicate is unreachable.\nlola:   2 markings, 1 edges\n",
+      "states_explored": 0,
+      "status": "HOLDS"
+    },
+    {
+      "actual_verdict": "UNSAT",
+      "category": "MUTUAL_EXCLUSION",
+      "counterexample": null,
+      "description": "The root compose-post-service source place and sink place cannot be concurrently marked.",
+      "engine": "lola",
+      "execution_time_ms": 10.01,
+      "expected_verdict": "UNSAT",
+      "formula": "EF(compose_post_service__source > 0 AND compose_post_service__sink > 0)",
+      "name": "Mutual Exclusion: Workflow Source and Sink Conflict Freedom",
+      "property_id": "PROP_MUTUAL_EXCLUSION_SOURCE_SINK",
+      "raw_lola_output": "\nlola: NET\nlola:   reading net from /var/folders/w3/h46h06bs43s3q46hcqy69jyh0000gn/T/tmpjn9z014p/net.lola\nlola:   finished parsing\nlola:   closed net file /var/folders/w3/h46h06bs43s3q46hcqy69jyh0000gn/T/tmpjn9z014p/net.lola\nlola:   105/65536 symbol table entries, 0 collisions\nlola:   preprocessing... \nlola:   finding significant places\nlola:   56 places, 49 transitions, 41 significant places\nlola:   computing forward-conflicting sets\nlola:   computing back-conflicting sets\nlola:   53 transition conflict sets\nlola: TASK\nlola:   read: EF ((compose_post_service__source > 0 AND compose_post_service__sink > 0))\nlola:   formula length: 74\nlola:   checking reachability\nlola:   Planning: workflow for reachability check: search (--findpath=off)\nlola:   warning: encoder does not fully support coverability graphs\nlola: STORE\nlola:   using a bit-perfect encoder (--encoder=bit)\nlola:   using 8 bytes per marking, with 23 unused bits\nlola:   using a prefix tree store (--store=prefix)\nlola: SEARCH\nlola:   warning: encoder does not fully support coverability graphs\nlola:   using reachability preserving stubborn set method with insertion algorithm (--stubborn=tarjan)\nlola: RUNNING\nlola: RESULT\nlola:   result: no\nlola:   The predicate is unreachable.\nlola:   2 markings, 1 edges\n",
+      "states_explored": 0,
+      "status": "HOLDS"
+    },
+    {
+      "actual_verdict": "UNSAT",
+      "category": "CLEAN_DRAINAGE",
+      "counterexample": null,
+      "description": "When all participating service sink places are marked, all 9 interface channels must hold zero residual tokens.",
+      "engine": "lola",
+      "execution_time_ms": 9.99,
+      "expected_verdict": "UNSAT",
+      "formula": "EF(compose_post_service__sink > 0 AND home_timeline_service__sink > 0 AND media_service__sink > 0 AND post_storage_service__sink > 0 AND text_service__sink > 0 AND unique_id_service__sink > 0 AND url_shorten_service__sink > 0 AND user_mention_service__sink > 0 AND user_service__sink > 0 AND user_timeline_service__sink > 0 AND (ch__ComposeCreatorWithUserId > 0 OR ch__ComposeMedia > 0 OR ch__ComposeText > 0 OR ch__ComposeUniqueId > 0 OR ch__ComposeUrls > 0 OR ch__ComposeUserMentions > 0 OR ch__StorePost > 0 OR ch__WriteHomeTimeline > 0 OR ch__WriteUserTimeline > 0))",
+      "name": "Clean Channel Drainage: Residual Message Freedom Upon Termination",
+      "property_id": "PROP_CLEAN_CHANNEL_DRAINAGE",
+      "raw_lola_output": "\nlola: NET\nlola:   reading net from /var/folders/w3/h46h06bs43s3q46hcqy69jyh0000gn/T/tmp5bn_3bz5/net.lola\nlola:   finished parsing\nlola:   closed net file /var/folders/w3/h46h06bs43s3q46hcqy69jyh0000gn/T/tmp5bn_3bz5/net.lola\nlola:   105/65536 symbol table entries, 0 collisions\nlola:   preprocessing... \nlola:   finding significant places\nlola:   56 places, 49 transitions, 41 significant places\nlola:   computing forward-conflicting sets\nlola:   computing back-conflicting sets\nlola:   53 transition conflict sets\nlola: TASK\nlola:   read: EF (((((((((((compose_post_service__sink > 0 AND home_timeline_service__sink > 0) AND media_service__sink > 0) AND post_storage_service__sink > 0) AND text_service__sink > 0) AND unique_id_service__sink > 0) AND url_shorten_service__sink > 0) AND user_mention_service__sink > 0) AND user_service__sink > 0) AND user_timeline_service__sink > 0) AND ((((((((ch__ComposeCreatorWithUserId > 0 OR ch__Comp... (shortened)\nlola:   formula length: 605\nlola:   checking reachability\nlola:   Planning: workflow for reachability check: search (--findpath=off)\nlola:   warning: encoder does not fully support coverability graphs\nlola: STORE\nlola:   using a bit-perfect encoder (--encoder=bit)\nlola:   using 8 bytes per marking, with 23 unused bits\nlola:   using a prefix tree store (--store=prefix)\nlola: SEARCH\nlola:   warning: encoder does not fully support coverability graphs\nlola:   using reachability preserving stubborn set method with insertion algorithm (--stubborn=tarjan)\nlola: RUNNING\nlola: RESULT\nlola:   result: no\nlola:   The predicate is unreachable.\nlola:   36 markings, 42 edges\n",
+      "states_explored": 0,
+      "status": "HOLDS"
+    },
+    {
+      "actual_verdict": "UNSAT",
+      "category": "CHANNEL_BOUNDEDNESS",
+      "counterexample": null,
+      "description": "No interface channel place can hold more than 1 token in any reachable marking.",
+      "engine": "lola",
+      "execution_time_ms": 8.54,
+      "expected_verdict": "UNSAT",
+      "formula": "EF(ch__ComposeCreatorWithUserId > 1 OR ch__ComposeMedia > 1 OR ch__ComposeText > 1 OR ch__ComposeUniqueId > 1 OR ch__ComposeUrls > 1 OR ch__ComposeUserMentions > 1 OR ch__StorePost > 1 OR ch__WriteHomeTimeline > 1 OR ch__WriteUserTimeline > 1)",
+      "name": "Channel 1-Boundedness: 1-Safety Invariant Across All Communication Channels",
+      "property_id": "PROP_CHANNEL_1_BOUNDEDNESS",
+      "raw_lola_output": "\nlola: NET\nlola:   reading net from /var/folders/w3/h46h06bs43s3q46hcqy69jyh0000gn/T/tmp3t3_md83/net.lola\nlola:   finished parsing\nlola:   closed net file /var/folders/w3/h46h06bs43s3q46hcqy69jyh0000gn/T/tmp3t3_md83/net.lola\nlola:   105/65536 symbol table entries, 0 collisions\nlola:   preprocessing... \nlola:   finding significant places\nlola:   56 places, 49 transitions, 41 significant places\nlola:   computing forward-conflicting sets\nlola:   computing back-conflicting sets\nlola:   53 transition conflict sets\nlola: TASK\nlola:   read: EF (((((((((ch__ComposeCreatorWithUserId > 1 OR ch__ComposeMedia > 1) OR ch__ComposeText > 1) OR ch__ComposeUniqueId > 1) OR ch__ComposeUrls > 1) OR ch__ComposeUserMentions > 1) OR ch__StorePost > 1) OR ch__WriteHomeTimeline > 1) OR ch__WriteUserTimeline > 1))\nlola:   formula length: 260\nlola:   checking reachability\nlola:   Planning: workflow for reachability check: search (--findpath=off)\nlola:   warning: encoder does not fully support coverability graphs\nlola: STORE\nlola:   using a bit-perfect encoder (--encoder=bit)\nlola:   using 8 bytes per marking, with 23 unused bits\nlola:   using a prefix tree store (--store=prefix)\nlola: SEARCH\nlola:   warning: encoder does not fully support coverability graphs\nlola:   using reachability preserving stubborn set method with insertion algorithm (--stubborn=tarjan)\nlola: RUNNING\nlola: RESULT\nlola:   result: no\nlola:   The predicate is unreachable.\nlola:   64 markings, 151 edges\n",
+      "states_explored": 0,
+      "status": "HOLDS"
+    },
+    {
+      "actual_verdict": "UNSAT",
+      "category": "DEADLOCK_FREEDOM",
+      "counterexample": null,
+      "description": "No reachable intermediate state can become trapped in a premature deadlock before global completion.",
+      "engine": "lola",
+      "execution_time_ms": 8.99,
+      "expected_verdict": "UNSAT",
+      "formula": "EF(DEADLOCK AND NOT (compose_post_service__sink > 0 AND home_timeline_service__sink > 0 AND media_service__sink > 0 AND post_storage_service__sink > 0 AND text_service__sink > 0 AND unique_id_service__sink > 0 AND url_shorten_service__sink > 0 AND user_mention_service__sink > 0 AND user_service__sink > 0 AND user_timeline_service__sink > 0))",
+      "name": "Quasi-Liveness: Premature Deadlock Freedom",
+      "property_id": "PROP_DEADLOCK_PROGRESS",
+      "raw_lola_output": "\nlola: NET\nlola:   reading net from /var/folders/w3/h46h06bs43s3q46hcqy69jyh0000gn/T/tmp4xmruuv9/net.lola\nlola:   finished parsing\nlola:   closed net file /var/folders/w3/h46h06bs43s3q46hcqy69jyh0000gn/T/tmp4xmruuv9/net.lola\nlola:   105/65536 symbol table entries, 0 collisions\nlola:   preprocessing... \nlola:   finding significant places\nlola:   56 places, 49 transitions, 41 significant places\nlola:   computing forward-conflicting sets\nlola:   computing back-conflicting sets\nlola:   53 transition conflict sets\nlola: TASK\nlola:   read: EF ((DEADLOCK AND !((((((((((compose_post_service__sink > 0 AND home_timeline_service__sink > 0) AND media_service__sink > 0) AND post_storage_service__sink > 0) AND text_service__sink > 0) AND unique_id_service__sink > 0) AND url_shorten_service__sink > 0) AND user_mention_service__sink > 0) AND user_service__sink > 0) AND user_timeline_service__sink > 0))))\nlola:   formula length: 361\nlola:   checking reachability\nlola:   Planning: workflow for reachability check: search (--findpath=off)\nlola:   warning: encoder does not fully support coverability graphs\nlola: STORE\nlola:   using a bit-perfect encoder (--encoder=bit)\nlola:   using 8 bytes per marking, with 23 unused bits\nlola:   using a prefix tree store (--store=prefix)\nlola: SEARCH\nlola:   warning: encoder does not fully support coverability graphs\nlola:   using reachability preserving stubborn set method with insertion algorithm (--stubborn=tarjan)\nlola: RUNNING\nlola: RESULT\nlola:   result: no\nlola:   The predicate is unreachable.\nlola:   43 markings, 50 edges\n",
+      "states_explored": 0,
+      "status": "HOLDS"
+    },
+    {
+      "actual_verdict": "SAT",
+      "category": "CONCURRENCY_WITNESS",
+      "counterexample": {
+        "explanation": "Trace of 6 step(s) reached a state satisfying target condition: EF(ch__StorePost > 0 AND (media_service__sink = 0 OR text_service__sink = 0 OR unique_id_service__sink = 0 OR user_service__sink = 0))",
+        "firing_sequence": [
+          {
+            "label": "t_compose_post_server",
+            "marking_after": {},
+            "service": "",
+            "step": 1,
+            "transition_id": "t_compose_post_server"
+          },
+          {
+            "label": "t_compose_text_client",
+            "marking_after": {},
+            "service": "",
+            "step": 2,
+            "transition_id": "t_compose_text_client"
+          },
+          {
+            "label": "t_compose_unique_id_client",
+            "marking_after": {},
+            "service": "",
+            "step": 3,
+            "transition_id": "t_compose_unique_id_client"
+          },
+          {
+            "label": "t_compose_creator_client",
+            "marking_after": {},
+            "service": "",
+            "step": 4,
+            "transition_id": "t_compose_creator_client"
+          },
+          {
+            "label": "t_compose_media_client",
+            "marking_after": {},
+            "service": "",
+            "step": 5,
+            "transition_id": "t_compose_media_client"
+          },
+          {
+            "label": "t_store_post_client",
+            "marking_after": {},
+            "service": "",
+            "step": 6,
+            "transition_id": "t_store_post_client"
+          }
+        ],
+        "length": 6,
+        "violated_marking": {}
+      },
+      "description": "Validates reachability of state where StorePost channel is active while asynchronous child services are executing in parallel.",
+      "engine": "lola",
+      "execution_time_ms": 10.11,
+      "expected_verdict": "SAT",
+      "formula": "EF(ch__StorePost > 0 AND (media_service__sink = 0 OR text_service__sink = 0 OR unique_id_service__sink = 0 OR user_service__sink = 0))",
+      "name": "Asynchronous Concurrency: Callee Interleaving Witness Reachability",
+      "property_id": "PROP_ASYNC_CONCURRENCY_WITNESS",
+      "raw_lola_output": "\nlola: NET\nlola:   reading net from /var/folders/w3/h46h06bs43s3q46hcqy69jyh0000gn/T/tmp3mtss07r/net.lola\nlola:   finished parsing\nlola:   closed net file /var/folders/w3/h46h06bs43s3q46hcqy69jyh0000gn/T/tmp3mtss07r/net.lola\nlola:   105/65536 symbol table entries, 0 collisions\nlola:   preprocessing... \nlola:   finding significant places\nlola:   56 places, 49 transitions, 41 significant places\nlola:   computing forward-conflicting sets\nlola:   computing back-conflicting sets\nlola:   53 transition conflict sets\nlola: TASK\nlola:   read: EF ((ch__StorePost > 0 AND (((media_service__sink = 0 OR text_service__sink = 0) OR unique_id_service__sink = 0) OR user_service__sink = 0)))\nlola:   formula length: 141\nlola:   checking reachability\nlola:   Planning: workflow for reachability check: search (--findpath=off)\nlola:   warning: encoder does not fully support coverability graphs\nlola: STORE\nlola:   using a bit-perfect encoder (--encoder=bit)\nlola:   using 8 bytes per marking, with 23 unused bits\nlola:   using a prefix tree store (--store=prefix)\nlola: SEARCH\nlola:   warning: encoder does not fully support coverability graphs\nlola:   using reachability preserving stubborn set method with insertion algorithm (--stubborn=tarjan)\nlola: RUNNING\nlola: RESULT\nlola:   result: yes\nlola:   The predicate is reachable.\nlola:   7 markings, 6 edges\nlola:   print witness path (--path)\nlola:   writing witness path to /var/folders/w3/h46h06bs43s3q46hcqy69jyh0000gn/T/tmp3mtss07r/path.txt\nlola:   closed witness path file /var/folders/w3/h46h06bs43s3q46hcqy69jyh0000gn/T/tmp3mtss07r/path.txt\n",
+      "states_explored": 0,
+      "status": "HOLDS"
+    }
+  ],
+  "workflow": "compose_post_workflow"
+}

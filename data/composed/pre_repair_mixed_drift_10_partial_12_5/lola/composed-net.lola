@@ -1,0 +1,279 @@
+{ LoLA Petri Net Model: compose_post_workflow }
+{ Synthesized by Asynchronous Channel Fusion Composer }
+{ Participating Services: compose-post-service, home-timeline-service, media-service, post-storage-service, text-service, unique-id-service, url-shorten-service, user-mention-service, user-service, user-timeline-service }
+
+PLACE SAFE: ch__ComposeCreatorWithUserId, ch__ComposeMedia, ch__ComposeText, ch__ComposeUniqueId, ch__ComposeUrls, ch__ComposeUserMentions, ch__StorePost, ch__WriteHomeTimeline, ch__WriteUserTimeline, compose_post_service__p_10, compose_post_service__p_11, compose_post_service__p_12, compose_post_service__p_13, compose_post_service__p_14, compose_post_service__p_17, compose_post_service__p_18, compose_post_service__p_19, compose_post_service__p_20, compose_post_service__p_21, compose_post_service__p_22, compose_post_service__p_23, compose_post_service__p_24, compose_post_service__p_3, compose_post_service__p_5, compose_post_service__p_6, compose_post_service__p_7, compose_post_service__p_8, compose_post_service__p_9, compose_post_service__sink, compose_post_service__source, home_timeline_service__p_10, home_timeline_service__p_11, home_timeline_service__p_3, home_timeline_service__p_4, home_timeline_service__p_5, home_timeline_service__p_6, home_timeline_service__p_7, home_timeline_service__p_8, home_timeline_service__p_9, home_timeline_service__sink, media_service__sink, post_storage_service__p_3, post_storage_service__p_4, post_storage_service__p_5, post_storage_service__p_6, post_storage_service__p_7, post_storage_service__p_8, post_storage_service__sink, text_service__p_10, text_service__p_11, text_service__p_3, text_service__p_4, text_service__p_5, text_service__p_6, text_service__p_7, text_service__p_8, text_service__p_9, text_service__sink, unique_id_service__sink, url_shorten_service__p_3, url_shorten_service__sink, user_mention_service__p_3, user_mention_service__sink, user_service__sink, user_timeline_service__p_3, user_timeline_service__p_4, user_timeline_service__p_5, user_timeline_service__p_6, user_timeline_service__p_7, user_timeline_service__p_8, user_timeline_service__p_9, user_timeline_service__sink;
+
+MARKING compose_post_service__source: 1;
+
+TRANSITION t_compose_creator_client
+  CONSUME compose_post_service__p_9: 1;
+  PRODUCE ch__ComposeCreatorWithUserId: 1, compose_post_service__p_10: 1;
+
+TRANSITION t_compose_creator_server
+  CONSUME ch__ComposeCreatorWithUserId: 1;
+  PRODUCE user_service__sink: 1;
+
+TRANSITION t_compose_media_client
+  CONSUME compose_post_service__p_5: 1;
+  PRODUCE ch__ComposeMedia: 1, compose_post_service__p_6: 1;
+
+TRANSITION t_compose_media_server
+  CONSUME ch__ComposeMedia: 1;
+  PRODUCE media_service__sink: 1;
+
+TRANSITION t_compose_post_server
+  CONSUME compose_post_service__source: 1;
+  PRODUCE compose_post_service__p_3: 1;
+
+TRANSITION t_compose_post_service__skip_1
+  CONSUME compose_post_service__p_3: 1;
+  PRODUCE compose_post_service__sink: 1;
+
+TRANSITION t_compose_post_service__tauSplit_2
+  CONSUME compose_post_service__p_3: 1;
+  PRODUCE compose_post_service__p_11: 1, compose_post_service__p_5: 1, compose_post_service__p_7: 1, compose_post_service__p_9: 1;
+
+TRANSITION t_compose_text_client
+  CONSUME compose_post_service__p_7: 1;
+  PRODUCE ch__ComposeText: 1, compose_post_service__p_8: 1;
+
+TRANSITION t_compose_text_grpc_client
+  CONSUME compose_post_service__p_3: 1;
+  PRODUCE compose_post_service__p_17: 1, compose_post_service__p_19: 1, compose_post_service__p_21: 1;
+
+TRANSITION t_compose_text_server
+  CONSUME ch__ComposeText: 1;
+  PRODUCE text_service__p_3: 1;
+
+TRANSITION t_compose_unique_id_client
+  CONSUME compose_post_service__p_11: 1;
+  PRODUCE ch__ComposeUniqueId: 1, compose_post_service__p_12: 1;
+
+TRANSITION t_compose_unique_id_server
+  CONSUME ch__ComposeUniqueId: 1;
+  PRODUCE unique_id_service__sink: 1;
+
+TRANSITION t_compose_urls_client
+  CONSUME text_service__p_4: 1;
+  PRODUCE ch__ComposeUrls: 1, text_service__p_5: 1;
+
+TRANSITION t_compose_urls_grpc_client
+  CONSUME text_service__p_10: 1;
+  PRODUCE text_service__p_11: 1;
+
+TRANSITION t_compose_urls_server
+  CONSUME ch__ComposeUrls: 1;
+  PRODUCE url_shorten_service__p_3: 1;
+
+TRANSITION t_compose_user_mentions_client
+  CONSUME text_service__p_6: 1;
+  PRODUCE ch__ComposeUserMentions: 1, text_service__p_7: 1;
+
+TRANSITION t_compose_user_mentions_memcached_get_client
+  CONSUME user_mention_service__p_3: 1;
+  PRODUCE user_mention_service__sink: 1;
+
+TRANSITION t_compose_user_mentions_server
+  CONSUME ch__ComposeUserMentions: 1;
+  PRODUCE user_mention_service__p_3: 1;
+
+TRANSITION t_get_followers_client
+  CONSUME home_timeline_service__p_7: 1;
+  PRODUCE home_timeline_service__p_8: 1;
+
+TRANSITION t_get_followers_rpc_client
+  CONSUME home_timeline_service__p_6: 1;
+  PRODUCE home_timeline_service__p_11: 1;
+
+TRANSITION t_home_timeline_service__skip_5
+  CONSUME home_timeline_service__p_7: 1;
+  PRODUCE home_timeline_service__p_8: 1;
+
+TRANSITION t_home_timeline_service__skip_6
+  CONSUME home_timeline_service__p_6: 1;
+  PRODUCE home_timeline_service__p_11: 1;
+
+TRANSITION t_home_timeline_service__tauJoin_4
+  CONSUME home_timeline_service__p_10: 1, home_timeline_service__p_8: 1;
+  PRODUCE home_timeline_service__p_6: 1;
+
+TRANSITION t_home_timeline_service__tauSplit_3
+  CONSUME home_timeline_service__p_3: 1;
+  PRODUCE home_timeline_service__p_7: 1, home_timeline_service__p_9: 1;
+
+TRANSITION t_home_timeline_service__tau_1
+  CONSUME ch__WriteHomeTimeline: 1;
+  PRODUCE home_timeline_service__p_3: 1;
+
+TRANSITION t_home_timeline_service__tau_2
+  CONSUME home_timeline_service__p_4: 1;
+  PRODUCE home_timeline_service__sink: 1;
+
+TRANSITION t_media_upload_dispatch_client
+  CONSUME compose_post_service__p_19: 1;
+  PRODUCE compose_post_service__p_20: 1;
+
+TRANSITION t_mmc_set_client
+  CONSUME post_storage_service__p_8: 1;
+  PRODUCE post_storage_service__p_4: 1;
+
+TRANSITION t_mongo_find_client
+  CONSUME post_storage_service__p_7: 1;
+  PRODUCE post_storage_service__p_8: 1;
+
+TRANSITION t_post_home_timeline_client
+  CONSUME compose_post_service__p_24: 1;
+  PRODUCE compose_post_service__sink: 1;
+
+TRANSITION t_post_storage_mmc_mget_client
+  CONSUME post_storage_service__p_6: 1;
+  PRODUCE post_storage_service__p_7: 1;
+
+TRANSITION t_post_storage_mongo_insert_client
+  CONSUME post_storage_service__p_5: 1;
+  PRODUCE post_storage_service__p_4: 1;
+
+TRANSITION t_post_storage_read_posts_server
+  CONSUME post_storage_service__p_3: 1;
+  PRODUCE post_storage_service__p_6: 1;
+
+TRANSITION t_post_storage_service__skip_3
+  CONSUME post_storage_service__p_6: 1;
+  PRODUCE post_storage_service__p_4: 1;
+
+TRANSITION t_post_storage_service__skip_4
+  CONSUME post_storage_service__p_7: 1;
+  PRODUCE post_storage_service__p_4: 1;
+
+TRANSITION t_post_storage_service__tau_1
+  CONSUME ch__StorePost: 1;
+  PRODUCE post_storage_service__p_3: 1;
+
+TRANSITION t_post_storage_service__tau_2
+  CONSUME post_storage_service__p_4: 1;
+  PRODUCE post_storage_service__sink: 1;
+
+TRANSITION t_read_home_timeline_redis_find_client
+  CONSUME home_timeline_service__p_5: 1;
+  PRODUCE home_timeline_service__p_4: 1;
+
+TRANSITION t_read_home_timeline_server
+  CONSUME home_timeline_service__p_3: 1;
+  PRODUCE home_timeline_service__p_5: 1;
+
+TRANSITION t_read_user_timeline_redis_find_client
+  CONSUME user_timeline_service__p_7: 1;
+  PRODUCE user_timeline_service__p_8: 1;
+
+TRANSITION t_read_user_timeline_server
+  CONSUME user_timeline_service__p_3: 1;
+  PRODUCE user_timeline_service__p_7: 1;
+
+TRANSITION t_store_post_client
+  CONSUME compose_post_service__p_10: 1, compose_post_service__p_12: 1, compose_post_service__p_6: 1, compose_post_service__p_8: 1;
+  PRODUCE ch__StorePost: 1, compose_post_service__p_13: 1;
+
+TRANSITION t_store_post_client_v2
+  CONSUME compose_post_service__p_18: 1, compose_post_service__p_20: 1, compose_post_service__p_22: 1;
+  PRODUCE compose_post_service__p_23: 1;
+
+TRANSITION t_store_post_server
+  CONSUME post_storage_service__p_3: 1;
+  PRODUCE post_storage_service__p_5: 1;
+
+TRANSITION t_text_service__tauJoin_2
+  CONSUME text_service__p_5: 1, text_service__p_7: 1;
+  PRODUCE text_service__sink: 1;
+
+TRANSITION t_text_service__tauJoin_4
+  CONSUME text_service__p_11: 1, text_service__p_9: 1;
+  PRODUCE text_service__sink: 1;
+
+TRANSITION t_text_service__tauSplit_1
+  CONSUME text_service__p_3: 1;
+  PRODUCE text_service__p_4: 1, text_service__p_6: 1;
+
+TRANSITION t_text_service__tauSplit_3
+  CONSUME text_service__p_3: 1;
+  PRODUCE text_service__p_10: 1, text_service__p_8: 1;
+
+TRANSITION t_unique_id_rpc_client
+  CONSUME compose_post_service__p_21: 1;
+  PRODUCE compose_post_service__p_22: 1;
+
+TRANSITION t_url_mongo_insert_client
+  CONSUME url_shorten_service__p_3: 1;
+  PRODUCE url_shorten_service__sink: 1;
+
+TRANSITION t_url_shorten_service__skip_1
+  CONSUME url_shorten_service__p_3: 1;
+  PRODUCE url_shorten_service__sink: 1;
+
+TRANSITION t_user_creator_rpc_client
+  CONSUME compose_post_service__p_17: 1;
+  PRODUCE compose_post_service__p_18: 1;
+
+TRANSITION t_user_mention_service__skip_1
+  CONSUME user_mention_service__p_3: 1;
+  PRODUCE user_mention_service__sink: 1;
+
+TRANSITION t_user_mentions_rpc_client
+  CONSUME text_service__p_8: 1;
+  PRODUCE text_service__p_9: 1;
+
+TRANSITION t_user_timeline_dispatch_client
+  CONSUME compose_post_service__p_23: 1;
+  PRODUCE compose_post_service__p_24: 1;
+
+TRANSITION t_user_timeline_mongo_find_client
+  CONSUME user_timeline_service__p_8: 1;
+  PRODUCE user_timeline_service__p_9: 1;
+
+TRANSITION t_user_timeline_redis_update_client
+  CONSUME user_timeline_service__p_9: 1;
+  PRODUCE user_timeline_service__p_4: 1;
+
+TRANSITION t_user_timeline_service__skip_3
+  CONSUME user_timeline_service__p_6: 1;
+  PRODUCE user_timeline_service__p_4: 1;
+
+TRANSITION t_user_timeline_service__skip_4
+  CONSUME user_timeline_service__p_9: 1;
+  PRODUCE user_timeline_service__p_4: 1;
+
+TRANSITION t_user_timeline_service__tau_1
+  CONSUME ch__WriteUserTimeline: 1;
+  PRODUCE user_timeline_service__p_3: 1;
+
+TRANSITION t_user_timeline_service__tau_2
+  CONSUME user_timeline_service__p_4: 1;
+  PRODUCE user_timeline_service__sink: 1;
+
+TRANSITION t_write_home_timeline_client
+  CONSUME compose_post_service__p_14: 1;
+  PRODUCE ch__WriteHomeTimeline: 1, compose_post_service__sink: 1;
+
+TRANSITION t_write_home_timeline_redis_update_client
+  CONSUME home_timeline_service__p_11: 1;
+  PRODUCE home_timeline_service__p_4: 1;
+
+TRANSITION t_write_home_timeline_server
+  CONSUME home_timeline_service__p_9: 1;
+  PRODUCE home_timeline_service__p_10: 1;
+
+TRANSITION t_write_user_timeline_client
+  CONSUME compose_post_service__p_13: 1;
+  PRODUCE ch__WriteUserTimeline: 1, compose_post_service__p_14: 1;
+
+TRANSITION t_write_user_timeline_mongo_insert_client
+  CONSUME user_timeline_service__p_5: 1;
+  PRODUCE user_timeline_service__p_6: 1;
+
+TRANSITION t_write_user_timeline_redis_update_client
+  CONSUME user_timeline_service__p_6: 1;
+  PRODUCE user_timeline_service__p_4: 1;
+
+TRANSITION t_write_user_timeline_server
+  CONSUME user_timeline_service__p_3: 1;
+  PRODUCE user_timeline_service__p_5: 1;
