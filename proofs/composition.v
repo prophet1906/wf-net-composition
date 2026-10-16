@@ -1,7 +1,7 @@
 (* =========================================================================
    Formal Rocq Proofs for:
    "Interface-Guided Verification of Control-Flow Properties in
-    Microservice Architecture" (draft.pdf)
+    Microservice Architecture"
 
    Foundations: van der Aalst (1998, 2020), Nesterov et al. (2023)
 
